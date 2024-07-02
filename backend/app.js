@@ -39,6 +39,10 @@ app.get('/jobPosting', (req, res) => {
     res.render('jobPosting', { title: 'Job Posting' });
 });
 
+app.get('/jobListing', (req, res) => {
+    res.render('jobListing', { title: 'Job Listing' });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
