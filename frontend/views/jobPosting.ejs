@@ -1,0 +1,110 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+    <%- include ("navEmployer.ejs")%>
+
+    <div class="ctn-login">
+
+
+
+        <h1 class="f-sanserif-bold mt-5">CREATE</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <label for="Username">Job Title</label>
+                <input type="" id="Username" name="Username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="mobile">Working Location No.</label>
+                <input type="" id="username" name="mobile" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Working Timing</label>
+                <input type="" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Working Period (days / week / month)</label>
+                <input type="" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Paid Break (Op: Yes / No)</label>
+                <input type="" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Break Duration (by mins)</label>
+                <input type="" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Date of Commencement</label>
+                <input type="" id="email" name="email" required>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">SALARY</h1>
+
+            <p class="f-sanserif-regular mt-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                If the job is paid at a flat rate, then the rest of the<br> 
+                options should keep it to 0.
+            </p>
+
+            <div class="input-group">
+                <label for="createPassword">Hourly / Monthly Rated</label>
+                <input type="" id="createPassword" name="createPassword" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">Flat Rate</label>
+                <input type="" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+
+            <div class="input-group">
+                <label for="confirmPassword">Weekday Rate</label>
+                <input type="" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">Weekend Rate</label>
+                <input type="" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">Eve of PH Rate</label>
+                <input type="" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">PH Rate</label>
+                <input type="" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">JOB DESCRIPTIONS</h1>
+
+            <p class="f-sanserif-regular mt-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                Keep your job descriptions simple<br> 
+                and straight to the point
+            </p>
+
+            <button type="submit" class="button-content">Generate Content</button>
+            <button type="submit" class="button-createProfile">Create Job Posting</button>
+
+            <p class="f-sanserif-regular mt-5">by creating a profile, you allow WerkPay to use 
+                your personal details for employment purposes.
+            </p>
+
+        </form>
+
+
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+</body>
+</html>
