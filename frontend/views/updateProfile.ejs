@@ -1,0 +1,94 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+    <%- include ("navUser.ejs")%>
+    <%- include ("navUserJob.ejs")%>
+
+    <div class="ctn-login">
+
+        <p class="f-sanserif-regular mt-5">All job seekers will have to update their profile 
+            beforeapplying for jobs.<br> Otherwise, application of jobs 
+            will not be available for user.
+        </p>
+
+
+
+        <h1 class="f-sanserif-bold mt-5">UPDATE PROFILE</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <label for="fullName">Full Name</label>
+                <input type="" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nric">NRIC No.</label>
+                <input type="" id="nric" name="nric" required>
+            </div>
+
+            <div class="input-group">
+                <label for="yBirth">Year of Birth</label>
+                <input type="" id="yBirth" name="yBirth" required>
+            </div>
+
+
+            <div class="input-group">
+                <label for="dmBirth">Date / Month of Birth</label>
+                <input type="" id="dmBirth" name="dmBirth" required>
+            </div>
+
+            <div class="input-group">
+                <label for="postal">Postal Code</label>
+                <input type="" id="postal" name="postal" required>
+            </div>
+
+            <div class="input-group">
+                <label for="floorNo">Floor No</label>
+                <input type="" id="floorNo" name="floorNo" required>
+            </div>
+
+            <div class="input-group">
+                <label for="unitNo">Unit No</label>
+                <input type="" id="unitNo" name="unitNo" required>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
+
+            <div class="input-group">
+                <label for="mobile2">Mobile No.</label>
+                <input type="" id="mobile2" name="mobile2" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email2">Email</label>
+                <input type="" id="email2" name="email2" required>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">PAYNOW ACCOUNT</h1>
+
+            <p class="f-sanserif-regular mt-5">all payment will be made to this paynow mobile no.
+            </p>
+
+            <div class="input-group">
+                <label for="mobile2">Mobile No.</label>
+                <input type="" id="mobile2" name="mobile2" required>
+            </div>
+
+            <button type="submit" class="button-content">Generate Content</button>
+            <button type="submit" class="button-createProfile">Create Profile</button>
+
+            <p class="f-sanserif-regular mt-5">by updating your profile, you have ensure that all 
+                information are accurate.
+            </p>
+
+        </form>
+
+
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+</body>
+</html>

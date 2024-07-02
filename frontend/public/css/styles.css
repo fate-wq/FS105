@@ -1,0 +1,379 @@
+body {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+    text-wrap: pretty;
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    background-color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    border-bottom: 0.5px solid;
+}
+
+.navbar2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 20px;
+    background-color: white;
+}
+
+.navbar-row {
+    display: flex;
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-navbar {
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin: auto;
+}
+
+.footer {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(81, 85, 89, 1);
+    color: white;
+    padding: 20px;
+}
+
+.f-row {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-footer {
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    margin: auto;
+
+}
+
+.nav-list {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.nav-list li {
+    display: inline-block;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.navbar-list {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-list li {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 50px 0 50px;
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgba(81, 85, 89, 0.5);
+}
+
+.navbar-list2 li {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px 0 30px;
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: rgba(81, 85, 89, 0.5);
+}
+
+.ctn-login {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+.ctn-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    max-width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+}
+
+.input-group input,
+.input-group select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(249,243,232,1);
+    color: rgba(81, 85, 89, 1);
+    border: none;
+    border-radius: 60px;
+    margin: auto;
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+
+}
+
+.input-group label {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: .2s ease all;
+    color: rgba(81, 85, 89, 1);
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: 0;
+    font-size: 1.2rem;
+    border-radius: 9px !important;
+    color: rgba(81, 85, 89, 1);
+    background-color: rgba(103, 126, 97, 1);
+    padding: 2px 5px;
+}
+
+
+/* buttons */
+
+.button-blue {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: rgba(81, 85, 89, 1);
+    background-color: rgba(203, 221, 233, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+}
+
+.button-lightpink {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: rgba(81, 85, 89, 1);
+    background-color: rgba(247, 233, 222, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+}
+
+.button-red {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 100px;
+}
+
+.button-createProfile {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+}
+
+.button-content {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 60px;
+    color: rgba(81, 85, 89, 1);
+    background-color: white;
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 100px;
+}
+
+.button-lightgreen {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(194, 203, 150, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+}
+
+/* images */
+
+.img-logo {
+    width: 150px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* fonts */
+
+.f-cursive-regular {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.f-cursive-bold {
+    font-family: "Crimson Text", serif;
+    font-weight: 700;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.f-sanserif-light {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.f-sanserif-regular {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.f-sanserif-medium {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.f-sanserif-bold {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+/* colours */
+.c-grey {
+    color: rgba(81, 85, 89, 1);
+}
+
+.c-ivory {
+    color: rgba(247, 233, 222, 1);
+}
+
+.c-pink {
+    color: rgba(240, 187, 180, 1);
+}
+
+.c-darkpink {
+    color: rgba(234, 120, 91, 1);
+}
+
+.c-orange {
+    color: rgba(255, 190, 152, 1);
+}
+
+.c-blue {
+    color: rgba(203, 221, 233, 1);
+}
+
+.c-green {
+    color: rgba(194, 203, 150, 1);
+}
+
+.c-anotherpink {
+    color: rgba(245, 189, 168, 1);
+}
+
+.c-darkgreen {
+    color: rgba(63, 77, 52, 1);
+}
+
+.c-yellow {
+    color: rgba(238, 203, 117, 1);
+}

@@ -1,0 +1,57 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">CREATE</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <label for="uen">Company UEN no.</label>
+                <input type="" id="uen" name="uen" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nameRep">Name of Representative</label>
+                <input type="" id="nameRep" name="nameRep" required>
+            </div>
+
+            <div class="input-group">
+                <label for="mobile">Mobile No.</label>
+                <input type="" id="username" name="mobile" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="userRole">User Role</label>
+                <input type="" id="userRole" name="userRole" required>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">PASSWORD</h1>
+            <p class="f-sanserif-regular mt-5">a one-time password will be generated to the Employer’s email.
+                The Employer’s user is encourage to change the password.
+            </p>
+
+            <button type="submit" class="button-content">Generate Content</button>
+            <button type="submit" class="button-createProfile">Create Profile</button>
+
+            <p class="f-sanserif-regular mt-5">by creating a profile, you allow WerkPay to use 
+                your personal details for employment purposes.
+            </p>
+
+        </form>
+
+
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+</body>
+</html>
