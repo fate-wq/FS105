@@ -11,7 +11,7 @@ app.set('views', path.join(__dirname, '../frontend/views'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', { title: 'WerkPay' });
 });
 
 app.get('/login', (req, res) => {
@@ -41,6 +41,22 @@ app.get('/jobPosting', (req, res) => {
 
 app.get('/jobListing', (req, res) => {
     res.render('jobListing', { title: 'Job Listing' });
+});
+
+app.get('/jobApplication', (req, res) => {
+    res.render('jobApplication', { title: 'Job Applied' });
+});
+
+app.get('/jobAccepted', (req, res) => {
+    res.render('jobAccepted', { title: 'Job Accepted' });
+});
+
+app.get('/jobBlacklisted', (req, res) => {
+    res.render('jobBlacklisted', { title: 'Job Blacklisted' });
+});
+
+app.get('/attendance', (req, res) => {
+    res.render('attendance', { title: 'Attendance Clocking' });
 });
 
 const PORT = process.env.PORT || 3000;
