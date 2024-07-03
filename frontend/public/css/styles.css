@@ -391,10 +391,16 @@ body {
 
 .content {
     display: none;
-    padding: 0 18px;
     overflow: hidden;
-    background-color: #f1f1f1;
-    margin-top: 10px;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+
+}
+
+.content.show {
+    max-height: 500px; /* Adjust based on your content height */
+    padding: 10px;
+    transition: max-height 0.5s ease-in;
 }
 
 .button-jobtag {
