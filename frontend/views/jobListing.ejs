@@ -3,7 +3,7 @@
 
     <%- include ("navbar.ejs")%>
     <%- include ("navUser.ejs")%>
-    <%- include ("navUserJob.ejs")%>
+    <!-- <%- include ("navUserJob.ejs")%> -->
 
     <div class="ctn-login">
 
@@ -51,8 +51,8 @@
                         <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
                     </ul>
     
-                    <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
-                    <ul class="job-Body2 mt-4">
+                    <h3 class="job-SubHeader mt-5" >Job Descriptions</h3>
+                    <ul class="content job-Body2 mt-4" style="display: none;">
                         <li>Provide information and assistance to visitors </li>
                         <li>Assist to enforce safe distancing and safe 
                             management measures</li>
@@ -94,11 +94,10 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var coll = document.getElementsByClassName("button-expand");
-            for (var i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
+            var expandButtons = document.getElementsByClassName("button-expand");
+            for (var i = 0; i < expandButtons.length; i++) {
+                expandButtons[i].addEventListener("click", function() {
+                    var content = this.parentNode.previousElementSibling.querySelector(".content");
                     if (content.style.display === "block") {
                         content.style.display = "none";
                     } else {
