@@ -38,18 +38,21 @@
 
         <div class="ctn-job2">
             <div class="row">
-                <div class="col">
-                    <h3>Crowd Controller (NDP) x 100</h3>
-                    <p>Job by: RecruitExpress Pte. Ltd.</p>
+                <div class="ctn-job2-col1">
+                    <h3 class="job-Title">Crowd Controller (NDP) x 100</h3>
+                    <p class="mt-3">Job by: <span class="f-sanserif-bold">RecruitExpress Pte. Ltd.</span></p>
+                    <button class="button-jobtag">Hourly Rated</button>
+                    <button class="button-jobtag">Casual Part-Time</button>
+
+                    <ul class="job-Body ul-joblist mt-5">
+                        <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
+                        <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
+                        <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
+                        <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
+                    </ul>
     
-                    <p>Working Location: Padang and Promontory @ Marina Bay
-                        Working Timing: 10am — 1am (14 hours)
-                        Working Period: 10 days
-                        Paid Break: Yes
-                    </p>
-    
-                    <h3>See Job Descriptions</h3>
-                    <ul>
+                    <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
+                    <ul class="job-Body2 mt-4">
                         <li>Provide information and assistance to visitors </li>
                         <li>Assist to enforce safe distancing and safe 
                             management measures</li>
@@ -59,33 +62,52 @@
                         <li>Handling of crowd control</li>
                     </ul>
     
-                    <h3>Rates</h3>
+                    <h3 class="job-SubHeader mt-5">Rates</h3>
     
-                    <ul>
-                        <li>Weekday: $10 / hr</li>
-                        <li>Weekend: $10 / hr</li>
-                        <li>Eve of Public Holiday: $12 / hr</li>
-                        <li>Public Holiday: $12 / hr</li>
-                        <li>Flat: $12 / hr</li>
-                        <li>Weekday: $10 / hr</li>
-                        <li>Weekday: $10 / hr</li>
+                    <ul class="job-Body ul-joblist mt-4">
+                        <li>This is an <span class="f-sanserif-bold">Hourly Paid Job</span></li><br>
+                        <li>Flat: $12 /hr</li>
+                        <li>Weekday: $10 /hr</li>
+                        <li>Weekend: $10 /hr</li>
+                        <li>Eve of Public Holiday: $12 /hr</li>
+                        <li>Public Holiday: $12 /hr</li>
+                        <li>Weekday: $10 /hr</li>
+                        <li>Weekday: $10 /hr</li>
                     </ul>
     
-                    <p>
-                        Earn up to: *$1,320 (see details)
-                        $12 x 5.5 hours x 20 days = $1,320
+                    <p class="job-Body mt-5">
+                        <span class="f-sanserif-bold">Earn up to: *$1,320 (see details)</span><br>
+                        $12 x 5.5 hours x 20 days = *$1,320
                     </p>
                 </div>
 
-                <div class="col">
-                    <p>1</p>
-                    <p>1</p>
+                <div class="ctn-job2-col2">
+                    <h3 class="f-sanserif-bold">*$12 /hr</h3>
+                    <button class="button-apply">Apply Now</p>
+                    <button class="button-expand">Expand Details</p>
                 </div>
             </div>
         </div>
     </div>
 
     <%- include ("footer.ejs")%>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var coll = document.getElementsByClassName("button-expand");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>

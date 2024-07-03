@@ -27,7 +27,7 @@ body {
 
 .navbar-row {
     display: flex;
-    width: 60%;
+    width: 75%;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -116,6 +116,10 @@ body {
     color: rgba(81, 85, 89, 0.5);
 }
 
+.ul-joblist {
+    list-style-type: none;
+}
+
 .ctn-login {
     display: flex;
     flex-direction: column;
@@ -171,7 +175,18 @@ body {
     margin-right: auto;
     border-radius: 60px;
     background-color: rgba(240, 187, 180, 0.2);
-    padding: 50px;
+    padding: 40px 80px;
+}
+
+.ctn-job2-col1 {
+    flex: 2;
+}
+
+.ctn-job2-col2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
 }
 
 .input-group {
@@ -332,6 +347,109 @@ body {
     font-style: normal;
     margin-top: 20px;
 }
+
+.button-apply {
+    display: flex;
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+}
+
+.button-expand {
+    display: flex;
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 60px;
+    color: rgba(81, 85, 89, 1);
+    background-color: rgba(203, 221, 233, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+.active, .collapsible:hover {
+    background-color: white;
+}
+
+.content {
+    display: none;
+    padding: 0 18px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    margin-top: 10px;
+}
+
+.button-jobtag {
+    display: inline-block;
+    max-width: 80%;
+    height: 25px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(81, 85, 89, 0.8);
+    font-size: 0.8rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    margin-top: 5px;
+}
+
+/* Text Styling */
+
+.job-Title {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.job-SubHeader {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.job-Body {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    font-size: 1rem;
+    padding-left: 0;
+}
+
+.job-Body2 {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    font-size: 1rem;
+}
+
+
 
 /* images */
 
