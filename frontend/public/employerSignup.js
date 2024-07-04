@@ -13,7 +13,7 @@ const firebaseConfig = {
     messagingSenderId: "1074062677808",
     appId: "1:1074062677808:web:4a45569328d4b89e9f5af5",
     measurementId: "G-EKJEDP6V6D"
-};
+};  
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -62,15 +62,15 @@ function validatePassword(password) {
     return null;
 }
 
-// Event listener for sign-up form submission
-const signUpForm = document.querySelector(".sign-up-form");
+// Event listener for employer sign-up form submission
+const employerSignUpForm = document.querySelector(".employer-sign-up-form");
 
-signUpForm.addEventListener('submit', async (event) => {
+employerSignUpForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const username = signUpForm.querySelector('input[name="username"]').value;
-    const email = signUpForm.querySelector('input[name="email"]').value;
-    const password = signUpForm.querySelector('input[name="password"]').value;
+    const username = employerSignUpForm.querySelector('input[name="username"]').value;
+    const email = employerSignUpForm.querySelector('input[name="email"]').value;
+    const password = employerSignUpForm.querySelector('input[name="password"]').value;
 
     // Validate password
     const passwordError = validatePassword(password);
@@ -80,15 +80,15 @@ signUpForm.addEventListener('submit', async (event) => {
     }
 
     try {
-        // Create user with email and password
+        // Create employer with email and password
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Store user data with role
-        await storeUserData(user.uid, username, email, 'user');
+        // Store employer data with role
+        await storeUserData(user.uid, username, email, 'employer');
 
-        console.log('User signed up successfully');
-        // Optionally, you may want to redirect the user to a verification page
+        console.log('Employer signed up successfully');
+        // Optionally, you may want to redirect the employer to a verification page
         // window.location.href = 'verification.html';
     } catch (error) {
         console.error('Error signing up:', error.message);
