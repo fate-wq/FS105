@@ -6,6 +6,55 @@ body {
     text-decoration: none;
 }
 
+row {
+    display: flex;
+}
+
+col {
+    display: flex;
+}
+
+.custom-link, .custom-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 100px;
+    background-color: rgba(203, 221, 233, 0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    color: rgba(81, 85, 89, 1);
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .navbar {
     display: flex;
     background-color: white;
@@ -14,6 +63,7 @@ body {
     align-items: center;
     padding: 20px 20px;
     border-bottom: 0.5px solid;
+    z-index: 999;
 }
 
 .navbar2 {
@@ -408,7 +458,44 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+}
 
+.button-apply2 {
+    display: flex;
+    width: 50%;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.button-approval {
+    display: flex;
+    width: 50%;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(194, 203, 150, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .button-accept {
@@ -613,6 +700,54 @@ body {
     margin-top: 50px;
 }
 
+.button-trans {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.button-untrans {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: rgba(81, 85, 89, 1);
+    background-color: rgba(238, 203, 117, 0.5);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.button-posting {
+    min-width: 400px;
+    max-width: 650px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(203, 221, 233, 1);
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin: auto;
+    margin-top: 50px;
+}
+
 .active, .button-expand:hover {
     background-color: white;
 }
@@ -648,6 +783,70 @@ body {
     margin-top: 5px;
 }
 
+.button-payNow {
+    min-width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(194, 203, 150, 1);
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-mT2 {
+    min-width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(194, 203, 150, 1);
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-mT3 {
+    min-width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-Currency {
+    min-width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(255, 190, 152, 1);
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .time-display {
     font-family: "Fira Sans", sans-serif;
     font-weight: 700;
@@ -657,6 +856,74 @@ body {
     margin-top: 50px;
 }
 
+.button-buy {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(194, 203, 150, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.button-buy2 {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(194, 203, 150, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.button-sell {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 60px;
+    color: white;
+    background-color: rgba(234, 120, 91, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.button-spend {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 60px;
+    color: rgba(81, 85, 89, 1);
+    background-color: rgba(245, 189, 168, 1);
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 /* Text Styling */
 
 .job-Title {
@@ -664,6 +931,41 @@ body {
     font-weight: 700;
     font-style: normal;
     color: rgba(81, 85, 89, 1);
+}
+
+.month-Title {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3rem;
+    color: rgba(81, 85, 89, 1);
+}
+
+.money-Title {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 5rem;
+    color: rgba(238, 203, 117, 1);
+    letter-spacing: 0.4rem;
+}
+
+.money-Title2 {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 4rem;
+    color: rgba(194, 203, 150, 1);
+    letter-spacing: 0.1rem;
+}
+
+.money-Title3 {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 4rem;
+    color: rgba(234, 120, 91, 1);
+    letter-spacing: 0.1rem;
 }
 
 .job-SubHeader {
@@ -699,7 +1001,172 @@ body {
     text-align: right;
 }
 
+.transaction-title {
+    font-size: 1.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+}
 
+.transaction-id {
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+}
+
+.transaction-date {
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+}
+
+.transaction-amount {
+    font-size: 2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.currency-amount {
+    font-size: 3rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+}
+
+.currency-title {
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+}
+
+.transaction-row {
+    display: flex;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.transaction-col1 {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+}
+
+.transaction-col2 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.currency-row {
+    display: flex;
+    width: 80%;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.currency-col1 {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    width: 100%;
+}
+
+.currency-col2 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dash-square {
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    padding: 40px 30px;
+    margin-top: 10px;
+    border-radius: 40px;
+    border: 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-title {
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.dash-figure {
+    font-size: 2.5rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+}
+
+.table-styled {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(81, 85, 89, 1);
+    text-align: left;
+}
+
+.table-styled th, .table-styled td {
+    padding: 12px 15px;
+    border: 0.5px solid white;
+}
+
+.table-styled thead th {
+    background-color: #f4f4f4;
+}
+
+.table-styled tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-styled tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.table-styled tbody tr:hover {
+    background-color: #f1f1f1;
+}
 
 /* images */
 
@@ -774,6 +1241,20 @@ body {
     color: rgba(81, 85, 89, 1);
 }
 
+.f-sanserif-italic {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(81, 85, 89, 1);
+}
+
+.f-sanserif-thin-italic {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    color: rgba(81, 85, 89, 1);
+}
+
 /* colours */
 .c-grey {
     color: rgba(81, 85, 89, 1);
@@ -813,4 +1294,10 @@ body {
 
 .c-yellow {
     color: rgba(238, 203, 117, 1);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(63, 77, 52, 0.2);
+    margin: 20px 0;
 }

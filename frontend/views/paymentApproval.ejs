@@ -1,0 +1,239 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navEmployer.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">PAYMENTS APPROVAL</h1>
+
+        <div class="ctn-attendance">
+
+            <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                Do take note that if payment is not approved within 1 day, Salary payment will<br>  
+                still be automatically release to the users within the next day since job has been completed.
+            </p>
+            
+            <p class="f-sanserif-medium mt-3">Table information:</p>
+
+            <div>
+                <label for="massStatus">Change Status for Selected Rows: </label>
+                <select id="massStatus" class="status-dropdown">
+                    <option value="">Select Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Hold">Hold</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+
+            <table id="paymentTable" class="table-styled mt-5 mb-5">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Job ID</th>
+                        <th>Crew ID</th>
+                        <th>Name of Crew</th>
+                        <th>Mobile No.</th>
+                        <th>No. of Working Hours</th>
+                        <th>Per Hourly / Monthly Rate</th>
+                        <th>Total Payment, $</th>
+                        <th>Approval Status</th>
+                        <th>Remark </th>
+                        <th>Payment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                           <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Hold">Hold</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td>Not Paid</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="applyStatusButton" class="button-apply2">Apply Changes to all Selected Rows</button>
+            <button id="applyStatusButton" class="button-approval">Submit Payment Approval</button>
+            
+        </div>
+    </div>
+
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+
+        function applyStatusToSelectedRows() {
+            const selectedStatus = document.getElementById('massStatus').value;
+            const checkboxes = document.querySelectorAll('.row-select:checked');
+
+            checkboxes.forEach(checkbox => {
+                const row = checkbox.closest('tr');
+                const statusDropdown = row.querySelector('.status-dropdown');
+                statusDropdown.value = selectedStatus;
+            });
+        }
+
+        document.getElementById('applyStatusButton').addEventListener('click', applyStatusToSelectedRows);
+    
+    </script>
+
+
+</body>
+</html>

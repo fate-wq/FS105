@@ -1,0 +1,105 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navUser.ejs") %>
+    <%- include ("navWallet.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">TRANSACTIONS</h1>
+
+        <div class="ctn-attendance">
+
+            <div class="row">
+                <div class="col">
+                    <p class="f-sanserif-medium mt-3">View Transactions For:</p>
+                    <h1 class="month-Title">July 2024</h1>
+                </div>
+            </div>
+
+
+
+            <div class="row mt-5">
+                <div class="col">
+                    <p class="f-sanserif-medium mt-3">Total Available Amount:</p>
+                    <h1 class="money-Title">$ 947.22</h1>
+                    <p class="f-sanserif-italic mt-2">in singapore dollar</p>
+                </div>
+
+            </div>
+            
+            <div class="row mt-5">
+
+                <div class="col">
+                    <p class="f-sanserif-medium mt-3">Amount <span class="c-green">Credited:</p>
+                    <h1 class="money-Title2">+ $ 432.87</h1>
+                    <p class="f-sanserif-italic mt-2">in singapore dollar</p>
+                    <button type="submit" class="button-mT2">View Details</button>
+                </div>
+
+                <div class="col">
+                    <p class="f-sanserif-medium mt-3">Amount <span class="c-darkpink">Spent:</span></p>
+                    <h1 class="money-Title3">- $ 300.52</h1>
+                    <p class="f-sanserif-italic mt-2">in singapore dollar</p>
+                    <button type="submit" class="button-mT3">View Details</button>
+                </div>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5 mb-5">Recent Transactions</h1>
+
+            <div class="transaction-row mt-2">
+                <div class="transaction-col1">
+                    <p class="transaction-date mt-3">1 July</p>
+                    <p class="transaction-title ">Taobao.com</p>
+                    <p class="transaction-id">00023824YHB3319</p>
+                </div>
+
+                <div class="transaction-col2">
+                    <p class="transaction-amount">-$ 89.90</p>
+                </div>
+            </div>
+            <hr>
+
+            <div class="transaction-row mt-2">
+                <div class="transaction-col1">
+                    <p class="transaction-date mt-3">1 July</p>
+                    <p class="transaction-title ">Benjamin Barker</p>
+                    <p class="transaction-id">0989238EXH</p>
+                </div>
+
+                <div class="transaction-col2">
+                    <p class="transaction-amount">-$ 104.20</p>
+                </div>
+            </div>
+            <hr>
+
+            <div class="transaction-row mt-2">
+                <div class="transaction-col1">
+                    <p class="transaction-date mt-3">1 July</p>
+                    <p class="transaction-title ">Paynow Alvin</p>
+                    <p class="transaction-id">KLM458192</p>
+                </div>
+
+                <div class="transaction-col2">
+                    <p class="transaction-amount">-$ 57.25</p>
+                </div>
+            </div>
+            <hr>
+
+            <button type="submit" class="button-trans">Show All Transactions</button>
+            <a href="/eTrans"><button type="submit" class="button-untrans">Raise Unauthorised Transaction</button></a>
+
+        </div>
+
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+    
+    </script>
+
+
+</body>
+</html>
