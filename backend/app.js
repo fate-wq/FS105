@@ -59,6 +59,47 @@ app.get('/attendance', (req, res) => {
     res.render('attendance', { title: 'Attendance Clocking' });
 });
 
+app.get('/eWallet', (req, res) => {
+    res.render('eWallet', { title: 'eWallet' });
+});
+
+app.get('/ePay', (req, res) => {
+    res.render('ePay', { title: 'ePay' });
+});
+
+app.get('/eTrans', (req, res) => {
+    res.render('eTrans', { title: 'eTransactions' });
+});
+
+app.get('/eCurrency', (req, res) => {
+    res.render('eCurrency', { title: 'eCurrency' });
+});
+
+app.get('/employerDash', (req, res) => {
+    res.render('employerDash', { title: 'Employer Dashboard' });
+});
+
+app.get('/jobCredit', (req, res) => {
+    res.render('jobCredit', { title: 'Purchase Job Credit' });
+});
+
+app.get('/paymentApproval', (req, res) => {
+    res.render('paymentApproval', { title: 'Payments Approval' });
+});
+
+app.get('/liveJob', (req, res) => {
+    res.render('liveJob', { title: 'Live Job' });
+});
+
+app.get('/completedJob', (req, res) => {
+    res.render('completedJob', { title: 'Completed Job' });
+});
+
+app.get('/jobPosted', (req, res) => {
+    res.render('jobPosted', { title: 'Total Job Posted' });
+});
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
