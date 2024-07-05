@@ -1,0 +1,256 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navAdmin.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">TOTAL UEN REGISTERED</h1>
+
+        <div class="ctn-attendance">
+
+            <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                Do take note that if payment is not approved within 1 day, Salary payment will<br>  
+                still be automatically released to the users within the next day since the job has been completed.
+            </p>
+            
+            <p class="f-sanserif-medium mt-3">Table information:</p>
+
+            <div>
+                <label for="massStatus">Change Status for Selected Rows: </label>
+                <select id="massStatus" class="status-dropdown">
+                    <option value="">Select Status</option>
+                    <option value="Suspended">Suspend Company</option>
+                </select>
+            </div>
+
+            <table id="paymentTable" class="table-styled mt-5 mb-5">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>S/N</th>
+                        <th>UEN No.</th>
+                        <th>Name of Company</th>
+                        <th>Main Contact Person</th>
+                        <th>Mobile No.</th>
+                        <th>Email No.</th>
+                        <th>Date Joined</th>
+                        <th>No. of Job Posted</th>
+                        <th>Credit Purchased</th>
+                        <th>Credit Utilised</th>
+                        <th>Credit Balance</th>
+                        <th>Account Status</th>
+                        <th>Admin Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
+                        <td>1/7/2024</td>
+                        <td>32</td>
+                        <td>$800</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="applyStatusButton" class="button-apply2">Apply Changes to all Selected Rows</button>
+            <button id="applyStatusButton" class="button-approval">Submit Payment Approval</button>
+
+        </div>
+    </div>
+
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+
+        function applyStatusToSelectedRows() {
+            const selectedStatus = document.getElementById('massStatus').value;
+            const checkboxes = document.querySelectorAll('.row-select:checked');
+
+            checkboxes.forEach(checkbox => {
+                const row = checkbox.closest('tr');
+                const statusDropdown = row.querySelector('.status-dropdown');
+                statusDropdown.value = selectedStatus;
+            });
+        }
+
+        function updateSerialNumbers() {
+            const rows = document.querySelectorAll('#paymentTable tbody tr');
+            rows.forEach((row, index) => {
+                row.querySelector('.serial-number').textContent = index + 1;
+            });
+        }
+
+        document.getElementById('applyStatusButton').addEventListener('click', applyStatusToSelectedRows);
+
+        document.addEventListener('DOMContentLoaded', updateSerialNumbers);
+
+    </script>
+
+
+</body>
+</html>

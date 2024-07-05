@@ -1,0 +1,56 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">CREATE</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <input type="text" id="Username" name="Username" required>
+                <label for="Username">Username</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="username" name="mobile" required>
+                <label for="mobile">Mobile No.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">PASSWORD</h1>
+
+            <div class="input-group">
+                <input type="password" id="createPassword" name="createPassword" required>
+                <label for="createPassword">Create Password</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <p class="f-sanserif-regular mt-5">Your password should be a combination of at least 
+                8 characters, including lowercase letters, uppercase letters, 
+                numbers and special symbols.
+            </p>
+
+            <button type="submit" class="button-content">Generate Content</button>
+            <button type="submit" class="button-createProfile">Create Profile</button>
+
+            <p class="f-sanserif-regular mt-5">By creating a profile, you allow WerkPay to use 
+                your personal details for employment purposes.
+            </p>
+
+        </form>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+</body>
+</html>

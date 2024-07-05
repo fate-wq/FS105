@@ -1,0 +1,84 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">CREATE</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <input type="text" id="uen" name="uen" required>
+                <label for="uen">Company UEN no.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="nameRep" name="nameRep" required>
+                <label for="nameRep">Name of Representative</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="mobile" name="mobile" required>
+                <label for="mobile">Mobile No.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="userRole" name="userRole" required>
+                <label for="userRole">User Role</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">PASSWORD</h1>
+            <p class="f-sanserif-regular mt-5">A one-time password will be generated to the Employer’s email.
+                The Employer’s user is encouraged to change the password.
+            </p>
+
+            <button type="submit" class="button-content">Generate Content</button>
+            <button type="submit" class="button-createProfile">Create Profile</button>
+
+            <p class="f-sanserif-regular mt-5">By creating a profile, you allow WerkPay to use 
+                your personal details for employment purposes.
+            </p>
+
+        </form>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+        const inputs = document.querySelectorAll('.input-group input, .input-group select');
+
+        inputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
+            });
+
+            input.addEventListener('blur', function () {
+                if (this.value === '') {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+
+            input.addEventListener('change', function () {
+                if (this.value !== '') {
+                    this.parentElement.classList.add('select-filled');
+                } else {
+                    this.parentElement.classList.remove('select-filled');
+                }
+            });
+
+            if (input.value !== '') {
+                input.parentElement.classList.add('select-filled');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navAdmin.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">OVERVIEW</h1>
+        <%- include ("timer.ejs") %>
+
+        <div class="ctn-attendance">
+
+            <div class="row mt-5">
+
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Total Registered UENs</p>
+                        <p class="dash-figure">629</p>
+                        <a href="/allUEN"><button type="submit" class="button-spend">View All UENs</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Total Employers</p>
+                        <p class="dash-figure">848</p>
+                        <a href="/allEmployer"><button type="submit" class="button-spend">Mgmt. of Employers</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Total Job Seekers</p>
+                        <p class="dash-figure">14,250</p>
+                        <a href="/allJobseeker"><button type="submit" class="button-spend">Mgmt. of Job Seekers</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Total Job Ads Posted</p>
+                        <p class="dash-figure">12,687</p>
+                        <a href="/allJobPosted"><button type="submit" class="button-spend">View Posted Jobs</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Blacklisted Job Ads</span></p>
+                        <p class="dash-figure">320</p>
+                        <a href=""><button type="submit" class="button-spend">View Blacklisted Job Ads</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Payment Status<br><span class="f-sanserif-light">(total trans.)</span></p>
+                        <p class="dash-figure">15</p>
+                        <a href="/paymentProcess"><button type="submit" class="button-spend">Process Payment</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/createEMProfile"><button type="submit" class="button-posting">Create New Employer Profile</button></a>
+    
+        </div>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+    
+    </script>
+
+
+</body>
+</html>
