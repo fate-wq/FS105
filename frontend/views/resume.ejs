@@ -1,0 +1,168 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+    <%- include ("navUser.ejs")%>
+
+    <div class="ctn-login">
+
+        <div class="">
+            
+        </div>
+
+        <h1 class="f-sanserif-bold mt-5">UPDATE RESUME</h1>
+
+        <p class="f-sanserif-regular mt-5">Update your resume will increase your chance of 
+            being shortlisted for the jobs that you have applied.<br>
+            It is important that you ensure all work experiences are accurately presented.
+        </p>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <h1 class="f-sanserif-bold mt-5">JOB SEARCHING PROFILE</h1>
+
+            <div class="input-group">
+                <select id="status" name="status" required>
+                    <option value="" disabled selected>Select...</option>
+                    <option value="part_time_student">Part-time Student</option>
+                    <option value="full_time_student">Full-time Student</option>
+                    <option value="working_professional">Working Professional</option>
+                    <option value="freelancer">Freelancer</option>
+                </select>
+                <label for="status">I am a...</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="lookingFor" name="lookingFor" required>
+                <label for="lookingFor">I am looking for a...</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="industry" name="industry" required>
+                <label for="industry">Preferably Industry / Sector</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="experienceIndustry" name="experienceIndustry" required>
+                <label for="experienceIndustry">I have Experience in this Industry / Sector</label>
+            </div>
+
+            <div class="input-group">
+                <input type="number" id="experienceYears" name="experienceYears" required>
+                <label for="experienceYears">No. of Years in Experience</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">SKILLSET</h1>
+
+            <div class="input-group">
+                <input type="text" id="skill1" name="skill1" required>
+                <label for="skill1">SKILLSET 1</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="skill2" name="skill2" required>
+                <label for="skill2">SKILLSET 2</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="skill3" name="skill3" required>
+                <label for="skill3">SKILLSET 3</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">EDUCATION INFORMATION</h1>
+
+            <div class="input-group">
+                <input type="text" id="highestQualification" name="highestQualification" required>
+                <label for="highestQualification">Highest Qualification</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="courseName" name="courseName" required>
+                <label for="courseName">Name of Course Attained</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="courseStartYear" name="courseStartYear" required>
+                <label for="courseStartYear">Course Commencement Period, Year (yyyy)</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="courseEndYear" name="courseEndYear" required>
+                <label for="courseEndYear">Course Graduated in Year (yyyy)</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1>
+
+            <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+
+            <div class="input-group">
+                <input type="text" id="company1" name="company1" required>
+                <label for="company1">Name of Company</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="jobTitle1" name="jobTitle1" required>
+                <label for="jobTitle1">Job Title / Designation</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="startYear1" name="startYear1" required>
+                <label for="startYear1">Commencement Year (yyyy)</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="endYear1" name="endYear1" required>
+                <label for="endYear1">End Year (yyyy)</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">Work Experience 2</h1>
+
+            <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+
+            <div class="input-group">
+                <input type="text" id="company2" name="company2" required>
+                <label for="company2">Name of Company</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="jobTitle2" name="jobTitle2" required>
+                <label for="jobTitle2">Job Title / Designation</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="startYear2" name="startYear2" required>
+                <label for="startYear2">Start working from year (yyyy)</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="endYear2" name="endYear2" required>
+                <label for="endYear2">End working from year (yyyy)</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">Work Experience 3</h1>
+
+            <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+
+            <div class="input-group">
+                <input type="text" id="company3" name="company3" required>
+                <label for="company3">Name of Company</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="jobTitle3" name="jobTitle3" required>
+                <label for="jobTitle3">Job Title / Designation</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="startYear3" name="startYear3" required>
+                <label for="startYear3">Start working from year (yyyy)</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="endYear3" name="endYear3" required>
+                <label for="endYear3">End working from year (yyyy)</label>
+            </div>
+
+            <button type="submit" class="button-content">Generate Content</button>
+            <button type="submit" class="button-createProfile">Update Resume</button>
+
+            <p class="f-sanserif-regular mt-5">By updating your profile, you have ensured that all information is accurate.</p>
+
+        </form>
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+</body>
+</html>

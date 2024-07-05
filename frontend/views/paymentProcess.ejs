@@ -2,7 +2,7 @@
 <body>
 
     <%- include ("navbar.ejs") %>
-    <%- include ("navEmployer.ejs") %>
+    <%- include ("navAdmin.ejs") %>
 
     <div class="ctn-login">
 
@@ -12,7 +12,7 @@
 
             <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
                 Do take note that if payment is not approved within 1 day, Salary payment will<br>  
-                still be automatically release to the users within the next day since job has been completed.
+                still be automatically released to the users within the next day since the job has been completed.
             </p>
             
             <p class="f-sanserif-medium mt-3">Table information:</p>
@@ -21,10 +21,9 @@
                 <label for="massStatus">Change Status for Selected Rows: </label>
                 <select id="massStatus" class="status-dropdown">
                     <option value="">Select Status</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Approved">Approved</option>
+                    <option value="Pending Payment">Pending Payment</option>
+                    <option value="Release Payment">Release Payment</option>
                     <option value="Hold">Hold</option>
-                    <option value="Rejected">Rejected</option>
                 </select>
             </div>
 
@@ -41,8 +40,8 @@
                         <th>Per Hourly / Monthly Rate</th>
                         <th>Total Payment, $</th>
                         <th>Approval Status</th>
-                        <th>Remark </th>
                         <th>Payment Status</th>
+                        <th>Remark</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,16 +55,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -77,16 +75,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -98,16 +95,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -119,16 +115,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -140,16 +135,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -161,16 +155,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -182,16 +175,15 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
@@ -203,37 +195,83 @@
                         <td>50</td>
                         <td>12</td>
                         <td>600</td>
+                        <td>Proceed</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
                                 <option value="Hold">Hold</option>
-                                <option value="Rejected">Rejected</option>
                             </select>
                         </td>
                         <td></td>
-                        <td>Not Paid</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>Proceed</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
+                                <option value="Hold">Hold</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>JK349102OP</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9300 4500</td>
+                        <td>50</td>
+                        <td>12</td>
+                        <td>600</td>
+                        <td>Proceed</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending Payment">Pending Payment</option>
+                                <option value="Release Payment">Release Payment</option>
+                                <option value="Hold">Hold</option>
+                            </select>
+                        </td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
             <button id="applyStatusButton" class="button-apply2">Apply Changes to all Selected Rows</button>
-            <button id="applyStatusButton" class="button-approval">Submit Payment Approval</button>
+            <button id="submitApprovalButton" class="button-approval">Submit Payment Approval</button>
             
         </div>
     </div>
 
-
     <%- include ("footer.ejs") %>
 
     <script>
-
         function applyStatusToSelectedRows() {
             const selectedStatus = document.getElementById('massStatus').value;
+            console.log("Selected status to apply:", selectedStatus);
+
+            if (!selectedStatus) {
+                alert("Please select a status to apply.");
+                return;
+            }
+
             const checkboxes = document.querySelectorAll('.row-select:checked');
+            console.log("Number of selected rows:", checkboxes.length);
 
             checkboxes.forEach(checkbox => {
                 const row = checkbox.closest('tr');
                 const statusDropdown = row.querySelector('.status-dropdown');
+                console.log("Changing status for row:", row);
                 statusDropdown.value = selectedStatus;
             });
         }
@@ -248,7 +286,6 @@
         document.getElementById('applyStatusButton').addEventListener('click', applyStatusToSelectedRows);
 
         document.addEventListener('DOMContentLoaded', updateSerialNumbers);
-    
     </script>
 
 

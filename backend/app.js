@@ -99,6 +99,42 @@ app.get('/jobPosted', (req, res) => {
     res.render('jobPosted', { title: 'Total Job Posted' });
 });
 
+app.get('/applicationReview', (req, res) => {
+    res.render('applicationReview', { title: 'Application Processed' });
+});
+
+app.get('/adminDash', (req, res) => {
+    res.render('adminDash', { title: 'Admin Dashboard' });
+});
+
+app.get('/paymentProcess', (req, res) => {
+    res.render('paymentProcess', { title: 'Process of Payment' });
+});
+
+app.get('/allJobPosted', (req, res) => {
+    res.render('allJobPosted', { title: 'Management of Job Ads' });
+});
+
+app.get('/allUEN', (req, res) => {
+    res.render('allUEN', { title: 'Management of UENs' });
+});
+
+app.get('/allEmployer', (req, res) => {
+    res.render('allEmployer', { title: 'Management of Employer' });
+});
+
+app.get('/allJobseeker', (req, res) => {
+    res.render('allJobseeker', { title: 'Management of Jobseeker' });
+});
+
+app.get('/resume', (req, res) => {
+    res.render('resume', { title: 'Update Resume' });
+});
+
+app.get('/shop', (req, res) => {
+    res.render('shop', { title: 'Shop' });
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

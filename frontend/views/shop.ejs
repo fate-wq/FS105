@@ -1,0 +1,104 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navUser.ejs") %>
+    <%- include ("navUserJob.ejs") %>
+
+    <div class="ctn-login">
+
+        <div class="ctn-job2">
+            <div class="row">
+                <div class="ctn-job2-col1">
+                    <h3 class="job-Title">Yellow Safety Helmet</h3>
+                    <p class="mt-3">Product by: <span class="f-sanserif-bold">WerkPay</span></p>
+                    <button class="button-jobtag">Best Priced</button>
+                    <button class="button-jobtag">10% Discount</button>
+
+                    <img src="/images/safety.png" alt="" class="img-prdt mt-5">
+
+                    <button class="button-expand mt-5">Expand Product Descriptions</button>
+
+
+                    <div class="content job-Body2 mt-4">
+
+                        <h3 class="job-SubHeader mt-5">Product Descriptions</h3>
+                        <p class="job-Body mt-4">
+                            Protective hard hat with comfortable 4-point ratchet suspension and standard brow pad. Available in several colors. Meets requirements of ANSI/ISEA Z89.1-2014 Type 1, Class G and E.
+
+                            3M™ Hard Hat with 4 Point Ratchet Suspension H 700 Series is comfortable, tough and lightweight safety headgear that helps protect the top of the head due to the potential hazard of small falling objects or exposed fixed objects that may be bumped into. A 4 point ratchet suspension adjusts easily to allow for a customized height and fit that best suits the individual who wears the hard hat. Workers wearing this hard hat will also appreciate its low profile design and balance, which provide for a more comfortable and less obtrusive feel. A short brim allows for better upward visibility, a feature that potentially enhances both safety and productivity. The soft brow pad cushions the forehead and is removable for easy replacement. For added versatility, the hard hat features accessory slots to accommodate 3M’s cap mounted ear muffs, headgear, faceshields, and welding helmets (all sold separately). A hardhat is commonly worn in these industries: heavy and light industrial, construction, oil and gas, road work, forestry, and mining. This hard hat meets requirements of ANSI/ISEA Z89.1 2014 Type 1, Class G and E. The hat may be worn in either the forward or reverse donning position. Hat weighs 12.8 ounces. The rigid shell of the 3M Hard Hat H 700 Series helps reduce chances of injury by deflecting small falling objects from striking the head of the person who wears this safety headgear. The hard hat also helps protect from injuries due to bumping into stationary objects such as pipes, rods, shafts, construction timbers, branches, or exposed electrical conductors. The suspension system inside the hard hat helps absorb the effects of the impact to dissipate the force. Even small objects can cause significant injury due to the force built up from the momentum of falling. Something as small as a washer or coin can strike with the force of several pounds if it falls far enough. 3M hard hats reduce the impact if a strike occurs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ctn-job2-col2">
+                    <h3 class="f-sanserif-bold">$23.00</h3>
+                    <div class="input-group">
+                        <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter Quantity" required>
+                    </div>
+                    <button class="button-apply">Buy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ctn-job2">
+            <div class="row">
+                <div class="ctn-job2-col1">
+                    <h3 class="job-Title">Yellow Safety Helmet</h3>
+                    <p class="mt-3">Product by: <span class="f-sanserif-bold">WerkPay</span></p>
+                    <button class="button-jobtag">Best Priced</button>
+                    <button class="button-jobtag">10% Discount</button>
+
+                    <button class="button-expand mt-5">Expand Product Descriptions</button>
+
+
+                    <div class="content job-Body2 mt-4">
+
+                        <h3 class="job-SubHeader mt-5">Product Descriptions</h3>
+                        <p class="job-Body mt-4">
+                            Protective hard hat with comfortable 4-point ratchet suspension and standard brow pad. Available in several colors. Meets requirements of ANSI/ISEA Z89.1-2014 Type 1, Class G and E.
+
+                            3M™ Hard Hat with 4 Point Ratchet Suspension H 700 Series is comfortable, tough and lightweight safety headgear that helps protect the top of the head due to the potential hazard of small falling objects or exposed fixed objects that may be bumped into. A 4 point ratchet suspension adjusts easily to allow for a customized height and fit that best suits the individual who wears the hard hat. Workers wearing this hard hat will also appreciate its low profile design and balance, which provide for a more comfortable and less obtrusive feel. A short brim allows for better upward visibility, a feature that potentially enhances both safety and productivity. The soft brow pad cushions the forehead and is removable for easy replacement. For added versatility, the hard hat features accessory slots to accommodate 3M’s cap mounted ear muffs, headgear, faceshields, and welding helmets (all sold separately). A hardhat is commonly worn in these industries: heavy and light industrial, construction, oil and gas, road work, forestry, and mining. This hard hat meets requirements of ANSI/ISEA Z89.1 2014 Type 1, Class G and E. The hat may be worn in either the forward or reverse donning position. Hat weighs 12.8 ounces. The rigid shell of the 3M Hard Hat H 700 Series helps reduce chances of injury by deflecting small falling objects from striking the head of the person who wears this safety headgear. The hard hat also helps protect from injuries due to bumping into stationary objects such as pipes, rods, shafts, construction timbers, branches, or exposed electrical conductors. The suspension system inside the hard hat helps absorb the effects of the impact to dissipate the force. Even small objects can cause significant injury due to the force built up from the momentum of falling. Something as small as a washer or coin can strike with the force of several pounds if it falls far enough. 3M hard hats reduce the impact if a strike occurs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ctn-job2-col2">
+                    <h3 class="f-sanserif-bold">$23.00</h3>
+                    <div class="input-group">
+                        <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter Quantity" required>
+                    </div>
+                    <button class="button-apply">Buy</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var expandButtons = document.getElementsByClassName("button-expand");
+            console.log("Expand buttons found: ", expandButtons.length); // Debugging
+
+            for (var i = 0; i < expandButtons.length; i++) {
+                expandButtons[i].addEventListener("click", function() {
+                    console.log("Button clicked"); // Debugging
+                    var content = this.nextElementSibling;
+                    if (content && content.style) {
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                        }
+                    } else {
+                        console.log("No content found"); // Debugging
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

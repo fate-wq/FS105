@@ -2,17 +2,17 @@
 <body>
 
     <%- include ("navbar.ejs") %>
-    <%- include ("navEmployer.ejs") %>
+    <%- include ("navAdmin.ejs") %>
 
     <div class="ctn-login">
 
-        <h1 class="f-sanserif-bold mt-5">MANAGEMENT OF LIVE JOB ADS</h1>
+        <h1 class="f-sanserif-bold mt-5">MANAGEMENT OF EMPLOYER</h1>
 
         <div class="ctn-attendance">
 
             <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
                 Do take note that if payment is not approved within 1 day, Salary payment will<br>  
-                still be automatically release to the users within the next day since job has been completed.
+                still be automatically released to the users within the next day since the job has been completed.
             </p>
             
             <p class="f-sanserif-medium mt-3">Table information:</p>
@@ -21,8 +21,7 @@
                 <label for="massStatus">Change Status for Selected Rows: </label>
                 <select id="massStatus" class="status-dropdown">
                     <option value="">Select Status</option>
-                    <option value="Open">Open</option>
-                    <option value="Closed">Closed</option>
+                    <option value="Suspended">Suspend Company</option>
                 </select>
             </div>
 
@@ -31,158 +30,168 @@
                     <tr>
                         <th>Select</th>
                         <th>S/N</th>
-                        <th>Job ID</th>
-                        <th>Date Posted</th>
-                        <th>Job Title</th>
-                        <th>Number of Total Applicant</th>
-                        <th>Number of Shorlisted Applicant</th>
-                        <th>Number of Rejected Applicant</th>
-                        <th>Job Status</th>
-                        <th>View Job Posting</th>
+                        <th></th>
+                        <th>Name of Company</th>
+                        <th>Main Contact Person</th>
+                        <th>Mobile No.</th>
+                        <th>Email No.</th>
+                        <th>Date Joined</th>
+                        <th>No. of Job Posted</th>
+                        <th>Account Status</th>
+                        <th>Admin Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="row-select"></td>
                         <td class="serial-number"></td>
-                        <td>SATS1980</td>
+                        <td>20091876W</td>
+                        <td>Recruit Express</td>
+                        <td>Thomas Tan</td>
+                        <td>9088 7643</td>
+                        <td>thomas@re.com.sg</td>
                         <td>1/7/2024</td>
-                        <td>Changi Food Packer</td>
-                        <td>130</td>
-                        <td>35</td>
-                        <td>50</td>
+                        <td>32</td>
+                        <td>Active</td>
                         <td>
                             <select class="status-dropdown">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Company</option>
                             </select>
                         </td>
-                        <td>Click to View</td>
                     </tr>
                 </tbody>
             </table>
+
             <button id="applyStatusButton" class="button-apply2">Apply Changes to all Selected Rows</button>
             <button id="applyStatusButton" class="button-approval">Submit Payment Approval</button>
-            
+
         </div>
     </div>
 
@@ -212,7 +221,7 @@
         document.getElementById('applyStatusButton').addEventListener('click', applyStatusToSelectedRows);
 
         document.addEventListener('DOMContentLoaded', updateSerialNumbers);
-    
+
     </script>
 
 
