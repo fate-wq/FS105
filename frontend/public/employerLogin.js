@@ -1,7 +1,7 @@
 // Import necessary Firebase modules
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmailnpx, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -34,6 +34,60 @@ async function checkUserRole(uid) {
         return null;
     }
 }
+
+// Create a Google provider instance
+const provider = new GoogleAuthProvider();
+
+// Trigger Google sign-in using popup
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+
+    // The signed-in user info
+    const user = result.user;
+    console.log('Signed-in user:', user);
+  })
+  .catch((error) => {
+    // Handle errors here (e.g., user cancels sign-in, error from the provider)
+    console.error('Error signing in with Google:', error.message);
+  });
+
+// Function to show a popup message
+function showPopup(message) {
+    // Replace this with your own popup implementation
+    alert(message);
+  }
+  
+  // Set up the auth state change listener
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in
+      const displayName = user.displayName || 'User';
+      showPopup(`${displayName} is signed in`);
+    } else {
+      // User is signed out
+      showPopup('User is signed out');
+    }
+  });
+
+// Event listener for forgot password form submission
+const forgotPasswordForm = document.querySelector(".forgot-password-form");
+
+forgotPasswordForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const email = forgotPasswordForm.querySelector('input[name="email"]').value;
+
+    try {
+        // Send password reset email
+        await sendPasswordReset(email);
+    } catch (error) {
+        console.error('Error processing forgot password request:', error.message);
+        alert('Error: ' + error.message);
+    }
+});
 
 // Event listener for employer login form submission
 const employerLoginForm = document.querySelector(".employer-login-form");
