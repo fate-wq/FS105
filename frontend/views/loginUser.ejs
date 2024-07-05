@@ -1,0 +1,43 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">USER LOGIN</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <input type="" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+     
+            <div class="input-group">
+                <input type="" id="mobile" name="mobile" required>
+                <label for="mobile">Mobile No.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <button type="submit" class="button-red">Login</button>
+        </form>
+
+        <p class="f-sanserif-regular mt-5">Forgot Password? Click here to reset your password</p>
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+    <script>
+        function usernameLogin() {
+            window.location.href = '/loginUser'; // Example URL
+        }
+
+    </script>
+
+</body>
+</html>

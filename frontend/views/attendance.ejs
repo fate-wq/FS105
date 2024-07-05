@@ -1,0 +1,136 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navUser.ejs") %>
+    <%- include ("navUserJob.ejs") %>
+
+    <div class="ctn-login">
+
+        <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+            Please note that your attendance is verified via geo fencing and timestamp selfie. Do ensure that you have<br> fully captured your face and turn on your location setting. Failure to do so will result in invalid attendance.<br>
+            Select the job and click on the below
+            <button class="button-accept3 mt-4">Clock In / Out</button><br>
+
+            to capture an image of yourself with timestamp. Please remember to turn on your location.<br>
+            <span class="f-sanserif-medium">No show on the date of commencement will result a blacklisted status.</span>
+        </p>
+
+        <h1 class="f-sanserif-bold mt-5">ATTENDANCE CLOCKING</h1>
+
+
+        <div class="ctn-attendance">
+            <div class="row">
+                <div class="col">
+                    <h3 class="job-Title">Changi Food Packer</h3>
+                    <p class="mt-3">Job by: <span class="f-sanserif-bold">RecruitExpress Pte. Ltd.</span></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <%- include ("timer.ejs") %>
+                
+                    
+                    <video id="video" class="img-selfie" autoplay></video>
+                    <canvas id="canvas" class="img-selfie" style="display:none;"></canvas>
+
+                    <button id="actionButton" class="button-attendance2">Clock In</button>
+
+
+                    <p class="mt-3">Time In: <span class="f-sanserif-bold">hh:mm:ss</span></p>
+                    <p class="mt-1">Location: <span class="f-sanserif-bold">34 Changi North Ave 6</span></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="img-selfie"></div>
+                    <button id="clockOut" class="button-attendance3">Clock Out</button>
+                    <p class="mt-3">Time Out: <span class="f-sanserif-bold">hh:mm:ss</span></p>
+                    <p class="mt-1">Location: <span class="f-sanserif-bold">Out of Range</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+        let isClockingIn = true;
+        let cameraStream = null;
+
+        function startCamera() {
+            const video = document.getElementById('video');
+
+            if (cameraStream) {
+                console.log("Camera already started.");
+                return;
+            }
+
+            console.log("Starting camera...");
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    cameraStream = stream;
+                    console.log("Camera started.");
+                })
+                .catch(err => {
+                    console.error("Error accessing the camera: ", err);
+                });
+        }
+
+        function captureImage() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+
+            console.log("Capturing image...");
+
+            // Check if video is ready
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                // Set canvas dimensions to match video dimensions
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+
+                // Draw the current video frame onto the canvas
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                console.log("Image captured.");
+
+                // Hide the video element and show the canvas with the captured image
+                video.style.display = 'none';
+                canvas.style.display = 'block';
+
+                // Update time in or time out based on the state
+                const now = new Date();
+                const formattedTime = formatTime(now);
+                if (isClockingIn) {
+                    document.getElementById('timeIn').textContent = formattedTime;
+                    document.getElementById('actionButton').textContent = 'Clock Out';
+                } else {
+                    document.getElementById('timeIn').textContent = formattedTime;
+                    document.getElementById('actionButton').textContent = 'Clock In';
+                }
+
+                // Toggle the state
+                isClockingIn = !isClockingIn;
+            } else {
+                console.error("Video is not ready.");
+            }
+        }
+
+        // Add event listener to the action button
+        document.getElementById('actionButton').addEventListener('click', () => {
+            if (isClockingIn) {
+                startCamera();
+                document.getElementById('actionButton').textContent = 'Capture Clock In';
+            } else {
+                captureImage();
+            }
+        });
+    </script>
+
+
+</body>
+</html>
