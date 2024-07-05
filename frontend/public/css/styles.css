@@ -262,6 +262,35 @@ col {
     margin-top: 20px;
 }
 
+.input-group label {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.2s ease all;
+    color: rgba(81, 85, 89, 1);
+    font-size: 1.2rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label,
+.input-group select:focus + label,
+.input-group.select-filled label {
+    top: 0px;
+    left: 30px;
+    font-size: 0.8rem;
+    border-radius: 20px !important;
+    color: white;
+    background-color: rgba(103, 126, 97, 1);
+    padding: 2px 10px;
+}
+
 .input-group input,
 .input-group select {
     display: flex;
@@ -280,32 +309,8 @@ col {
     text-align: center;
 }
 
-
-.input-group label {
-    position: absolute;
-    display: flex;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: .2s ease all;
-    color: rgba(81, 85, 89, 1);
-    font-size: 1.2rem;
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    text-align: center;
-
-}
-
-.input-group input:focus~label,
-.input-group input:valid~label {
-    top: 0;
-    font-size: 1.2rem;
-    border-radius: 9px !important;
-    color: rgba(81, 85, 89, 1);
-    background-color: rgba(103, 126, 97, 1);
-    padding: 2px 5px;
+.input-group select option {
+    color: #333;
 }
 
 /* buttons */
@@ -1187,6 +1192,11 @@ col {
     justify-content: center;
     margin: auto;
     margin-top: 50px;
+}
+
+.img-prdt {
+    display: flex;
+    width: 300px;
 }
 
 /* fonts */

@@ -1,0 +1,301 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navAdmin.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">MANAGEMENT OF JOBSEEKER</h1>
+
+        <div class="ctn-attendance">
+
+            <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                Do take note that if payment is not approved within 1 day, Salary payment will<br>  
+                still be automatically released to the users within the next day since the job has been completed.
+            </p>
+            
+            <p class="f-sanserif-medium mt-3">Table information:</p>
+
+            <div>
+                <label for="massStatus">Change Status for Selected Rows: </label>
+                <select id="massStatus" class="status-dropdown">
+                    <option value="">Select Status</option>
+                    <option value="Suspended">Suspend Jobseeker</option>
+                </select>
+            </div>
+
+            <table id="paymentTable" class="table-styled mt-5 mb-5">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>S/N</th>
+                        <th>Jobseeker ID</th>
+                        <th>Name of Jobseeker</th>
+                        <th>Mobile No.</th>
+                        <th>Email No.</th>
+                        <th>Age</th>
+                        <th>Highest Qualification</th>
+                        <th>Date Joined</th>
+                        <th>No. of Job Applied</th>
+                        <th>No. of Job Shortlisted</th>
+                        <th>No. of Job Blacklisted</th>
+                        <th>No. of Job Completed Job</th>
+                        <th>Total Payment Received</th>
+                        <th>eWallet Current Balance</th>
+                        <th>eWallet Total Spent</th>
+                        <th>Types of Currencies Holding</th>
+                        <th>User Account Status</th>
+                        <th>Admin Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>JS901234</td>
+                        <td>Kenny Lim Kopi</td>
+                        <td>9088 7643</td>
+                        <td>kenny4621finalfantasy@gmail.com.sg</td>
+                        <td>23</td>
+                        <td>Degree in Marketing</td>
+                        <td>9/7/2023</td>
+                        <td>32</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>$800</td>
+                        <td>$32.00</td>
+                        <td>$768.00</td>
+                        <td>2</td>
+                        <td>Active</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Action">Action</option>
+                                <option value="Suspended">Suspend Jobseeker</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="applyStatusButton" class="button-apply2">Apply Changes to all Selected Rows</button>
+            <button id="applyStatusButton" class="button-approval">Submit Payment Approval</button>
+
+        </div>
+    </div>
+
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+
+        function applyStatusToSelectedRows() {
+            const selectedStatus = document.getElementById('massStatus').value;
+            const checkboxes = document.querySelectorAll('.row-select:checked');
+
+            checkboxes.forEach(checkbox => {
+                const row = checkbox.closest('tr');
+                const statusDropdown = row.querySelector('.status-dropdown');
+                statusDropdown.value = selectedStatus;
+            });
+        }
+
+        function updateSerialNumbers() {
+            const rows = document.querySelectorAll('#paymentTable tbody tr');
+            rows.forEach((row, index) => {
+                row.querySelector('.serial-number').textContent = index + 1;
+            });
+        }
+
+        document.getElementById('applyStatusButton').addEventListener('click', applyStatusToSelectedRows);
+
+        document.addEventListener('DOMContentLoaded', updateSerialNumbers);
+
+    </script>
+
+
+</body>
+</html>

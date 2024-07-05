@@ -20,6 +20,7 @@
             <table id="paymentTable" class="table-styled mt-5 mb-5">
                 <thead>
                     <tr>
+                        <th>S/N</th>
                         <th>Job ID</th>
                         <th>Date Posted</th>
                         <th>Job Title</th>
@@ -34,6 +35,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -46,6 +48,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -58,6 +61,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -70,6 +74,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -82,6 +87,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -94,6 +100,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -106,6 +113,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -118,6 +126,7 @@
                         <td>2/7/2024</td>
                     </tr>
                     <tr>
+                        <td class="serial-number"></td>
                         <td>SATS1980</td>
                         <td>1/7/2024</td>
                         <td>Changi Food Packer</td>
@@ -138,6 +147,15 @@
     <%- include ("footer.ejs") %>
 
     <script>
+
+        function updateSerialNumbers() {
+            const rows = document.querySelectorAll('#paymentTable tbody tr');
+            rows.forEach((row, index) => {
+                row.querySelector('.serial-number').textContent = index + 1;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', updateSerialNumbers);
 
     </script>
 

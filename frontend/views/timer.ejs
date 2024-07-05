@@ -1,27 +1,39 @@
 <%- include ("meta.ejs") %>
 <body>
-    <div class="time-display"></div>
+    <div class="time-display">
+        <div id="time"></div>
+        <div id="date"></div>
+    </div>
 
     <script>
         let isClockingIn = true;
         let cameraStream = null;
 
         function formatTime(date) {
-            let day = String(date.getDate()).padStart(2, '0');
-            let month = String(date.getMonth() + 1).padStart(2, '0');
-            let year = date.getFullYear();
-
             let hours = String(date.getHours()).padStart(2, '0');
             let minutes = String(date.getMinutes()).padStart(2, '0');
             let seconds = String(date.getSeconds()).padStart(2, '0');
 
-            return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        function formatDate(date) {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            let dayOfWeek = days[date.getDay()];
+            let day = String(date.getDate()).padStart(2, '0');
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+            let year = date.getFullYear();
+
+            return `${dayOfWeek}, ${day}/${month}/${year}`;
         }
 
         function updateTime() {
-            const timeDisplay = document.querySelector('.time-display');
             const now = new Date();
+            const timeDisplay = document.getElementById('time');
+            const dateDisplay = document.getElementById('date');
+
             timeDisplay.textContent = formatTime(now);
+            dateDisplay.textContent = formatDate(now);
         }
 
         updateTime();

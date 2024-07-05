@@ -1,7 +1,7 @@
-<%- include ("meta.ejs")%>
+<%- include ("meta.ejs") %>
 <body>
 
-    <%- include ("navbar.ejs")%>
+    <%- include ("navbar.ejs") %>
 
     <div class="ctn-login">
         <img src="/images/logo.jpg" alt="logo" class="img-logo">
@@ -10,32 +10,32 @@
         <form action="" method="Post" class="ctn-form">
 
             <div class="input-group">
+                <input type="text" id="Username" name="Username" required>
                 <label for="Username">Username</label>
-                <input type="" id="Username" name="Username" required>
             </div>
 
             <div class="input-group">
+                <input type="text" id="username" name="mobile" required>
                 <label for="mobile">Mobile No.</label>
-                <input type="" id="username" name="mobile" required>
             </div>
 
             <div class="input-group">
+                <input type="email" id="email" name="email" required>
                 <label for="email">Email</label>
-                <input type="" id="email" name="email" required>
             </div>
 
             <h1 class="f-sanserif-bold mt-5">PASSWORD</h1>
 
             <div class="input-group">
+                <input type="password" id="createPassword" name="createPassword" required>
                 <label for="createPassword">Create Password</label>
-                <input type="" id="createPassword" name="createPassword" required>
             </div>
             <div class="input-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="" id="confirmPassword" name="confirmPassword" required>
             </div>
 
-            <p class="f-sanserif-regular mt-5">your password should be a combination of at least 
+            <p class="f-sanserif-regular mt-5">Your password should be a combination of at least 
                 8 characters, including lowercase letters, uppercase letters, 
                 numbers and special symbols.
             </p>
@@ -43,16 +43,14 @@
             <button type="submit" class="button-content">Generate Content</button>
             <button type="submit" class="button-createProfile">Create Profile</button>
 
-            <p class="f-sanserif-regular mt-5">by creating a profile, you allow WerkPay to use 
+            <p class="f-sanserif-regular mt-5">By creating a profile, you allow WerkPay to use 
                 your personal details for employment purposes.
             </p>
 
         </form>
-
-
     </div>
 
-    <%- include ("footer.ejs")%>
+    <%- include ("footer.ejs") %>
 
 </body>
 </html>
