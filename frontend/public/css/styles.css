@@ -1110,6 +1110,11 @@ col {
     width: 100%;
 }
 
+.required {
+    color: red;
+    font-weight: bold;
+}
+
 .step-wizard-list{
     color: #333;
     list-style-type: none;
