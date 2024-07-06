@@ -21,12 +21,29 @@
             const sections = document.querySelectorAll('section');
             const buttons = document.querySelectorAll('button');
             const form = document.getElementById('jobForm');
+            const stepItems = document.querySelectorAll('.step-wizard-item');
         
             let currentSectionIndex = 0;
         
             function showSection(index) {
                 sections.forEach((section, idx) => {
                     section.style.display = idx === index ? 'block' : 'none';
+                });
+                updateStepIndicator(index);
+            }
+        
+            function updateStepIndicator(index) {
+                stepItems.forEach((item, idx) => {
+                    if (idx < index) {
+                        item.classList.remove('current-item');
+                        item.classList.add('completed');
+                    } else if (idx === index) {
+                        item.classList.add('current-item');
+                        item.classList.remove('completed');
+                    } else {
+                        item.classList.remove('current-item');
+                        item.classList.remove('completed');
+                    }
                 });
             }
         
