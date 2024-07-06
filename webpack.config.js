@@ -5,7 +5,8 @@ module.exports = {
     signup: './frontend/public/firebaseSignup.js',
     login: './frontend/public/firebaseLogin.js',
     employerlogin: './frontend/public/employerLogin.js',
-    employersignup: './frontend/public/employerSignup.js'
+    employersignup: './frontend/public/employerSignup.js',
+    jobPosting: './frontend/public/firebaseJobs.js'
   },
   output: {
     filename: '[name].bundle.js',
