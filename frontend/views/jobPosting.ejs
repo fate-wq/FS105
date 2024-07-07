@@ -35,8 +35,44 @@
                 </div>
 
                 <div class="input-group" data-tooltip="Specify the location where the job is based">
-                    <input type="text" id="workingLocation" name="workingLocation" required>
+                    <input type="text" id="workingLocation" name="workingLocation" list="locations" required>
                     <label for="workingLocation">Working Location <span class="required">*</span></label>
+                    <datalist id="locations">
+                        <option value="Ang Mo Kio">
+                        <option value="Bedok">
+                        <option value="Bishan">
+                        <option value="Bukit Batok">
+                        <option value="Bukit Merah">
+                        <option value="Bukit Panjang">
+                        <option value="Bukit Timah">
+                        <option value="Central Area">
+                        <option value="Changi">
+                        <option value="Choa Chu Kang">
+                        <option value="Clementi">
+                        <option value="Geylang">
+                        <option value="Hougang">
+                        <option value="Jurong East">
+                        <option value="Jurong West">
+                        <option value="Kallang">
+                        <option value="Lim Chu Kang">
+                        <option value="Mandai">
+                        <option value="Marine Parade">
+                        <option value="Novena">
+                        <option value="Orchard">
+                        <option value="Pasir Ris">
+                        <option value="Punggol">
+                        <option value="Queenstown">
+                        <option value="Seletar">
+                        <option value="Sembawang">
+                        <option value="Sengkang">
+                        <option value="Serangoon">
+                        <option value="Simei">
+                        <option value="Tampines">
+                        <option value="Tanjong Pagar">
+                        <option value="Toa Payoh">
+                        <option value="Woodlands">
+                        <option value="Yishun">
+                    </datalist>
                 </div>
 
                 <div class="input-group" data-tooltip="Enter the working hours per day or week">
@@ -44,10 +80,16 @@
                     <label for="workingHours">Working Hours <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group" data-tooltip="Specify the type of employment (e.g., Full-time, Part-time)">
-                    <input type="text" id="employmentType" name="employmentType">
-                    <label for="employmentType">Employment Type</label>
+                <div class="input-group" data-tooltip="Enter the type of employment (e.g., Full-time, Part-time)">
+                    <input type="text" id="employmentType" name="employmentType" list="employmentTypes" required>
+                    <label for="employmentType">Employment Type <span class="required">*</span></label>
+                    <datalist id="employmentTypes">
+                        <option value="Part-time">
+                        <option value="Contract">
+                        <option value="Temporary">
+                    </datalist>
                 </div>
+                
 
                 <div class="input-group" data-tooltip="Enter the number of working days per week">
                     <input type="text" id="workingDaysPerWeek" name="workingDaysPerWeek">
