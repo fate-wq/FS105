@@ -1,68 +1,65 @@
 <%- include ("meta.ejs") %>
 <body>
-
     <%- include ("navbar.ejs") %>
     <%- include ("navEmployer.ejs") %>
 
     <div class="ctn-login">
-
         <h1 class="f-sanserif-bold mt-5">CREATE JOB POSTING</h1>
 
-            <ul class="step-wizard-list">
-                <li class="step-wizard-item">
-                    <span class="progress-count">1</span>
-                    <span class="progress-label">Job Details</span>
-                </li>
-                <li class="step-wizard-item current-item">
-                    <span class="progress-count">2</span>
-                    <span class="progress-label">Salary Details</span>
-                </li>
-                <li class="step-wizard-item">
-                    <span class="progress-count">3</span>
-                    <span class="progress-label">Working Period</span>
-                </li>
-                <li class="step-wizard-item">
-                    <span class="progress-count">4</span>
-                    <span class="progress-label">Job Description</span>
-                </li>
-            </ul>
+        <ul class="step-wizard-list">
+            <li class="step-wizard-item">
+                <span class="progress-count">1</span>
+                <span class="progress-label">Job Details</span>
+            </li>
+            <li class="step-wizard-item current-item">
+                <span class="progress-count">2</span>
+                <span class="progress-label">Salary Details</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">3</span>
+                <span class="progress-label">Working Period</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">4</span>
+                <span class="progress-label">Job Description</span>
+            </li>
+        </ul>
 
         <form id="jobForm" action="" method="post" class="ctn-form">
-
             <!-- Step 1: Job Details -->
             <section id="job-details">
                 <h2>Job Details</h2>
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the title of the job position">
                     <input type="text" id="jobTitle" name="jobTitle" required>
                     <label for="jobTitle">Job Title <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify the location where the job is based">
                     <input type="text" id="workingLocation" name="workingLocation" required>
                     <label for="workingLocation">Working Location <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the working hours per day or week">
                     <input type="text" id="workingHours" name="workingHours" required>
                     <label for="workingHours">Working Hours <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify the type of employment (e.g., Full-time, Part-time)">
                     <input type="text" id="employmentType" name="employmentType">
                     <label for="employmentType">Employment Type</label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the number of working days per week">
                     <input type="text" id="workingDaysPerWeek" name="workingDaysPerWeek">
                     <label for="workingDaysPerWeek">Working Days per Week</label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify if paid breaks are provided (Yes/No)">
                     <input type="text" id="paidBreak" name="paidBreak">
                     <label for="paidBreak">Paid Break (Yes/No)</label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the duration of breaks in minutes">
                     <input type="text" id="breakDuration" name="breakDuration">
                     <label for="breakDuration">Break Duration (minutes)</label>
                 </div>
@@ -73,22 +70,22 @@
             <!-- Step 2: Salary Details -->
             <section id="salary-details" style="display: none;">
                 <h2>Salary Details</h2>
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the hourly rate for the job">
                     <input type="text" id="hourlyRate" name="hourlyRate" required>
                     <label for="hourlyRate">Hourly Rate ($) <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the flat rate for the job, if applicable">
                     <input type="text" id="flatRate" name="flatRate">
                     <label for="flatRate">Flat Rate ($)</label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify the weekday rate, if different from hourly rate">
                     <input type="text" id="weekdayRate" name="weekdayRate">
                     <label for="weekdayRate">Weekday Rate ($)</label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify the weekend rate, if different from hourly rate">
                     <input type="text" id="weekendRate" name="weekendRate">
                     <label for="weekendRate">Weekend Rate ($)</label>
                 </div>
@@ -100,12 +97,12 @@
             <!-- Step 3: Working Period -->
             <section id="working-period" style="display: none;">
                 <h2>Working Period</h2>
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify the working period (days/week/month)">
                     <input type="text" id="workingPeriodDays" name="workingPeriodDays">
                     <label for="workingPeriodDays">Working Period (days/week/month)</label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Enter the date of commencement (dd/mm/yyyy)">
                     <input type="text" id="dateOfCommencement" name="dateOfCommencement">
                     <label for="dateOfCommencement">Date of Commencement (dd/mm/yyyy)</label>
                 </div>
@@ -117,17 +114,18 @@
             <!-- Step 4: Job Descriptions -->
             <section id="job-descriptions" style="display: none;">
                 <h2>Job Descriptions</h2>
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Provide a detailed description of the job">
                     <textarea id="jobDescription" name="jobDescription" rows="4" required></textarea>
                     <label for="jobDescription">Job Description <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Specify the requirements for the job">
                     <textarea id="jobRequirements" name="jobRequirements" rows="4"></textarea>
                     <label for="jobRequirements">Job Requirements</label>
+                    <button type="button" class="add-field">Add Another Requirement</button>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" data-tooltip="Add any additional information related to the job">
                     <textarea id="additionalInfo" name="additionalInfo" rows="4"></textarea>
                     <label for="additionalInfo">Additional Information</label>
                 </div>
@@ -137,11 +135,7 @@
             </section>
 
         </form>
-    </div>
 
     <%- include ("footer.ejs") %>
 
     <script src="/jobPosting.bundle.js"></script>
-
-</body>
-</html>
