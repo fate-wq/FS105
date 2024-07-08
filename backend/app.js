@@ -1,7 +1,11 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eDQETeNSd4CfKqMqRKexlulHnUfxdA45DjxzADftnEWweR2Zu6haR00KlqEzdwP');
 
 const app = express();
+app.use(bodyParser.json());
+
 
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
@@ -14,9 +18,11 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'WerkPay' });
 });
 
+
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login' });
+    res.render('login', { title: 'WerkPay Login' });
 });
+
 
 app.get('/loginUser', (req, res) => {
     res.render('loginUser', { title: 'Login User' });
@@ -134,6 +140,108 @@ app.get('/resume', (req, res) => {
 app.get('/shop', (req, res) => {
     res.render('shop', { title: 'Shop' });
 });
+
+app.get('/stripe', (req, res) => {
+    const quantity = parseInt(req.query.quantity);
+    const productId = req.query.product;
+    const totalAmount = quantity * 23;
+
+    res.render('stripe', {
+        title: 'Complete Your Purchase',
+        totalAmount: totalAmount,
+        quantity: quantity,
+        productId: productId
+    });
+});
+
+app.get('/cancel', (req, res) => {
+    res.render('cancel', {
+        title: 'Payment Cancelled',
+    });
+});
+
+app.get('/success', async (req, res) => {
+    const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+    res.render('success', {
+        title: 'Payment Successful',
+        amount: session.amount_total / 100,
+        currency: session.currency,
+    });
+});
+
+// stripe payment
+
+const products = [
+    {
+      id: 1,
+      price: 2300 // Price in cents for Stripe (e.g., $23.00)
+    },
+
+  ];
+
+  app.post('/create-payment-intent', async (req, res) => {
+    const { productId, quantity } = req.body;
+
+    // Find the product by ID
+    const product = products.find(p => p.id === parseInt(productId));
+
+    if (!product) {
+        return res.status(400).send({ error: 'Invalid product ID' });
+    }
+
+    const amount = product.price * quantity;
+
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: 'usd',
+        payment_method_types: ['card'],
+    });
+
+    res.send({
+        clientSecret: paymentIntent.client_secret,
+    });
+});
+
+app.post('/create-checkout-session', async (req, res) => {
+    const { productId, quantity } = req.body;
+
+    // Replace this with your actual product details lookup
+    const product = {
+        id: productId,
+        name: 'Yellow Safety Helmet', // Your product name
+        description: 'Just safety helmet', // Your product description
+        price: 2300, // Price in cents
+        image: 'https://your-website.com/images/safety.png', // Replace with the actual image URL
+    };
+
+    const amount = product.price * quantity;
+
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [{
+                price_data: {
+                    currency: 'sgd',
+                    product_data: {
+                        name: product.name,
+                        description: product.description,
+                        images: [product.image], // Adding the product image URL
+                    },
+                    unit_amount: product.price, // The price per unit in cents (e.g., $23.00)
+                },
+                quantity: quantity,
+            }],
+            mode: 'payment',
+            success_url: 'https://your-website.com/success',
+            cancel_url: 'https://your-website.com/cancel',
+        });
+        res.json({ id: session.id });
+    } catch (error) {
+        res.status(400).send(`Error: ${error.message}`);
+    }
+});
+
+
 
 
 const PORT = process.env.PORT || 3000;
