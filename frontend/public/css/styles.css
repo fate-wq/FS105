@@ -1115,6 +1115,16 @@ col {
     max-width: 600px;
 }
 
+.picture img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+    z-index: 10000;
+  }
+
 .input-group {
     position: relative;
     margin-bottom: 1.5rem;

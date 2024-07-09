@@ -156,6 +156,11 @@
             <!-- Step 4: Job Descriptions -->
             <section id="job-descriptions" style="display: none;">
                 <h2>Job Descriptions</h2>
+                <div class="picture">
+                <img src="/images/safety.png" id="company-photo">
+                <span></span>
+                <input type="file" id="upload-picture" class="btn_newLayout" accept="image/*" onchange="uploadProfilePicture()">
+                </div>
                 <div class="input-group" data-tooltip="Provide a detailed description of the job">
                     <textarea id="jobDescription" name="jobDescription" rows="4" required></textarea>
                     <label for="jobDescription">Job Description <span class="required">*</span></label>

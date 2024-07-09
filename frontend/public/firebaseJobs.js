@@ -158,6 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
         newField.name = 'jobRequirements';
         newField.rows = 4;
         newField.classList.add('input-group');
+        const fileInput = document.getElementById('upload-picture');
+        const file = fileInput.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('profilePicture', file);
+        }
+
         event.target.parentElement.insertBefore(newField, event.target);
     });
 
@@ -175,9 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Clear form and localStorage after submission
     form.addEventListener('submit', async (event) => {     
         event.preventDefault();  
-        const isValidLocation = validateInput(workingLocation, locations);
-        const isValidEmploymentType = validateInput(employmentType, employmentTypes);
-
         // Confirmation dialog before submission
         if (!confirm('Are you sure you want to submit the form?')) {
             return;
