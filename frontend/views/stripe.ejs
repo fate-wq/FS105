@@ -12,24 +12,26 @@
             You will be brought over to Stripe Payment page for secured checkout. Please do not close or refresh the browser.
         </p>
 
-        <div class="ctn-attendance mt-5">
+        <div class="ctn-attendance mt-5 text-center">
 
-            <div class="mt-5 p-4">
-
-                
-                <h2 class="f-sanserif-medium mt-3">TOTAL PAYMENT: <br>
-                <h1 class="money-Title"><%= new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD' }).format(totalAmount) %></h1>
+            <div class="mt-5 p-4 text-center">
 
                 <form id="payment-form" class="mt-4">
-                    <div class="input-group mb-3">
-                        <input type="number" id="quantity" name="quantity" min="1" required readonly value="<%= quantity %>">
-                        <label for="quantity" class="form-label">Quantity</label>
+                    <div class="mb-3 text-center">
+                        <h2 class="f-sanserif-medium mt-3">TOTAL QUANTITY: </h2>
+                        <h2 class="money-Title mt-3"><span id="display-quantity"><%= quantity %></span></h2>
+                        <input type="hidden" id="quantity-hidden" name="quantity" value="<%= quantity %>">
                     </div>
+
+                    <div class="mb-3 text-center">
+                        <h2 class="f-sanserif-medium mt-5">TOTAL PAYMENT: </h2>
+                        <h1 class="money-Title"><%= new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD' }).format(totalAmount) %></h1>
+                    </div>
+
+                    <div id="payment-message" class="hidden text-center mt-3"></div>
 
                     <button id="submit" class="button-content">Pay</button>
                 </form>
-
-                <div id="payment-message" class="hidden text-center mt-3"></div>
 
             </div>
         </div>

@@ -69,11 +69,31 @@
             }
         });
 
-        function redirectToPaymentPage(productId) {
+        async function redirectToPaymentPage(productId) {
             const quantity = document.querySelector(`#quantity-${productId}`).value;
-            window.location.href = `/stripe?product=${productId}&quantity=${quantity}`;
-        }
+            if (!quantity) {
+                alert('Please enter a quantity.');
+                return;
+            }
 
+            const response = await fetch('/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quantity: quantity, productId: productId }),
+            });
+
+            const session = await response.json();
+
+            const stripe = Stripe('pk_test_51PTh7q2MEKdQenEdi0K8ndP3lK5ZqEeYIO2frfdabb4fuGpMZ3adVarVuVdBoBOC5ENnyS9EeqMcZKbbFGBAbHjr00MFbnapzj'); // Replace with your actual public key
+            const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
+
+            if (error) {
+                document.getElementById('payment-message').textContent = error.message;
+                document.getElementById('payment-message').classList.remove('hidden');
+            }
+        }
     </script>
 
 </body>
