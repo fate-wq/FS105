@@ -1,14 +1,10 @@
-<%- include ("meta.ejs")%>
+<%- include ("meta.ejs") %>
 <body>
 
-    <%- include ("navbar.ejs")%>
-    <%- include ("navUser.ejs")%>
+    <%- include ("navbar.ejs") %>
+    <%- include ("navUser.ejs") %>
 
     <div class="ctn-login">
-
-        <div class="">
-            
-        </div>
 
         <h1 class="f-sanserif-bold mt-5">UPDATE RESUME</h1>
 
@@ -17,152 +13,299 @@
             It is important that you ensure all work experiences are accurately presented.
         </p>
 
-        <form action="" method="Post" class="ctn-form">
+        <ul class="step-wizard-list mt-5">
+            <li class="step-wizard-item" data-step="basicProfile">
+                <span class="progress-count">1</span>
+                <span class="progress-label">BASIC PROFILE</span>
+            </li>
+            <li class="step-wizard-item" data-step="skillset">
+                <span class="progress-count">2</span>
+                <span class="progress-label">SKILLSET</span>
+            </li>
+            <li class="step-wizard-item" data-step="educationInfo">
+                <span class="progress-count">3</span>
+                <span class="progress-label">EDUCATION INFORMATION</span>
+            </li>
+            <li class="step-wizard-item" data-step="workExp">
+                <span class="progress-count">4</span>
+                <span class="progress-label">WORK EXPERIENCE</span>
+            </li>
+            <li class="step-wizard-item" data-step="submit">
+                <span class="progress-count">5</span>
+                <span class="progress-label">SUBMIT</span>
+            </li>
+        </ul>
 
-            <h1 class="f-sanserif-bold mt-5">JOB SEARCHING PROFILE</h1>
+        <form id="resumeForm" method="POST" action="/resume" class="ctn-form">
 
-            <div class="input-group">
-                <select id="status" name="status" required>
-                    <option value="" disabled selected>Select...</option>
-                    <option value="part_time_student">Part-time Student</option>
-                    <option value="full_time_student">Full-time Student</option>
-                    <option value="working_professional">Working Professional</option>
-                    <option value="freelancer">Freelancer</option>
-                </select>
-                <label for="status">I am a...</label>
-            </div>
+            <section id="basicProfile" class="ctn-form2">
 
-            <div class="input-group">
-                <input type="text" id="lookingFor" name="lookingFor" required>
-                <label for="lookingFor">I am looking for a...</label>
-            </div>
+                <h1 class="f-sanserif-bold mt-5">BASIC PROFILE</h1>
 
-            <div class="input-group">
-                <input type="text" id="industry" name="industry" required>
-                <label for="industry">Preferably Industry / Sector</label>
-            </div>
+                <div class="input-group">
+                    <input type="text" id="status" name="status" required>
+                    <label for="status">I am a... </label>
+                </div>
 
-            <div class="input-group">
-                <input type="text" id="experienceIndustry" name="experienceIndustry" required>
-                <label for="experienceIndustry">I have Experience in this Industry / Sector</label>
-            </div>
+                <div class="input-group">
+                    <input type="text" id="lookingFor" name="lookingFor" required>
+                    <label for="lookingFor">I am looking for a...</label>
+                </div>
 
-            <div class="input-group">
-                <input type="number" id="experienceYears" name="experienceYears" required>
-                <label for="experienceYears">No. of Years in Experience</label>
-            </div>
+                <div class="input-group">
+                    <input type="text" id="industry" name="industry" required>
+                    <label for="industry">Preferably Industry / Sector</label>
+                </div>
 
-            <h1 class="f-sanserif-bold mt-5">SKILLSET</h1>
+                <div class="input-group">
+                    <input type="text" id="experienceIndustry" name="experienceIndustry" required>
+                    <label for="experienceIndustry">I have Experience in this Industry / Sector</label>
+                </div>
 
-            <div class="input-group">
-                <input type="text" id="skill1" name="skill1" required>
-                <label for="skill1">SKILLSET 1</label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="skill2" name="skill2" required>
-                <label for="skill2">SKILLSET 2</label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="skill3" name="skill3" required>
-                <label for="skill3">SKILLSET 3</label>
-            </div>
+                <div class="input-group">
+                    <input type="number" id="experienceYears" name="experienceYears" required>
+                    <label for="experienceYears">No. of Years in Experience</label>
+                </div>
 
-            <h1 class="f-sanserif-bold mt-5">EDUCATION INFORMATION</h1>
+                <button type="button" class="button-content" id="generateContent">Generate Content</button>
+                <button type="button" class="button-next next-section">Next</button>
 
-            <div class="input-group">
-                <input type="text" id="highestQualification" name="highestQualification" required>
-                <label for="highestQualification">Highest Qualification</label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="courseName" name="courseName" required>
-                <label for="courseName">Name of Course Attained</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="courseStartYear" name="courseStartYear" required>
-                <label for="courseStartYear">Course Commencement Period, Year (yyyy)</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="courseEndYear" name="courseEndYear" required>
-                <label for="courseEndYear">Course Graduated in Year (yyyy)</label>
-            </div>
+            </section>
 
-            <div class="input-group">
-                <input type="email" id="email" name="email" required>
-                <label for="email">Email</label>
-            </div>
+            <section id="skillset" class="ctn-form2" style="display: none;">
 
-            <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1>
+                <h1 class="f-sanserif-bold mt-5">SKILLSET</h1>
 
-            <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+                <div class="input-group">
+                    <input type="text" id="skill1" name="skill1" required>
+                    <label for="skill1">SKILLSET 1</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="skill2" name="skill2" required>
+                    <label for="skill2">SKILLSET 2</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="skill3" name="skill3" required>
+                    <label for="skill3">SKILLSET 3</label>
+                </div>
 
-            <div class="input-group">
-                <input type="text" id="company1" name="company1" required>
-                <label for="company1">Name of Company</label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="jobTitle1" name="jobTitle1" required>
-                <label for="jobTitle1">Job Title / Designation</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="startYear1" name="startYear1" required>
-                <label for="startYear1">Commencement Year (yyyy)</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="endYear1" name="endYear1" required>
-                <label for="endYear1">End Year (yyyy)</label>
-            </div>
+                <button type="button" class="button-content prev-section">Previous</button>
+                <button type="button" class="button-next next-section">Next</button>
 
-            <h1 class="f-sanserif-bold mt-5">Work Experience 2</h1>
+            </section>
 
-            <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+            <section id="educationInfo" class="ctn-form2" style="display: none;">
 
-            <div class="input-group">
-                <input type="text" id="company2" name="company2" required>
-                <label for="company2">Name of Company</label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="jobTitle2" name="jobTitle2" required>
-                <label for="jobTitle2">Job Title / Designation</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="startYear2" name="startYear2" required>
-                <label for="startYear2">Start working from year (yyyy)</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="endYear2" name="endYear2" required>
-                <label for="endYear2">End working from year (yyyy)</label>
-            </div>
+                <h1 class="f-sanserif-bold mt-5">EDUCATION INFORMATION</h1>
 
-            <h1 class="f-sanserif-bold mt-5">Work Experience 3</h1>
+                <div class="input-group">
+                    <input type="text" id="highestQualification" name="highestQualification" required>
+                    <label for="highestQualification">Highest Qualification</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="courseName" name="courseName" required>
+                    <label for="courseName">Name of Course Attained</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="courseStartYear" name="courseStartYear" required>
+                    <label for="courseStartYear">Course Commencement Period, Year (yyyy)</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="courseEndYear" name="courseEndYear" required>
+                    <label for="courseEndYear">Course Graduated in Year (yyyy)</label>
+                </div>
 
-            <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
 
-            <div class="input-group">
-                <input type="text" id="company3" name="company3" required>
-                <label for="company3">Name of Company</label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="jobTitle3" name="jobTitle3" required>
-                <label for="jobTitle3">Job Title / Designation</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="startYear3" name="startYear3" required>
-                <label for="startYear3">Start working from year (yyyy)</label>
-            </div>
-            <div class="input-group">
-                <input type="number" id="endYear3" name="endYear3" required>
-                <label for="endYear3">End working from year (yyyy)</label>
-            </div>
+                <button type="button" class="button-content prev-section">Previous</button>
+                <button type="button" class="button-next next-section">Next</button>
 
-            <button type="submit" class="button-content">Generate Content</button>
-            <button type="submit" class="button-createProfile">Update Resume</button>
+            </section>
 
-            <p class="f-sanserif-regular mt-5">By updating your profile, you have ensured that all information is accurate.</p>
+            <section id="workExp" class="ctn-form2" style="display: none;">
 
+                <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1>
+
+                <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+
+                <div class="input-group">
+                    <input type="text" id="company1" name="company1" required>
+                    <label for="company1">Name of Company</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="jobTitle1" name="jobTitle1" required>
+                    <label for="jobTitle1">Job Title / Designation</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="startYear1" name="startYear1" required>
+                    <label for="startYear1">Commencement Year (yyyy)</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="endYear1" name="endYear1" required>
+                    <label for="endYear1">End Year (yyyy)</label>
+                </div>
+
+                <h1 class="f-sanserif-bold mt-5">Work Experience 2</h1>
+
+                <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+
+                <div class="input-group">
+                    <input type="text" id="company2" name="company2" required>
+                    <label for="company2">Name of Company</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="jobTitle2" name="jobTitle2" required>
+                    <label for="jobTitle2">Job Title / Designation</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="startYear2" name="startYear2" required>
+                    <label for="startYear2">Start working from year (yyyy)</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="endYear2" name="endYear2" required>
+                    <label for="endYear2">End working from year (yyyy)</label>
+                </div>
+
+                <h1 class="f-sanserif-bold mt-5">Work Experience 3</h1>
+
+                <p class="f-sanserif-regular mt-5">Reference check may be conducted</p>
+
+                <div class="input-group">
+                    <input type="text" id="company3" name="company3" required>
+                    <label for="company3">Name of Company</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="jobTitle3" name="jobTitle3" required>
+                    <label for="jobTitle3">Job Title / Designation</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="endYear3" name="endYear3" required>
+                    <label for="endYear3">End working from year</label>
+                </div>
+
+                <button type="submit" class="button-content">Generate Content</button>
+                <button type="submit" class="button-createProfile">Update Resume</button>
+
+                <p class="f-sanserif-regular mt-5">By updating your profile, you have ensured that all information is accurate.</p>
+            </section>
         </form>
     </div>
 
     <%- include ("footer.ejs")%>
+
+    <script>
+        document.getElementById('generateContent').addEventListener('click', () => {
+            document.getElementById('status').value = 'working_professional';
+            document.getElementById('lookingFor').value = 'Software Developer';
+            document.getElementById('industry').value = 'Information Technology';
+            document.getElementById('experienceIndustry').value = 'Information Technology';
+            document.getElementById('experienceYears').value = '5';
+    
+            document.getElementById('skill1').value = 'JavaScript';
+            document.getElementById('skill2').value = 'Python';
+            document.getElementById('skill3').value = 'React';
+    
+            document.getElementById('highestQualification').value = 'Bachelor\'s Degree';
+            document.getElementById('courseName').value = 'Computer Science';
+            document.getElementById('courseStartYear').value = '2015';
+            document.getElementById('courseEndYear').value = '2019';
+            document.getElementById('email').value = 'example@example.com';
+    
+            document.getElementById('company1').value = 'Company A';
+            document.getElementById('jobTitle1').value = 'Software Engineer';
+            document.getElementById('startYear1').value = '2019';
+            document.getElementById('endYear1').value = '2021';
+    
+            document.getElementById('company2').value = 'Company B';
+            document.getElementById('jobTitle2').value = 'Senior Software Engineer';
+            document.getElementById('startYear2').value = '2021';
+            document.getElementById('endYear2').value = '2023';
+    
+            document.getElementById('company3').value = 'Company C';
+            document.getElementById('jobTitle3').value = 'Lead Developer';
+            document.getElementById('startYear3').value = '2023';
+            document.getElementById('endYear3').value = 'Present';
+        });
+    
+        document.querySelectorAll('.next-section').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentSection = button.closest('section');
+                const inputs = currentSection.querySelectorAll('input[required], select[required]');
+                let allFilled = true;
+    
+                inputs.forEach(input => {
+                    if (!input.value) {
+                        allFilled = false;
+                        input.classList.add('input-error');
+                    } else {
+                        input.classList.remove('input-error');
+                    }
+                });
+    
+                if (allFilled) {
+                    currentSection.style.display = 'none';
+                    currentSection.nextElementSibling.style.display = 'block';
+    
+                    
+                    const step = currentSection.id;
+                    document.querySelector(`.step-wizard-item[data-step="${step}"]`).classList.add('completed-item');
+                    document.querySelector(`.step-wizard-item[data-step="${step}"]`).classList.remove('current-item');
+                    document.querySelector(`.step-wizard-item[data-step="${currentSection.nextElementSibling.id}"]`).classList.add('current-item');
+                } else {
+                    event.preventDefault();
+                    alert('Please fill out all required fields.');
+                }
+            });
+        });
+    
+        document.querySelectorAll('.prev-section').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentSection = button.closest('section');
+                currentSection.style.display = 'none';
+                currentSection.previousElementSibling.style.display = 'block';
+    
+                // Update the step-wizard-item
+                const step = currentSection.id;
+                document.querySelector(`.step-wizard-item[data-step="${step}"]`).classList.remove('current-item');
+                document.querySelector(`.step-wizard-item[data-step="${currentSection.previousElementSibling.id}"]`).classList.add('current-item');
+                document.querySelector(`.step-wizard-item[data-step="${currentSection.previousElementSibling.id}"]`).classList.remove('completed-item');
+            });
+        });
+    
+        document.querySelector('.button-createProfile').addEventListener('click', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('resumeForm'));
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+    
+            try {
+                const response = await fetch('/resume', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    window.location.href = '/resume';
+                } else {
+                    alert('An error occurred: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred: ' + error.message);
+            }
+        });
+    </script>
 
 </body>
 </html>

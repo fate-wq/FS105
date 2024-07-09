@@ -169,6 +169,23 @@ app.get('/success', async (req, res) => {
     });
 });
 
+// all the post
+
+app.post('/jobPosting', (req, res) => {
+    const jobData = req.body;
+    // Handle the job data, save it to the database, etc.
+    console.log(jobData); // For debugging purposes
+    // Send a JSON response indicating success
+    res.json({ message: 'Job posting received' });
+});
+
+app.post('/resume', (req, res) => {
+    const resumeData = req.body;
+    // Handle the resume data, save it to the database, etc.
+    console.log(resumeData); // For debugging purposes
+    res.json({ message: 'Resume updated successfully' }); // Send JSON response
+});
+
 // stripe payment
 
 const products = [
@@ -203,18 +220,14 @@ const products = [
 });
 
 app.post('/create-checkout-session', async (req, res) => {
-    const { productId, quantity } = req.body;
+    const { quantity, productId } = req.body;
 
-    // Replace this with your actual product details lookup
+    // Retrieve the product details based on the productId
     const product = {
-        id: productId,
-        name: 'Yellow Safety Helmet', // Your product name
-        description: 'Just safety helmet', // Your product description
-        price: 2300, // Price in cents
-        image: 'https://your-website.com/images/safety.png', // Replace with the actual image URL
+        id: 1,
+        title: "Yellow Safety Helmet",
+        price: 2300 // Price in cents
     };
-
-    const amount = product.price * quantity;
 
     try {
         const session = await stripe.checkout.sessions.create({
@@ -223,26 +236,22 @@ app.post('/create-checkout-session', async (req, res) => {
                 price_data: {
                     currency: 'sgd',
                     product_data: {
-                        name: product.name,
-                        description: product.description,
-                        images: [product.image], // Adding the product image URL
+                        name: product.title,
                     },
-                    unit_amount: product.price, // The price per unit in cents (e.g., $23.00)
+                    unit_amount: product.price,
                 },
                 quantity: quantity,
             }],
             mode: 'payment',
-            success_url: 'https://your-website.com/success',
-            cancel_url: 'https://your-website.com/cancel',
+            success_url: 'https://yourdomain.com/success',
+            cancel_url: 'https://yourdomain.com/cancel',
         });
+
         res.json({ id: session.id });
     } catch (error) {
-        res.status(400).send(`Error: ${error.message}`);
+        res.status(500).json({ error: error.message });
     }
 });
-
-
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

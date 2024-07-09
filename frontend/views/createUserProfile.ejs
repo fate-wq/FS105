@@ -7,15 +7,15 @@
         <img src="/images/logo.jpg" alt="logo" class="img-logo">
         <h1 class="f-sanserif-bold mt-5">CREATE</h1>
 
-        <form action="" method="Post" class="ctn-form">
+        <form id="profileForm" method="POST" action="/createProfile" class="ctn-form">
 
             <div class="input-group">
-                <input type="text" id="Username" name="Username" required>
-                <label for="Username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
             </div>
 
             <div class="input-group">
-                <input type="text" id="username" name="mobile" required>
+                <input type="text" id="mobile" name="mobile" required>
                 <label for="mobile">Mobile No.</label>
             </div>
 
@@ -40,7 +40,7 @@
                 numbers and special symbols.
             </p>
 
-            <button type="submit" class="button-content">Generate Content</button>
+            <button type="button" class="button-content" id="generateContent">Generate Content</button>
             <button type="submit" class="button-createProfile">Create Profile</button>
 
             <p class="f-sanserif-regular mt-5">By creating a profile, you allow WerkPay to use 
@@ -51,6 +51,16 @@
     </div>
 
     <%- include ("footer.ejs") %>
+
+    <script>
+        document.getElementById('generateContent').addEventListener('click', () => {
+            document.getElementById('username').value = 'Johnson Ang';
+            document.getElementById('mobile').value = '98514554';
+            document.getElementById('email').value = 'johnson8484@gmail.com';
+            document.getElementById('createPassword').value = 'Password@123';
+            document.getElementById('confirmPassword').value = 'Password@123';
+        });
+    </script>
 
 </body>
 </html>

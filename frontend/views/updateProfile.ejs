@@ -75,7 +75,7 @@
                 <label for="paynowMobile">Mobile No.</label>
             </div>
 
-            <button type="submit" class="button-content">Generate Content</button>
+            <button type="button" class="button-content" id="generateContent">Generate Content</button>
             <button type="submit" class="button-createProfile">Create Profile</button>
 
             <p class="f-sanserif-regular mt-5">By updating your profile, you have ensured that all 
@@ -86,6 +86,21 @@
     </div>
 
     <%- include ("footer.ejs") %>
+
+    <script>
+        document.getElementById('generateContent').addEventListener('click', () => {
+            document.getElementById('fullName').value = 'Johnson Ang';
+            document.getElementById('nric').value = 'S9808934D';
+            document.getElementById('yBirth').value = '1990';
+            document.getElementById('dmBirth').value = '11/12';
+            document.getElementById('postal').value = '123456';
+            document.getElementById('floorNo').value = '12';
+            document.getElementById('unitNo').value = '34';
+            document.getElementById('mobile2').value = '98514554';
+            document.getElementById('email2').value = 'johnson8484@gmail.com';
+            document.getElementById('paynowMobile').value = '98514554';
+        });
+    </script>
 
 </body>
 </html>
