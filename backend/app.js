@@ -4,8 +4,11 @@ const bodyParser = require('body-parser');
 const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eDQETeNSd4CfKqMqRKexlulHnUfxdA45DjxzADftnEWweR2Zu6haR00KlqEzdwP');
 
 const app = express();
-app.use(bodyParser.json());
+const cookieParser = require('cookie-parser');
+require("dotenv").config();
 
+app.use(express.json())
+app.use(cookieParser())
 
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
@@ -13,6 +16,12 @@ app.set('views', path.join(__dirname, '../frontend/views'));
 
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, '../frontend/public')));
+
+// Import routes
+const dataRoutes = require('./src/routes/dataRoutes');
+
+// Use routes
+app.use('/api', dataRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'WerkPay' });
