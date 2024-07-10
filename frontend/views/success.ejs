@@ -1,0 +1,24 @@
+<%- include ("meta.ejs") %>
+
+<body>
+
+    <%- include ("navbar.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold text-center">PAYMENT SUCCESSFUL!</h1>
+
+        <div class="ctn-attendance mt-5">
+
+            <div class="mt-5 p-4">
+                <h2 class="f-sanserif-bold text-center">Thank you for your purchase!</h2>
+                <p class="text-center">Amount Paid: <%= new Intl.NumberFormat('en-SG', { style: 'currency', currency: currency }).format(amount) %></p>
+                <p class="text-center">Our team will email you when it is out for delivery.</p>
+            </div>
+        </div>
+    </div>
+
+    <%- include ("footer.ejs") %>
+    
+</body>
+</html>
