@@ -1,21 +1,3 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCyiY1Os2gQqye3mnmynA6aHzPdrp7nV5w",
-    authDomain: "fs105-61c8e.firebaseapp.com",
-    projectId: "fs105-61c8e",
-    storageBucket: "fs105-61c8e.appspot.com",
-    messagingSenderId: "1074062677808",
-    appId: "1:1074062677808:web:4a45569328d4b89e9f5af5",
-    measurementId: "G-EKJEDP6V6D"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('section');
@@ -207,8 +189,15 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         try {
-            const docRef = await setDoc(doc(db, "jobs", jobData.jobTitle), jobData);
-            alert("Job posting created successfully!");
+            const response = await fetch('/api/data',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jobData)
+            });
+            const result = await response.json();
+            console.log(result);
         } catch (e) {
             console.error("Error adding document: ", e);
             alert("Error creating job posting.");
