@@ -1,0 +1,106 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navUser.ejs") %>
+
+    <div class="ctn-login">
+
+        <div class="">
+            
+        </div>
+
+        <p class="f-sanserif-regular mt-5">All job seekers will have to update their profile 
+            before applying for jobs.<br> Otherwise, application of jobs 
+            will not be available for user.
+        </p>
+
+        <h1 class="f-sanserif-bold mt-5">UPDATE PROFILE</h1>
+
+        <form action="" method="Post" class="ctn-form">
+
+            <div class="input-group">
+                <input type="text" id="fullName" name="fullName" required>
+                <label for="fullName">Full Name</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="nric" name="nric" required>
+                <label for="nric">NRIC No.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="yBirth" name="yBirth" required>
+                <label for="yBirth">Year of Birth</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="dmBirth" name="dmBirth" required>
+                <label for="dmBirth">Date / Month of Birth</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="postal" name="postal" required>
+                <label for="postal">Postal Code</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="floorNo" name="floorNo" required>
+                <label for="floorNo">Floor No</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="unitNo" name="unitNo" required>
+                <label for="unitNo">Unit No</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
+
+            <div class="input-group">
+                <input type="text" id="mobile2" name="mobile2" required>
+                <label for="mobile2">Mobile No.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email2" name="email2" required>
+                <label for="email2">Email</label>
+            </div>
+
+            <h1 class="f-sanserif-bold mt-5">PAYNOW ACCOUNT</h1>
+
+            <p class="f-sanserif-regular mt-5">All payment will be made to this PayNow mobile no.</p>
+
+            <div class="input-group">
+                <input type="text" id="paynowMobile" name="paynowMobile" required>
+                <label for="paynowMobile">Mobile No.</label>
+            </div>
+
+            <button type="button" class="button-content" id="generateContent">Generate Content</button>
+            <button type="submit" class="button-createProfile">Create Profile</button>
+
+            <p class="f-sanserif-regular mt-5">By updating your profile, you have ensured that all 
+                information is accurate.
+            </p>
+
+        </form>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+        document.getElementById('generateContent').addEventListener('click', () => {
+            document.getElementById('fullName').value = 'Johnson Ang';
+            document.getElementById('nric').value = 'S9808934D';
+            document.getElementById('yBirth').value = '1990';
+            document.getElementById('dmBirth').value = '11/12';
+            document.getElementById('postal').value = '123456';
+            document.getElementById('floorNo').value = '12';
+            document.getElementById('unitNo').value = '34';
+            document.getElementById('mobile2').value = '98514554';
+            document.getElementById('email2').value = 'johnson8484@gmail.com';
+            document.getElementById('paynowMobile').value = '98514554';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navEmployer.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">OVERVIEW</h1>
+        <%- include ("timer.ejs") %>
+
+        <div class="ctn-attendance">
+
+            <div class="row mt-5">
+
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Total Job Ads Posted</p>
+                        <p class="dash-figure">344</p>
+                        <a href="/jobPosted"><button type="submit" class="button-spend">View All Job Ads</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Total Live Jobs</p>
+                        <p class="dash-figure">3</p>
+                        <a href="/liveJob"><button type="submit" class="button-spend">Manage Job Ads</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">No. of Applicants<br><span class="f-sanserif-light">(pending process)</span></p>
+                        <p class="dash-figure">320</p>
+                        <a href="applicationReview"><button type="submit" class="button-spend">Process Application</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">No. of Completed Jobs</p>
+                        <p class="dash-figure">23</p>
+                        <a href="/completedJob"><button type="submit" class="button-spend">View Completed Jobs</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Available Job Credits</p>
+                        <p class="dash-figure">4</p>
+                        <a href="/jobCredit"><button type="submit" class="button-spend">Purchase Credits</button></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dash-square">
+                        <p class="dash-title">Pending Payments Approval <span class="f-sanserif-light">(total trans.)</span></p>
+                        <p class="dash-figure">15</p>
+                        <a href="/paymentApproval"><button type="submit" class="button-spend">Approve Payment</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/jobPosting"><button type="submit" class="button-posting">Create New Job Posting</button></a>
+            
+
+            <h1 class="f-sanserif-bold mt-5 mb-5">Buy Job Credits</h1>
+
+            <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                Per credit cost S$50.00. Minimium purchase is 5 credits.
+            </p>
+
+            <div class="currency-row mt-2">
+                <div class="currency-col1">
+                    <p class="currency-amount">$ 250.00</p>
+                    <p class="currency-title">5 Credits</p>
+                </div>
+
+                <div class="currency-col2">
+                    <button type="button" class="button-buy" onclick="redirectToStripe('https://buy.stripe.com/test_dR6aFY6gF0RMbiU9AB')">Buy</button>
+                </div>
+
+            </div>
+            <hr>
+
+            <div class="currency-row mt-2">
+                <div class="currency-col1">
+                    <p class="currency-amount">$ 500.00</p>
+                    <p class="currency-title">10 Credits</p>
+                </div>
+
+                 <div class="currency-col2">
+                    <button type="button" class="button-buy" onclick="redirectToStripe('https://buy.stripe.com/test_eVaaFY5cB1VQ9aMcMO')">Buy</button>
+                </div>
+
+            </div>
+            <hr>
+
+            <div class="currency-row mt-2">
+                <div class="currency-col1">
+                    <p class="currency-amount">$ 750.00</p>
+                    <p class="currency-title">15 Credits</p>
+                </div>
+
+                <div class="currency-col2">
+                    <button type="button" class="button-buy" onclick="redirectToStripe('https://buy.stripe.com/test_7sI4hAeNb6c686I147')">Buy</button>
+                </div>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+
+        function redirectToStripe(url) {
+            window.location.href = url;
+        }
+        
+    </script>
+
+
+</body>
+</html>

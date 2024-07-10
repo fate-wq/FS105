@@ -1,0 +1,230 @@
+<%- include ("meta.ejs") %>
+<body>
+
+    <%- include ("navbar.ejs") %>
+    <%- include ("navEmployer.ejs") %>
+
+    <div class="ctn-login">
+
+        <h1 class="f-sanserif-bold mt-5">PROCESS APPLICATION</h1>
+
+        <div class="ctn-attendance">
+
+            <p class="f-sanserif-regular mb-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
+                Do take note that if payment is not approved within 1 day, Salary payment will<br>  
+                still be automatically release to the users within the next day since job has been completed.
+            </p>
+            
+            <p class="f-sanserif-medium mt-3">Table information:</p>
+
+            <div>
+                <label for="massStatus">Change Status for Selected Rows: </label>
+                <select id="massStatus" class="status-dropdown">
+                    <option value="">Select Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Selected">Selected</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="KIV">KIV</option>
+                </select>
+            </div>
+
+            <table id="paymentTable" class="table-styled mt-5 mb-5">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>S/N</th>
+                        <th>Job ID</th>
+                        <th>Date Posted</th>
+                        <th>Job Title</th>
+                        <th>Name of Applicant</th>
+                        <th>Mobile No.</th>
+                        <th>Age</th>
+                        <th>Application Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="row-select"></td>
+                        <td class="serial-number"></td>
+                        <td>SATS1980</td>
+                        <td>1/7/2024</td>
+                        <td>Changi Food Packer</td>
+                        <td>Lim Yan Ping</td>
+                        <td>9345 8901</td>
+                        <td>32</td>
+                        <td>
+                            <select class="status-dropdown">
+                                <option value="Pending">Pending</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="KIV">KIV</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="applyStatusButton" class="button-apply2">Apply Changes to all Selected Rows</button>
+            <button id="applyStatusButton" class="button-approval">Submit Payment Approval</button>
+
+        </div>
+    </div>
+
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+
+        function applyStatusToSelectedRows() {
+            const selectedStatus = document.getElementById('massStatus').value;
+            const checkboxes = document.querySelectorAll('.row-select:checked');
+
+            checkboxes.forEach(checkbox => {
+                const row = checkbox.closest('tr');
+                const statusDropdown = row.querySelector('.status-dropdown');
+                statusDropdown.value = selectedStatus;
+            });
+        }
+
+        function updateSerialNumbers() {
+            const rows = document.querySelectorAll('#paymentTable tbody tr');
+            rows.forEach((row, index) => {
+                row.querySelector('.serial-number').textContent = index + 1;
+            });
+        }
+
+        document.getElementById('applyStatusButton').addEventListener('click', applyStatusToSelectedRows);
+
+        document.addEventListener('DOMContentLoaded', updateSerialNumbers);
+
+    </script>
+
+
+</body>
+</html>

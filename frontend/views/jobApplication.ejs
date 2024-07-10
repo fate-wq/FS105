@@ -3,35 +3,10 @@
 
     <%- include ("navbar.ejs") %>
     <%- include ("navUser.ejs") %>
-    <!-- <%- include ("navUserJob.ejs") %> -->
+    <%- include ("navUserJob.ejs") %>
 
     <div class="ctn-login">
 
-        <form action="" method="Post" class="ctn-form">
-
-            <div class="input-group">
-                <label for="search">Search for Jobs</label>
-                <input type="search" id="search" name="search" required>
-            </div>
-
-            <div class="button-container mb-5">
-                <select id="" class="button-filter">
-                    <option value="">Filter by Locations</option>
-                    <option value="">Locations</option>
-                </select>
-
-                <select id="" class="button-filter">
-                    <option value="">Filter by Job Type</option>
-                    <option value="">Locations</option>
-                </select>
-
-                <select id="" class="button-filter">
-                    <option value="">Filter by Month Posted</option>
-                    <option value="">Locations</option>
-                </select>
-            </div>
-        </form>
-
         <div class="ctn-job2">
             <div class="row">
                 <div class="ctn-job2-col1">
@@ -40,18 +15,22 @@
                     <button class="button-jobtag">Hourly Rated</button>
                     <button class="button-jobtag">Casual Part-Time</button>
 
-                    <ul class="job-Body ul-joblist mt-5">
-                        <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
-                        <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
-                        <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
-                        <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold">Both Weekdays and Weekends</span></li>
-                        <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
-                        <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2">*$1,320</span></li>
-                        
-                    </ul>
-    
+                    <button class="button-pending">Pending Selection</button>
                     <button class="button-expand">Expand Job Descriptions</button>
+
+
                     <div class="content job-Body2 mt-4">
+
+                        <ul class="job-Body ul-joblist mt-5">
+                            <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
+                            <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
+                            <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
+                            <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold">Both Weekdays and Weekends</span></li>
+                            <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
+                            <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2">*$1,320</span></li>
+                            
+                        </ul>
+                    
                         <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
                         <ul class="mt-5">
                             <li>Provide information and assistance to visitors </li>
@@ -91,7 +70,10 @@
 
                 <div class="ctn-job2-col2">
                     <h3 class="f-sanserif-bold">*$12 /hr</h3>
-                    <button class="button-apply">Apply Now</button>
+                    <button class="button-apply">Applied</button>
+                    <p class="job-Body3 mt-2">
+                        Applied on: 3/7/2024 (dd days ago / mm ago)
+                    </p>
                 </div>
             </div>
         </div>
@@ -104,18 +86,22 @@
                     <button class="button-jobtag">Hourly Rated</button>
                     <button class="button-jobtag">Casual Part-Time</button>
 
-                    <ul class="job-Body ul-joblist mt-5">
-                        <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
-                        <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
-                        <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
-                        <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold">Both Weekdays and Weekends</span></li>
-                        <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
-                        <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2">*$1,320</span></li>
-                        
-                    </ul>
-    
+                    <button class="button-pending">Pending Selection</button>
                     <button class="button-expand">Expand Job Descriptions</button>
+
+
                     <div class="content job-Body2 mt-4">
+
+                        <ul class="job-Body ul-joblist mt-5">
+                            <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
+                            <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
+                            <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
+                            <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold">Both Weekdays and Weekends</span></li>
+                            <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
+                            <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2">*$1,320</span></li>
+                            
+                        </ul>
+                    
                         <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
                         <ul class="mt-5">
                             <li>Provide information and assistance to visitors </li>
@@ -155,10 +141,14 @@
 
                 <div class="ctn-job2-col2">
                     <h3 class="f-sanserif-bold">*$12 /hr</h3>
-                    <button class="button-apply">Apply Now</button>
+                    <button class="button-apply">Applied</button>
+                    <p class="job-Body3 mt-2">
+                        Applied on: 3/7/2024 (dd days ago / mm ago)
+                    </p>
                 </div>
             </div>
         </div>
+        
     </div>
 
     <%- include ("footer.ejs") %>
@@ -188,6 +178,3 @@
 
 </body>
 </html>
-
-
-
