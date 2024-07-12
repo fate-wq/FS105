@@ -20,9 +20,9 @@ const setData = async (req, res) => {
     }
 };
 
-const getJobs = async (req, res) => {
+const getJobs = async (queryParams) => {
     try {
-        const { location, jobType } = req.query;
+        const { location, jobType, search  } = queryParams || {}; // Destructure queryParams or provide empty object
         const jobs = [];
 
         let query = db.collection("JobPostings");
@@ -43,20 +43,31 @@ const getJobs = async (req, res) => {
 
         snapshot.forEach(doc => {
             const data = doc.data();
-            // Extract relevant details for display or processing
-            const { jobTitle, workingLocation, employmentType, ...jobDetails } = data;
-            jobs.push({
-                jobTitle,
-                workingLocation,
-                employmentType,
-                ...jobDetails
-            });
+            // Filter by search term if provided
+            if (search) {
+                if (data.jobTitle.toLowerCase().includes(search.toLowerCase())) {
+                    const { jobTitle, workingLocation, employmentType, ...jobDetails } = data;
+                    jobs.push({
+                        jobTitle,
+                        workingLocation,
+                        employmentType,
+                        ...jobDetails
+                    });
+                }
+            } else {
+                const { jobTitle, workingLocation, employmentType, ...jobDetails } = data;
+                jobs.push({
+                    jobTitle,
+                    workingLocation,
+                    employmentType,
+                    ...jobDetails
+                });
+            }
         });
-
-        res.status(200).json(jobs);
+        return jobs;
     } catch (error) {
         console.error("Error fetching jobs", error);
-        res.status(500).json({ error: "Error fetching jobs" });
+        throw error; // Propagate the error back to the caller
     }
 };
 

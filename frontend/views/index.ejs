@@ -6,58 +6,61 @@
     <!-- <%- include ("navUserJob.ejs") %> -->
 
     <div class="ctn-login">
-        <form method="GET" class="ctn-form">
+        <form method="GET" class="ctn-form" id="searchForm">
             <div class="input-group">
                 <label for="search">Search for Jobs</label>
                 <input type="search" id="search" name="search" required>
             </div>
+        </form>
+        
+        <form method="GET" class="ctn-form">
             <div class="button-container mb-5">
-                <select name="location" class="button-filter"> 
+                <select name="location" class="button-filter">
                     <option value="">Filter by Locations</option>
-                    <option value="Ang Mo Kio">
-                    <option value="Bedok">
-                    <option value="Bishan">
-                    <option value="Bukit Batok">
-                    <option value="Bukit Merah">
-                    <option value="Bukit Panjang">
-                    <option value="Bukit Timah">
-                    <option value="Central Area">
-                    <option value="Changi">
-                    <option value="Choa Chu Kang">
-                    <option value="Clementi">
-                    <option value="Geylang">
-                    <option value="Hougang">
-                    <option value="Jurong East">
-                    <option value="Jurong West">
-                    <option value="Kallang">
-                    <option value="Lim Chu Kang">
-                    <option value="Mandai">
-                    <option value="Marine Parade">
-                    <option value="Novena">
-                    <option value="Orchard">
-                    <option value="Pasir Ris">
-                    <option value="Punggol">
-                    <option value="Queenstown">
-                    <option value="Seletar">
-                    <option value="Sembawang">
-                    <option value="Sengkang">
-                    <option value="Serangoon">
-                    <option value="Simei">
-                    <option value="Tampines">
-                    <option value="Tanjong Pagar">
-                    <option value="Toa Payoh">
-                    <option value="Woodlands">
-                    <option value="Yishun">
+                    <option value="Ang Mo Kio">Ang Mo Kio</option>
+                    <option value="Bedok">Bedok</option>
+                    <option value="Bishan">Bishan</option>
+                    <option value="Bukit Batok">Bukit Batok</option>
+                    <option value="Bukit Merah">Bukit Merah</option>
+                    <option value="Bukit Panjang">Bukit Panjang</option>
+                    <option value="Bukit Timah">Bukit Timah</option>
+                    <option value="Central Area">Central Area</option>
+                    <option value="Changi">Changi</option>
+                    <option value="Choa Chu Kang">Choa Chu Kang</option>
+                    <option value="Clementi">Clementi</option>
+                    <option value="Geylang">Geylang</option>
+                    <option value="Hougang">Hougang</option>
+                    <option value="Jurong East">Jurong East</option>
+                    <option value="Jurong West">Jurong West</option>
+                    <option value="Kallang">Kallang</option>
+                    <option value="Lim Chu Kang">Lim Chu Kang</option>
+                    <option value="Mandai">Mandai</option>
+                    <option value="Marine Parade">Marine Parade</option>
+                    <option value="Novena">Novena</option>
+                    <option value="Orchard">Orchard</option>
+                    <option value="Pasir Ris">Pasir Ris</option>
+                    <option value="Punggol">Punggol</option>
+                    <option value="Queenstown">Queenstown</option>
+                    <option value="Seletar">Seletar</option>
+                    <option value="Sembawang">Sembawang</option>
+                    <option value="Sengkang">Sengkang</option>
+                    <option value="Serangoon">Serangoon</option>
+                    <option value="Simei">Simei</option>
+                    <option value="Tampines">Tampines</option>
+                    <option value="Tanjong Pagar">Tanjong Pagar</option>
+                    <option value="Toa Payoh">Toa Payoh</option>
+                    <option value="Woodlands">Woodlands</option>
+                    <option value="Yishun">Yishun</option>
                 </select>
-                <select name="jobType" class="button-filter"> 
+                <select name="jobType" class="button-filter">
                     <option value="">Filter by Job Type</option>
-                    <option value="Temporary">Temporary</option> 
+                    <option value="Temporary">Temporary</option>
                     <option value="Part Time">Part Time</option>
                     <option value="Contract">Contract</option>
                 </select>
-                <button type="submit" class="button-filter">Apply Filters</button> 
+                <button type="submit" class="button-filter">Apply Filters</button>
             </div>
-        </form>
+        </form>  
 
         <% if (jobs && jobs.length > 0) { %>
             <% jobs.forEach(job => { %>
@@ -173,6 +176,12 @@
                 });
             }
         });
+        document.getElementById('search').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default form submission
+            document.getElementById('searchForm').submit(); // Submit the form
+        }
+    });
     </script>
 
 </body>

@@ -29,18 +29,17 @@ app.use('/api', dataRoutes);
 // Fetch jobs data and render the index template
 app.get('/', async (req, res) => {
     try {
-        const jobs = await getJobs();
+        const jobs = await getJobs(req.query || {}); // Pass query parameters or an empty object
         if (!jobs) {
             throw new Error("No jobs found"); // Handle empty jobs array
         }
-        
+
         res.render('index', { title: 'WerkPay', jobs });
     } catch (error) {
         console.error("Error rendering index:", error);
         res.status(500).send("Error rendering index page");
     }
 });
-
 
 app.get('/login', (req, res) => {
     res.render('login', { title: 'WerkPay Login' });
