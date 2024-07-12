@@ -1469,31 +1469,6 @@ col {
     cursor: pointer;
 }
 
-.preview-content-group {
-    margin-bottom: 15px;
-}
-
-.preview-content-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.preview-content-group p {
-    height: 50px;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(247, 233, 222, 0.6);
-    margin-top: 15px;
-    font-size: 1.2rem;
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: rgba(81, 85, 89, 1);
-    text-align: center;
-}
-
 /* images */
 
 .img-logo {
