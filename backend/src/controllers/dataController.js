@@ -22,9 +22,20 @@ const setData = async (req, res) => {
 
 const getJobs = async (req, res) => {
     try {
+        const { location, jobType } = req.query;
         const jobs = [];
-        const snapshot = await db.collection("JobPostings").get();
-        console.log("Snapshot size:", snapshot.size); // Log snapshot size
+
+        let query = db.collection("JobPostings");
+
+        // Apply filters if location and/or jobType are provided
+        if (location) {
+            query = query.where("workingLocation", "==", location);
+        }
+        if (jobType) {
+            query = query.where("employmentType", "==", jobType);
+        }
+
+        const snapshot = await query.get();
 
         if (snapshot.empty) {
             console.log('No matching documents.');
@@ -41,13 +52,14 @@ const getJobs = async (req, res) => {
                 ...jobDetails
             });
         });
-        return jobs
+
         res.status(200).json(jobs);
     } catch (error) {
         console.error("Error fetching jobs", error);
         res.status(500).json({ error: "Error fetching jobs" });
     }
 };
+
 
 module.exports = {
     setData,

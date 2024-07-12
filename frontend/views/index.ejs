@@ -6,24 +6,56 @@
     <!-- <%- include ("navUserJob.ejs") %> -->
 
     <div class="ctn-login">
-        <form action="" method="Post" class="ctn-form">
+        <form method="GET" class="ctn-form">
             <div class="input-group">
                 <label for="search">Search for Jobs</label>
                 <input type="search" id="search" name="search" required>
             </div>
             <div class="button-container mb-5">
-                <select id="" class="button-filter">
+                <select name="location" class="button-filter"> 
                     <option value="">Filter by Locations</option>
-                    <option value="">Locations</option>
+                    <option value="Ang Mo Kio">
+                    <option value="Bedok">
+                    <option value="Bishan">
+                    <option value="Bukit Batok">
+                    <option value="Bukit Merah">
+                    <option value="Bukit Panjang">
+                    <option value="Bukit Timah">
+                    <option value="Central Area">
+                    <option value="Changi">
+                    <option value="Choa Chu Kang">
+                    <option value="Clementi">
+                    <option value="Geylang">
+                    <option value="Hougang">
+                    <option value="Jurong East">
+                    <option value="Jurong West">
+                    <option value="Kallang">
+                    <option value="Lim Chu Kang">
+                    <option value="Mandai">
+                    <option value="Marine Parade">
+                    <option value="Novena">
+                    <option value="Orchard">
+                    <option value="Pasir Ris">
+                    <option value="Punggol">
+                    <option value="Queenstown">
+                    <option value="Seletar">
+                    <option value="Sembawang">
+                    <option value="Sengkang">
+                    <option value="Serangoon">
+                    <option value="Simei">
+                    <option value="Tampines">
+                    <option value="Tanjong Pagar">
+                    <option value="Toa Payoh">
+                    <option value="Woodlands">
+                    <option value="Yishun">
                 </select>
-                <select id="" class="button-filter">
+                <select name="jobType" class="button-filter"> 
                     <option value="">Filter by Job Type</option>
-                    <option value="">Locations</option>
+                    <option value="Temporary">Temporary</option> 
+                    <option value="Part Time">Part Time</option>
+                    <option value="Contract">Contract</option>
                 </select>
-                <select id="" class="button-filter">
-                    <option value="">Filter by Month Posted</option>
-                    <option value="">Locations</option>
-                </select>
+                <button type="submit" class="button-filter">Apply Filters</button> 
             </div>
         </form>
 
