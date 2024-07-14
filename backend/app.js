@@ -21,10 +21,13 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // Import routes
 const dataRoutes = require('./src/routes/dataRoutes');
+const authRoutes = require('./src/routes/authRoutes');
 
 
 // Use routes
 app.use('/api', dataRoutes);
+app.use('/', authRoutes);
+
 
 // Fetch jobs data and render the index template
 app.get('/', async (req, res) => {

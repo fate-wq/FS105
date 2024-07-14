@@ -40,7 +40,6 @@ function validatePassword(password) {
         lower: /[a-z]/,
         upper: /[A-Z]/,
         digit: /\d/,
-        special: /[!@#$%^&*(),.?":{}|<>]/
     };
 
     if (password.length < minLength) {
@@ -54,9 +53,6 @@ function validatePassword(password) {
     }
     if (!regex.digit.test(password)) {
         return "Password should contain at least one digit.";
-    }
-    if (!regex.special.test(password)) {
-        return "Password should contain at least one special character.";
     }
     return null;
 }
