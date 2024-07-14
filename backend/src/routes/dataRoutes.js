@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.post('/data',setData);
 
+
 module.exports = router;

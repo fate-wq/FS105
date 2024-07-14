@@ -287,6 +287,7 @@ col {
     text-align: center;
 }
 
+
 .input-group input:focus + label,
 .input-group input:valid + label,
 .input-group select:focus + label,
@@ -298,6 +299,14 @@ col {
     color: white;
     background-color: rgba(103, 126, 97, 1);
     padding: 2px 10px;
+}
+
+input:focus + label,
+label.focused {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: #007bff;
 }
 
 .input-group input,
@@ -356,7 +365,13 @@ col {
     font-weight: 700;
     font-style: normal;
     margin-top: 20px;
+    cursor: pointer;
 }
+
+.button-blue:hover {
+    background-color: rgba(173, 201, 223, 1);
+}
+
 
 .button-lightpink {
     min-width: 400px;
@@ -371,7 +386,13 @@ col {
     font-weight: 700;
     font-style: normal;
     margin-top: 20px;
+    cursor: pointer;
 }
+
+.button-lightpink:hover {
+    background-color: rgba(227, 213, 202, 1);
+}
+
 
 .button-red {
     min-width: 400px;
@@ -386,6 +407,12 @@ col {
     font-weight: 700;
     font-style: normal;
     margin-top: 100px;
+    cursor: pointer;
+}
+
+
+.button-red:hover{
+    background-color: rgb(237, 56, 11);;
 }
 
 .button-createProfile {
@@ -401,6 +428,11 @@ col {
     font-weight: 700;
     font-style: normal;
     margin-top: 20px;
+    cursor: pointer;
+}
+
+.button-createProfile:hover{
+    background-color:rgb(232, 76, 37);
 }
 
 .button-search {
@@ -446,6 +478,11 @@ col {
     font-weight: 700;
     font-style: normal;
     margin-top: 20px;
+    cursor: pointer;
+}
+
+.button-lightgreen:hover {
+    background-color: rgba(174, 183, 130, 1);
 }
 
 .button-container {
@@ -473,7 +510,9 @@ col {
     margin-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
+    cursor: pointer;
 }
+
 
 .button-next {
     display: flex;
@@ -1469,31 +1508,6 @@ col {
     cursor: pointer;
 }
 
-.preview-content-group {
-    margin-bottom: 15px;
-}
-
-.preview-content-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.preview-content-group p {
-    height: 50px;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(247, 233, 222, 0.6);
-    margin-top: 15px;
-    font-size: 1.2rem;
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: rgba(81, 85, 89, 1);
-    text-align: center;
-}
-
 /* images */
 
 .img-logo {
@@ -1550,6 +1564,11 @@ col {
     color: rgba(81, 85, 89, 1);
 }
 
+.f-sanserif-regular span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .f-sanserif-medium {
     font-family: "Fira Sans", sans-serif;
     font-weight: 500;
@@ -1585,6 +1604,8 @@ col {
     font-style: italic;
     color: rgba(81, 85, 89, 1);
 }
+
+
 
 /* colours */
 .c-grey {

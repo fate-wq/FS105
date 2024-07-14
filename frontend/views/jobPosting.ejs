@@ -1,14 +1,3 @@
-<div id="previewModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h1 class="f-sanserif-bold">PREVIEW JOB POSTING</h1>
-        <div id="previewContent" class="mt-2"></div>
-        <p class="f-sanserif-regular mt-5"><span class="f-sanserif-medium">IMPORTANT NOTICE<br><br></span>
-            Please confirm your job posting as <span class="f-sanserif-medium">1 credit</span> will be deducted from your account.<br>  
-        </p>
-        <button id="confirmButton" class="button-content">PROCEED TO POST</button>
-    </div>
-</div>
 
 <%- include ("meta.ejs") %>
 <body>
@@ -35,10 +24,7 @@
                     <span class="progress-count">4</span>
                     <span class="progress-label">Job Descriptions</span>
                 </li>
-                <li class="step-wizard-item">
-                    <span class="progress-count">5</span>
-                    <span class="progress-label">Preview Posting</span>
-                </li>
+
             </ul>
 
         <form id="jobForm" action="" method="post" class="ctn-form">
@@ -108,8 +94,8 @@
                 
 
                 <div class="input-group" data-tooltip="Enter the number of working days per week">
-                    <input type="text" id="workingDaysPerWeek" name="workingDaysPerWeek">
-                    <label for="workingDaysPerWeek">Working Days per Week</label>
+                    <input type="text" id="workingDaysPerWeek" name="workingDaysPerWeek" required>
+                    <label for="workingDaysPerWeek">Working Days per Week <span class="required">*</span></label>
                 </div>
 
                 <div class="input-group" data-tooltip="Specify if paid breaks are provided (Yes/No)">
@@ -121,8 +107,6 @@
                     <input type="text" id="breakDuration" name="breakDuration">
                     <label for="breakDuration">Break Duration (minutes)</label>
                 </div>
-
-                <button type="button" class="button-content" id="generateContent">Generate Content</button>
                 <button type="button" class="button-next next-section">Next</button>
 
             </section>
@@ -130,7 +114,7 @@
             <!-- Step 2: Salary Details -->
             <section id="salary-details" style="display: none;">
                 <h2>Salary Details</h2>
-                <div class="input-group" data-tooltip="Enter the hourly rate for the job">
+                <div class="input-group" data-tooltip="Enter the hourly rate for the job" >
                     <input type="text" id="hourlyRate" name="hourlyRate" required>
                     <label for="hourlyRate">Hourly Rate ($) <span class="required">*</span></label>
                 </div>
@@ -172,7 +156,7 @@
             </section>
 
             <!-- Step 4: Job Descriptions -->
-            <section id="job-descriptions" class="ctn-form2">
+            <section id="job-descriptions" class="ctn-form2" style="display: none;">
                 <h2 class="f-sanserif-bold mt-5">Job Descriptions</h2>
 
                 <div class="input-group mt-5">
@@ -181,7 +165,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input id="jobDescription2" name="jobDescription2" rows="4" required></input>
+                    <input id="jobDescription2" name="jobDescription2" rows="4"></input>
                     <label for="jobDescription">Job Description 2<span class="required"></span></label>
                 </div>
 
@@ -203,7 +187,7 @@
                 <h2 class="f-sanserif-bold mt-5">Job Requirements</h2>
 
                 <div class="input-group mt-5">
-                    <input id="jobRequirement1" name="jobRequirement1" rows="4" required></input>
+                    <input id="jobRequirement1" name="jobRequirement1" rows="4"></input>
                     <label for="jobRequirement">Job Requirement 1<span class="required">*</span></label>
                 </div>
 
@@ -216,57 +200,16 @@
                     <input id="jobRequirement3" name="jobRequirement3" rows="4"></input>
                     <label for="jobRequirement">Job Requirement 3<span class=""></span></label>
                 </div>
-
-
                 <button type="button" class="button-content prev-section">Previous</button>
-                <button type="submit" class="button-createProfile">Preview Job Posting</button>
+                <button type="submit" class="button-createProfile">Create Job Posting</button>
 
             </section>
-
         </form>
 
     <%- include ("footer.ejs") %>
 
     <script src="/firebaseJobs.js"></script>
-    <script>
-        document.getElementById('generateContent').addEventListener('click', () => {
-            document.getElementById('jobTitle').value = 'Changi Flight Food Packer x 120';
-            document.getElementById('workingLocation').value = '34 Changi North Ave 6';
-            document.getElementById('workingHours').value = '9:00 AM - 6:00 PM';
-            document.getElementById('employmentType').value = 'Regular Part-Time';
-            document.getElementById('workingDaysPerWeek').value = '3';
-            document.getElementById('paidBreak').value = 'No';
-            document.getElementById('breakDuration').value = '60';
 
-            document.getElementById('hourlyRate').value = '0.00';
-            document.getElementById('flatRate').value = '15.80';
-            document.getElementById('weekdayRate').value = '0.00';
-            document.getElementById('weekendRate').value = '0.00';
-
-            document.getElementById('workingPeriodDays').value = 'Monday, Friday and Sunday';
-            document.getElementById('dateOfCommencement').value = '01/08/2024';
-
-            document.getElementById('jobDescription1').value = 'Provide information and assistance to visitors';
-
-            document.getElementById('jobDescription2').value = 'Assist to enforce safe distancing and safe management measures';
-            
-            document.getElementById('jobDescription3').value = 'Ensure ticket and attraction admission checks';
-            
-            document.getElementById('jobDescription4').value = 'Responding to accidents and emergencies';
-            
-            document.getElementById('jobDescription5').value = 'Assist to facilitate events and programmes held';
-
-
-            document.getElementById('jobRequirement1').value = 'Crew must wear safety boot at all times';
-
-            document.getElementById('jobRequirement2').value = '';
-
-            document.getElementById('jobRequirement3').value = '';
-
-            document.getElementById('additionalInfo').value = 'Fast and Daily Cash';
-        });
-
-    </script>
 
 </body>
 </html>

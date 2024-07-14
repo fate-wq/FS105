@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eDQETeNSd4CfKqMqRKexlulHnUfxdA45DjxzADftnEWweR2Zu6haR00KlqEzdwP');
+const { getJobs } = require('./src/controllers/dataController');
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -9,6 +10,7 @@ require("dotenv").config();
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
@@ -19,14 +21,28 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // Import routes
 const dataRoutes = require('./src/routes/dataRoutes');
+const authRoutes = require('./src/routes/authRoutes');
+
 
 // Use routes
 app.use('/api', dataRoutes);
+app.use('/', authRoutes);
 
-app.get('/', (req, res) => {
-    res.render('index', { title: 'WerkPay' });
+
+// Fetch jobs data and render the index template
+app.get('/', async (req, res) => {
+    try {
+        const jobs = await getJobs(req.query || {}); // Pass query parameters or an empty object
+        if (!jobs) {
+            throw new Error("No jobs found"); // Handle empty jobs array
+        }
+
+        res.render('index', { title: 'WerkPay', jobs });
+    } catch (error) {
+        console.error("Error rendering index:", error);
+        res.status(500).send("Error rendering index page");
+    }
 });
-
 
 app.get('/login', (req, res) => {
     res.render('login', { title: 'WerkPay Login' });

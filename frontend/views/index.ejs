@@ -6,159 +6,151 @@
     <!-- <%- include ("navUserJob.ejs") %> -->
 
     <div class="ctn-login">
-
-        <form action="" method="Post" class="ctn-form">
-
+        <form method="GET" class="ctn-form" id="searchForm">
             <div class="input-group">
-                <label for="search">Search for Jobs</label>
                 <input type="search" id="search" name="search" required>
-            </div>
-
-            <div class="button-container mb-5">
-                <select id="" class="button-filter">
-                    <option value="">Filter by Locations</option>
-                    <option value="">Locations</option>
-                </select>
-
-                <select id="" class="button-filter">
-                    <option value="">Filter by Job Type</option>
-                    <option value="">Locations</option>
-                </select>
-
-                <select id="" class="button-filter">
-                    <option value="">Filter by Month Posted</option>
-                    <option value="">Locations</option>
-                </select>
+                <label for="search">Search for Jobs</label>
             </div>
         </form>
-
-        <div class="ctn-job2">
-            <div class="row">
-                <div class="ctn-job2-col1">
-                    <h3 class="job-Title">Crowd Controller (NDP) x 100</h3>
-                    <p class="mt-3">Job by: <span class="f-sanserif-bold">RecruitExpress Pte. Ltd.</span></p>
-                    <button class="button-jobtag">Hourly Rated</button>
-                    <button class="button-jobtag">Casual Part-Time</button>
-
-                    <ul class="job-Body ul-joblist mt-5">
-                        <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
-                        <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
-                        <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
-                        <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold">Both Weekdays and Weekends</span></li>
-                        <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
-                        <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2">*$1,320</span></li>
-                        
-                    </ul>
-    
-                    <button class="button-expand">Expand Job Descriptions</button>
-                    <div class="content job-Body2 mt-4">
-                        <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
-                        <ul class="mt-5">
-                            <li>Provide information and assistance to visitors </li>
-                            <li>Assist to enforce safe distancing and safe 
-                                management measures</li>
-                            <li>Ensure ticket and attraction admission checks </li>
-                            <li>Responding to accidents and emergencies</li>
-                            <li>Assist to facilitate events and programmes held </li>
-                            <li>Handling of crowd control</li>
-                        </ul>
-    
-                        <h3 class="job-SubHeader mt-5">Rates</h3>
         
-                        <ul class="job-Body ul-joblist mt-4">
-                            <li>This is an <span class="f-sanserif-bold">Hourly Paid Job</span></li><br>
-                            <li>Flat: $12 /hr</li>
-                            <li>Weekday: $10 /hr</li>
-                            <li>Weekend: $10 /hr</li>
-                            <li>Eve of Public Holiday: $12 /hr</li>
-                            <li>Public Holiday: $12 /hr</li>
-                            <li>Weekday: $10 /hr</li>
-                            <li>Weekday: $10 /hr</li>
+        <form method="GET" class="ctn-form">
+            <div class="button-container mb-5">
+                <select name="location" class="button-filter">
+                    <option value="">Filter by Locations</option>
+                    <option value="Ang Mo Kio">Ang Mo Kio</option>
+                    <option value="Bedok">Bedok</option>
+                    <option value="Bishan">Bishan</option>
+                    <option value="Bukit Batok">Bukit Batok</option>
+                    <option value="Bukit Merah">Bukit Merah</option>
+                    <option value="Bukit Panjang">Bukit Panjang</option>
+                    <option value="Bukit Timah">Bukit Timah</option>
+                    <option value="Central Area">Central Area</option>
+                    <option value="Changi">Changi</option>
+                    <option value="Choa Chu Kang">Choa Chu Kang</option>
+                    <option value="Clementi">Clementi</option>
+                    <option value="Geylang">Geylang</option>
+                    <option value="Hougang">Hougang</option>
+                    <option value="Jurong East">Jurong East</option>
+                    <option value="Jurong West">Jurong West</option>
+                    <option value="Kallang">Kallang</option>
+                    <option value="Lim Chu Kang">Lim Chu Kang</option>
+                    <option value="Mandai">Mandai</option>
+                    <option value="Marine Parade">Marine Parade</option>
+                    <option value="Novena">Novena</option>
+                    <option value="Orchard">Orchard</option>
+                    <option value="Pasir Ris">Pasir Ris</option>
+                    <option value="Punggol">Punggol</option>
+                    <option value="Queenstown">Queenstown</option>
+                    <option value="Seletar">Seletar</option>
+                    <option value="Sembawang">Sembawang</option>
+                    <option value="Sengkang">Sengkang</option>
+                    <option value="Serangoon">Serangoon</option>
+                    <option value="Simei">Simei</option>
+                    <option value="Tampines">Tampines</option>
+                    <option value="Tanjong Pagar">Tanjong Pagar</option>
+                    <option value="Toa Payoh">Toa Payoh</option>
+                    <option value="Woodlands">Woodlands</option>
+                    <option value="Yishun">Yishun</option>
+                </select>
+                <select name="jobType" class="button-filter">
+                    <option value="">Filter by Job Type</option>
+                    <option value="Temporary">Temporary</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Contract">Contract</option>
+                </select>
+                <button type="submit" class="button-filter">Apply Filters</button>
+            </div>
+        </form>  
+
+        <% if (jobs && jobs.length > 0) { %>
+            <% jobs.forEach(job => { %>
+            <div class="ctn-job2">
+                <div class="row">
+                    <div class="ctn-job2-col1">
+                        <h3 class="job-Title"><%= job.jobTitle %></h3>
+                        <p class="mt-3">Job by: <span class="f-sanserif-bold"><%= job.employer %></span></p>
+                        <% if (job.rateType) { %>
+                            <button class="button-jobtag"><%= job.rateType %></button>
+                        <% } %>
+                        <% if (job.employmentType) { %>
+                            <button class="button-jobtag"><%= job.employmentType %></button>
+                        <% } %>
+                        <ul class="job-Body ul-joblist mt-5">
+                            <% if (job.workingLocation) { %>
+                                <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold"><%= job.workingLocation %></span></li>
+                            <% } %>
+                            <% if (job.workingHours) { %>
+                                <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold"><%= job.workingHours %></span></li>
+                            <% } %>
+                            <% if (job.workingPeriodDays) { %>
+                                <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold"><%= job.workingPeriodDays %></span></li>
+                            <% } %>
+                            <% if (job.workingDaysPerWeek) { %>
+                                <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold"><%= job.workingDaysPerWeek %></span></li>
+                            <% } %>
+                            <% if (job.paidBreak) { %>
+                                <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold"><%= job.paidBreak %></span></li>
+                            <% } %>
+                            <% if (job.totalEarnings) { %>
+                                <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2"><%= job.totalEarnings %></span></li>
+                            <% } %>
                         </ul>
-    
-                        <p class="job-Body mt-5">
-                            <span class="f-sanserif-bold">Earn up to: *$1,320 (see details)</span><br>
-                            $12 x 5.5 hours x 20 days = *$1,320
-                        </p>
-
-                        <h3 class="job-SubHeader mt-5">Important Notice</h3>
-
-                        <p class="job-Body">
-                            *The amount stated is based on estimated calculations of full schedules and incentives met. Please refer to your work schedule for more accurate calculations.
-                        </p>
+                        <button class="button-expand">Expand Job Descriptions</button>
+                        <div class="content job-Body2 mt-4">
+                            <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
+                            <ul class="mt-5">
+                                <% if (job.jobDescription1) { %>
+                                    <li><%= job.jobDescription1 %></li>
+                                <% } %>
+                                <% if (job.jobDescription2) { %>
+                                    <li><%= job.jobDescription2 %></li>
+                                <% } %>
+                                <% if (job.jobDescription3) { %>
+                                    <li><%= job.jobDescription3 %></li>
+                                <% } %>
+                                <% if (job.jobDescription4) { %>
+                                    <li><%= job.jobDescription4 %></li>
+                                <% } %>
+                                <% if (job.jobDescription5) { %>
+                                    <li><%= job.jobDescription5 %></li>
+                                <% } %>
+                            </ul>
+                            <h3 class="job-SubHeader mt-5">Rates</h3>
+                            <ul class="job-Body ul-joblist mt-4">
+                                <% if (job.flatRate) { %>
+                                    <li>Flat: <%= job.flatRate %> /hr</li>
+                                <% } %>
+                                <% if (job.weekdayRate) { %>
+                                    <li>Weekday: <%= job.weekdayRate %> /hr</li>
+                                <% } %>
+                                <% if (job.weekendRate) { %>
+                                    <li>Weekend: <%= job.weekendRate %> /hr</li>
+                                <% } %>
+                            </ul>
+                            <% if (job.totalEarnings && job.earningsCalculation) { %>
+                                <p class="job-Body mt-5">
+                                    <span class="f-sanserif-bold">Earn up to: <%= job.totalEarnings %> (see details)</span><br>
+                                    <%= job.earningsCalculation %>
+                                </p>
+                            <% } %>
+                            <h3 class="job-SubHeader mt-5">Important Notice</h3>
+                            <p class="job-Body">
+                                *The amount stated is based on estimated calculations of full schedules and incentives met. Please refer to your work schedule for more accurate calculations.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ctn-job2-col2">
+                        <% if (job.hourlyRate) { %>
+                            <h3 class="f-sanserif-bold">$<%= job.hourlyRate %> /hr</h3>
+                        <% } %>
+                        <button class="button-apply">Apply Now</button>
                     </div>
                 </div>
-
-                <div class="ctn-job2-col2">
-                    <h3 class="f-sanserif-bold">*$12 /hr</h3>
-                    <button class="button-apply">Apply Now</button>
-                </div>
             </div>
-        </div>
-
-        <div class="ctn-job2">
-            <div class="row">
-                <div class="ctn-job2-col1">
-                    <h3 class="job-Title">Crowd Controller (NDP) x 100</h3>
-                    <p class="mt-3">Job by: <span class="f-sanserif-bold">RecruitExpress Pte. Ltd.</span></p>
-                    <button class="button-jobtag">Hourly Rated</button>
-                    <button class="button-jobtag">Casual Part-Time</button>
-
-                    <ul class="job-Body ul-joblist mt-5">
-                        <li class="mt-2">Working Location:<br> <span class="f-sanserif-bold">Padang and Promontory @ Marina Bay</span></li>
-                        <li class="mt-2">Working Timing:<br> <span class="f-sanserif-bold">10am — 1am (14 hours)</span></li>
-                        <li class="mt-2">Working Period:<br> <span class="f-sanserif-bold">10 days</span></li>
-                        <li class="mt-2">Working Days:<br> <span class="f-sanserif-bold">Both Weekdays and Weekends</span></li>
-                        <li class="mt-2">Paid Break:<br> <span class="f-sanserif-bold">Yes</span></li>
-                        <li class="mt-2">Earn up to (for full completion of job):<br> <span class="f-sanserif-bold2">*$1,320</span></li>
-                        
-                    </ul>
-    
-                    <button class="button-expand">Expand Job Descriptions</button>
-                    <div class="content job-Body2 mt-4">
-                        <h3 class="job-SubHeader mt-5">Job Descriptions</h3>
-                        <ul class="mt-5">
-                            <li>Provide information and assistance to visitors </li>
-                            <li>Assist to enforce safe distancing and safe 
-                                management measures</li>
-                            <li>Ensure ticket and attraction admission checks </li>
-                            <li>Responding to accidents and emergencies</li>
-                            <li>Assist to facilitate events and programmes held </li>
-                            <li>Handling of crowd control</li>
-                        </ul>
-    
-                        <h3 class="job-SubHeader mt-5">Rates</h3>
-        
-                        <ul class="job-Body ul-joblist mt-4">
-                            <li>This is an <span class="f-sanserif-bold">Hourly Paid Job</span></li><br>
-                            <li>Flat: $12 /hr</li>
-                            <li>Weekday: $10 /hr</li>
-                            <li>Weekend: $10 /hr</li>
-                            <li>Eve of Public Holiday: $12 /hr</li>
-                            <li>Public Holiday: $12 /hr</li>
-                            <li>Weekday: $10 /hr</li>
-                            <li>Weekday: $10 /hr</li>
-                        </ul>
-    
-                        <p class="job-Body mt-5">
-                            <span class="f-sanserif-bold">Earn up to: *$1,320 (see details)</span><br>
-                            $12 x 5.5 hours x 20 days = *$1,320
-                        </p>
-
-                        <h3 class="job-SubHeader mt-5">Important Notice</h3>
-
-                        <p class="job-Body">
-                            *The amount stated is based on estimated calculations of full schedules and incentives met. Please refer to your work schedule for more accurate calculations.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="ctn-job2-col2">
-                    <h3 class="f-sanserif-bold">*$12 /hr</h3>
-                    <button class="button-apply">Apply Now</button>
-                </div>
-            </div>
-        </div>
+            <% }) %>
+        <% } else { %>
+            <p>No jobs found.</p>
+        <% } %>
     </div>
 
     <%- include ("footer.ejs") %>
@@ -182,6 +174,25 @@
                         console.log("No content found"); // Debugging
                     }
                 });
+            }
+        });
+        document.getElementById('search').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default form submission
+            document.getElementById('searchForm').submit(); // Submit the form
+        }
+    });
+
+    const searchInput = document.getElementById('search');
+        const searchLabel = document.querySelector('label[for="search"]');
+
+        searchInput.addEventListener('focus', () => {
+            searchLabel.classList.add('focused');
+        });
+
+        searchInput.addEventListener('blur', () => {
+            if (!searchInput.value) {
+                searchLabel.classList.remove('focused');
             }
         });
     </script>

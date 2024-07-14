@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('section');
     const buttons = document.querySelectorAll('button');
@@ -133,23 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Dynamic Field Addition
-    document.querySelector('.add-field').addEventListener('click', (event) => {
-        event.preventDefault();
-        const newField = document.createElement('textarea');
-        newField.name = 'jobRequirements';
-        newField.rows = 4;
-        newField.classList.add('input-group');
-        const fileInput = document.getElementById('upload-picture');
-        const file = fileInput.files[0];
-        if (file) {
-            const formData = new FormData();
-            formData.append('profilePicture', file);
-        }
-
-        event.target.parentElement.insertBefore(newField, event.target);
-    });
-
     // Auto-save form data to localStorage
     form.addEventListener('input', () => {
         const formData = new FormData(form);
@@ -162,8 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Clear form and localStorage after submission
-    form.addEventListener('submit', async (event) => {     
-        event.preventDefault();  
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
         // Confirmation dialog before submission
         if (!confirm('Are you sure you want to submit the form?')) {
             return;
@@ -183,13 +166,18 @@ document.addEventListener('DOMContentLoaded', function () {
             weekendRate: form.weekendRate.value,
             workingPeriodDays: form.workingPeriodDays.value,
             dateOfCommencement: form.dateOfCommencement.value,
-            jobDescription: form.jobDescription.value,
-            jobRequirements: form.jobRequirements.value,
-            additionalInfo: form.additionalInfo.value
+            jobDescription1: form.jobDescription1.value,
+            jobDescription2: form.jobDescription2.value,
+            jobDescription3: form.jobDescription3.value,
+            jobDescription4: form.jobDescription4.value,
+            jobDescription5: form.jobDescription5.value,
+            jobRequirement1: form.jobRequirement1.value,
+            jobRequirement2: form.jobRequirement2.value,
+            jobRequirement3: form.jobRequirement3.value
         };
 
         try {
-            const response = await fetch('/api/data',{
+            const response = await fetch('/api/data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -201,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (e) {
             console.error("Error adding document: ", e);
             alert("Error creating job posting.");
+            return;
         }
 
         setTimeout(() => {
