@@ -20,12 +20,15 @@
   },
   "homepage": "https://github.com/fate-wq/FS105#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "firebase": "^10.12.3",
     "firebase-admin": "^12.2.0",
+    "mysql2": "^3.10.2",
+    "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
     "stripe": "^16.2.0"
   },
