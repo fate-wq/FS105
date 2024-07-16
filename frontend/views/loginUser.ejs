@@ -46,7 +46,7 @@
 
         document.getElementById('generateContentEmployer').addEventListener('click', () => {
             document.getElementById('email').value = 'oyfmaster1@gmail.com';
-            document.getElementById('password').value = '';
+            document.getElementById('password').value = '8957d9877189f5f0';
         });
 
         document.getElementById('loginForm').addEventListener('submit', async (event) => {
@@ -68,7 +68,7 @@
 
                 if (response.ok) {
                     alert(result.message);
-                    window.location.href = result.redirectUrl;  // Redirect to job listing page
+                    window.location.href = result.redirectUrl;  // Redirect to the appropriate dashboard
                 } else {
                     alert('Error: ' + result.message);
                 }

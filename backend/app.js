@@ -9,6 +9,8 @@ const pool = require('./src/config/sql');
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -27,14 +29,26 @@ app.set('views', path.join(__dirname, '../frontend/views'));
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
+// MySQL session store options
+const sessionStore = new MySQLStore({}, pool);
+
 // Import routes
 const dataRoutes = require('./src/routes/dataRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
-
 // Use routes
 app.use('/api', dataRoutes);
 app.use('/', authRoutes);
+
+// Configure session middleware
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
 
 // Generate random password
 
@@ -361,12 +375,39 @@ async function authenticateUser(email, password) {
 app.post('/loginUser', async (req, res, next) => {
     const { email, password } = req.body;
     try {
-        const user = await authenticateUser(email, password);
-        if (user) {
-            req.session.user = user;
-            return res.json({ message: 'Login successful', redirectUrl: '/jobListing' }); // Send JSON response
+        const [employerRows] = await pool.query('SELECT * FROM employerProfile WHERE repEmail = ?', [email]);
+        const [jobseekerRows] = await pool.query('SELECT * FROM jobseekerProfile WHERE jobseekerEmail = ?', [email]);
+
+        let user = null;
+        let userRole = null;
+
+        if (employerRows.length > 0) {
+            user = employerRows[0];
+            userRole = user.repRole;
+        } else if (jobseekerRows.length > 0) {
+            user = jobseekerRows[0];
+            userRole = user.jobseekerUserRole;
         }
-        res.status(401).json({ message: 'Invalid email or password' }); // Send JSON response for errors
+
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        req.session.user = user;
+        let redirectUrl = '/jobListing';
+
+        if (userRole === 'Admin') {
+            redirectUrl = '/adminDash';
+        } else if (userRole === 'Employer') {
+            redirectUrl = '/employerDash';
+        }
+
+        return res.json({ message: 'Login successful', redirectUrl }); // Send JSON response
     } catch (error) {
         next(error);
     }
