@@ -1,7 +1,7 @@
 <%- include ("meta.ejs") %>
 <body>
 
-    <%- include ("navbar.ejs") %>
+    <%- include('navbar.ejs', { isLoggedIn: isLoggedIn }) %>
     <%- include ("navUser.ejs") %>
     <!-- <%- include ("navUserJob.ejs") %> -->
 

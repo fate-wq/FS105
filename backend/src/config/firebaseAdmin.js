@@ -8,6 +8,6 @@ admin.initializeApp({
 });
 
 
-const db = admin.firestore();
+const admindb = admin.firestore();
 
-module.exports = { db };
+module.exports = { admindb };

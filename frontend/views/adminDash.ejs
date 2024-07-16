@@ -1,76 +1,266 @@
-<%- include ("meta.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Overview</title>
+    <!-- fonts, Crimson -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- fonts, Fira Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: "Fira Sans", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: rgba(81, 85, 89, 1);
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar h2 {
+            font-family: "Crimson Text", serif;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+        .sidebar ul li a {
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar ul li a.active, .sidebar ul li a:hover {
+            background-color: #f4c2ab;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .f-sanserif-bold {
+            font-family: "Fira Sans", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            color: rgba(81, 85, 89, 1);
+        }
+        .ctn-login {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 50px auto 150px;
+            background-color: white;
+        }
+        .ctn-attendance {
+            display: flex;
+            flex-direction: column;
+            min-width: 70%;
+            align-items: left;
+            justify-content: center;
+            text-align: center;
+            margin: 30px auto 0;
+            border-radius: 60px;
+            background-color: rgba(240, 187, 180, 0.2);
+            padding: 40px 80px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-around;
+        }
+        .col {
+            display: flex;
+            padding: 50px;
+        }
+        .dash-square {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background-color: white;
+            padding: 40px 30px;
+            margin-top: 10px;
+            border-radius: 40px;
+            border: 0;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow for a lifted effect */
+            transition: transform 0.3s ease; /* Added a hover effect */
+        }
+
+        .dash-square:hover {
+            transform: translateY(-5px); /* Lift the box on hover */
+        }
+
+        .dash-title {
+            font-size: 1.2rem;
+            font-family: "Fira Sans", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            color: rgba(81, 85, 89, 1);
+        }
+        .dash-figure {
+            font-size: 2.5rem;
+            font-family: "Fira Sans", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            color: rgba(81, 85, 89, 1);
+        }
+        .button-spend {
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-radius: 60px;
+            color: rgba(81, 85, 89, 1);
+            background-color: rgba(245, 189, 168, 1);
+            font-size: 1rem;
+            font-family: "Fira Sans", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            margin: 2px;
+            cursor: pointer;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a lifted effect */
+        }
+    </style>
+</head>
 <body>
-
-    <%- include ("navbar.ejs") %>
-    <%- include ("navAdmin.ejs") %>
-
-    <div class="ctn-login">
-
-        <h1 class="f-sanserif-bold mt-5">OVERVIEW</h1>
-        <%- include ("timer.ejs") %>
-
-        <div class="ctn-attendance">
-
-            <div class="row mt-5">
-
-                <div class="col">
-                    <div class="dash-square">
-                        <p class="dash-title">Total Registered UENs</p>
-                        <p class="dash-figure">629</p>
-                        <a href="/allUEN"><button type="submit" class="button-spend">View All UENs</button></a>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul>
+                <li><a href="/admin/dashboard" class="active">Overview</a></li>
+                <li><a href="/admin/allUEN">All UENs</a></li>
+                <li><a href="/admin/allEmployer">Manage Employers</a></li>
+                <li><a href="/admin/allJobseeker">Manage Job Seekers</a></li>
+                <li><a href="/admin/allJobPosted">Posted Jobs</a></li>
+                <li><a href="/admin/blacklistedJobs">Blacklisted Jobs</a></li>
+                <li><a href="/admin/paymentProcess">Process Payments</a></li>
+                <li><a href="/admin/createEMProfile">Create Employer Profile</a></li>
+                <li><a href="/admin/logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="ctn-login">
+                <h1 class="f-sanserif-bold mt-5">OVERVIEW</h1>
+                <div class="ctn-attendance">
+                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="dash-square">
+                                <p class="dash-title">Total Registered UENs</p>
+                                <p class="dash-figure">629</p>
+                                <a href="/allUEN"><button type="submit" class="button-spend">View All UENs</button></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dash-square">
+                                <p class="dash-title">Total Employers</p>
+                                <p class="dash-figure">848</p>
+                                <a href="/allEmployer"><button type="submit" class="button-spend">Manage Employers</button></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dash-square">
+                                <p class="dash-title">Total Job Seekers</p>
+                                <p class="dash-figure">14,250</p>
+                                <a href="/allJobseeker"><button type="submit" class="button-spend">Manage Job Seekers</button></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="dash-square">
-                        <p class="dash-title">Total Employers</p>
-                        <p class="dash-figure">848</p>
-                        <a href="/allEmployer"><button type="submit" class="button-spend">Mgmt. of Employers</button></a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="dash-square">
-                        <p class="dash-title">Total Job Seekers</p>
-                        <p class="dash-figure">14,250</p>
-                        <a href="/allJobseeker"><button type="submit" class="button-spend">Mgmt. of Job Seekers</button></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col">
-                    <div class="dash-square">
-                        <p class="dash-title">Total Job Ads Posted</p>
-                        <p class="dash-figure">12,687</p>
-                        <a href="/allJobPosted"><button type="submit" class="button-spend">View Posted Jobs</button></a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="dash-square">
-                        <p class="dash-title">Blacklisted Job Ads</span></p>
-                        <p class="dash-figure">320</p>
-                        <a href=""><button type="submit" class="button-spend">View Blacklisted Job Ads</button></a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="dash-square">
-                        <p class="dash-title">Payment Status<br><span class="f-sanserif-light">(total trans.)</span></p>
-                        <p class="dash-figure">15</p>
-                        <a href="/paymentProcess"><button type="submit" class="button-spend">Process Payment</button></a>
-                    </div>
+                <div class="chart-container">
+                    <canvas id="usersChart" width="400" height="400"></canvas>
                 </div>
             </div>
-
-            <a href="/createEMProfile"><button type="submit" class="button-posting">Create New Employer Profile</button></a>
-    
         </div>
     </div>
-
-    <%- include ("footer.ejs") %>
-
     <script>
-    
-    </script>
+        // Fetch data from backend to populate the chart
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/usersCount');
+                const data = await response.json();
 
+                // Data received, create Chart.js instance
+                const ctx = document.getElementById('usersChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                        datasets: [{
+                            label: 'Users Count',
+                            data: [data.usersCount, 0, 0, 0, 0, 0], // Replace with actual data over time
+                            backgroundColor: 'rgba(245, 189, 168, 0.2)', // Light version of your button color
+                            borderColor: 'rgba(245, 189, 168, 1)', // Your button color
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(81, 85, 89, 1)', 
+                            pointBorderColor: 'rgba(81, 85, 89, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                    display: false // Remove grid lines
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    display: false // Remove grid lines
+                                },
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: 'rgba(81, 85, 89, 1)' // Sidebar text color
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    </script>
+</body>
+</html>
 
 </body>
 </html>

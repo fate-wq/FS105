@@ -1,8 +1,11 @@
 const express = require('express');
+const session = require('express-session');
+const adminRoutes = require('./src/routes/adminRoutes');
 const path = require('path');
 const bodyParser = require('body-parser');
 const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eDQETeNSd4CfKqMqRKexlulHnUfxdA45DjxzADftnEWweR2Zu6haR00KlqEzdwP');
 const { getJobs } = require('./src/controllers/dataController');
+const verifyJWTToken = require('./src/middleware/auth'); // Import the middleware
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -24,20 +27,39 @@ const dataRoutes = require('./src/routes/dataRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Use secure: true in production
+  }));
+
+app.use(adminRoutes);
+
+
 // Use routes
 app.use('/api', dataRoutes);
 app.use('/', authRoutes);
 
+app.use(verifyJWTToken); // Use the JWT verification middleware
+
+app.use((req, res, next) => {
+    res.locals.userId = req.userId; // Pass user ID to EJS templates
+    res.locals.isLoggedIn = !!req.userId; // Set isLoggedIn based on req.userId
+    next();
+});
+
 
 // Fetch jobs data and render the index template
-app.get('/', async (req, res) => {
+app.get('/',verifyJWTToken, async (req, res) => {
     try {
-        const jobs = await getJobs(req.query || {}); // Pass query parameters or an empty object
+        const isLoggedIn = req.userId ? true : false;
+        const jobs = await getJobs(req.query || {}); 
         if (!jobs) {
             throw new Error("No jobs found"); // Handle empty jobs array
         }
 
-        res.render('index', { title: 'WerkPay', jobs });
+        res.render('index', { title: 'WerkPay', jobs, isLoggedIn });
     } catch (error) {
         console.error("Error rendering index:", error);
         res.status(500).send("Error rendering index page");
@@ -48,11 +70,28 @@ app.get('/login', (req, res) => {
     res.render('login', { title: 'WerkPay Login' });
 });
 
+// Logout route
+app.get('/logout', (req, res) => {
+    // Clear the session or token
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to logout' });
+        }
+        // Clear userId from locals
+        res.locals.userId = null;
+        res.locals.isLoggedIn = false;
+        // Clear any token (if using token-based authentication)
+        res.clearCookie('access_token'); // Use appropriate cookie name
+        // Redirect to the login page or any other page after logout
+        res.redirect('/');
+    });
+});
+
+
 
 app.get('/loginUser', (req, res) => {
     res.render('loginUser', { title: 'Login User' });
 });
-
 
 app.get('/createUserProfile', (req, res) => {
     res.render('createUserProfile', { title: 'Create Profile' });
@@ -132,10 +171,6 @@ app.get('/jobPosted', (req, res) => {
 
 app.get('/applicationReview', (req, res) => {
     res.render('applicationReview', { title: 'Application Processed' });
-});
-
-app.get('/adminDash', (req, res) => {
-    res.render('adminDash', { title: 'Admin Dashboard' });
 });
 
 app.get('/paymentProcess', (req, res) => {

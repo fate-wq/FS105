@@ -1,15 +1,24 @@
+require("dotenv").config();
 const { 
+    db,
     auth,
     createUserWithEmailAndPassword, 
     sendEmailVerification,
     signInWithEmailAndPassword
 } = require('../config/firebase');
+const { ref, set } = require('firebase/database');
+const jwt = require('jsonwebtoken');
+const secretKey = process.env.SECRET_KEY;
 
 let userPassword = null;
 
+function generateJWTToken(userId) {
+    return jwt.sign({ userId }, secretKey, { expiresIn: '3h' });
+}
+
 class FirebaseAuthController {
     async registerUser(req, res) {
-        const { email, password } = req.body;
+        const { username,email, password } = req.body;
         if (!email || !password) {
             return res.status(422).json({
                 email: "Email is required",
@@ -19,6 +28,12 @@ class FirebaseAuthController {
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
+            const userRef = ref(db, `users/${auth.currentUser.uid}`); // Correct way to get reference
+            await set(userRef, {
+                email,
+                username,
+                createdAt: new Date().toISOString()
+            });
             userPassword = password; // Store the password temporarily
             const actionCodeSettings = {
                 url: `http://localhost:3000/verify-email?email=${encodeURIComponent(email)}&mode=verifyEmail`,
@@ -48,11 +63,12 @@ class FirebaseAuthController {
                 if (user && user.emailVerified) {
                     // User's email is verified, sign them in again to get the idToken
                     const userCredential = await signInWithEmailAndPassword(auth, user.email, userPassword);
-                    const idToken = await userCredential.user.getIdToken();
+                    const userId = userCredential.user.uid; // Get user ID
+                    const token = generateJWTToken(userId); // Generate JWT token
                     console.log('Email:', user.emailVerified);
 
                     // Set the cookie with the idToken
-                    res.cookie('access_token', idToken, {
+                    res.cookie('access_token', token, {
                         httpOnly: true
                     });
                     res.redirect('/');
@@ -79,9 +95,10 @@ class FirebaseAuthController {
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const idToken = await userCredential.user.getIdToken();
-            if (idToken) {
-                res.cookie('access_token', idToken, {
+            const userId = userCredential.user.uid; // Get user ID
+            const token = generateJWTToken(userId); // Generate JWT token
+            if (token) {
+                res.cookie('access_token', token, {
                     httpOnly: true
                 });
                 res.redirect('/');

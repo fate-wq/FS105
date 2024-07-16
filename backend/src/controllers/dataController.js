@@ -1,4 +1,6 @@
-const { db } = require("../config/firebaseAdmin");
+const { admindb } = require("../config/firebaseAdmin");
+const { ref, get, set, update } = require("firebase/database");
+const{db} = require('../config/firebase');
 
 const setData = async (req, res) => {
     try {
@@ -11,7 +13,7 @@ const setData = async (req, res) => {
         }
 
         // Store data in the "JobPostings" collection
-        const docRef = await db.collection("JobPostings").add(jobDetails);
+        const docRef = await admindb.collection("JobPostings").add(jobDetails);
 
         res.status(200).json({ message: "Data Stored Successfully", id: docRef.id });
     } catch (error) {
@@ -25,7 +27,7 @@ const getJobs = async (queryParams) => {
         const { location, jobType, search  } = queryParams || {}; // Destructure queryParams or provide empty object
         const jobs = [];
 
-        let query = db.collection("JobPostings");
+        let query = admindb.collection("JobPostings");
 
         // Apply filters if location and/or jobType are provided
         if (location) {
@@ -71,8 +73,36 @@ const getJobs = async (queryParams) => {
     }
 };
 
+const updateUserData = async (req, res) => {
+    try {
+        const userId = req.body.userId; 
+        const userRef = ref(db, `users/${userId}`);
+
+        // Retrieve existing user data
+        const userSnapshot = await get(userRef);
+        if (!userSnapshot.exists()) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const existingUserData = userSnapshot.val();
+        const updatedUserData = {
+            ...existingUserData,
+            ...req.body // Update with new data
+        };
+
+        // Update the user data in Realtime Database
+        await update(userRef, updatedUserData);
+
+        res.status(200).json({ message: "Profile updated successfully" });
+    } catch (error) {
+        console.error("Error updating user data", error);
+        res.status(500).json({ error: "Error updating user data" });
+    }
+};
+
 
 module.exports = {
     setData,
-    getJobs
+    getJobs,
+    updateUserData
 };

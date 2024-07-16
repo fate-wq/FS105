@@ -10,75 +10,121 @@
             
         </div>
 
-        <p class="f-sanserif-regular mt-5">All job seekers will have to update their profile 
-            before applying for jobs.<br> Otherwise, application of jobs 
-            will not be available for user.
+        <p class="f-sanserif-regular mt-5">All job seekers need to update their profile 
+            before applying for jobs. Otherwise, job applications 
+            will not be available for the user.
         </p>
-
         <h1 class="f-sanserif-bold mt-5">UPDATE PROFILE</h1>
+
+        <ul class="step-wizard-list mt-5">
+            <li class="step-wizard-item current-item" data-step="1">
+                <span class="progress-count">1</span>
+                <span class="progress-label">Basic Information</span>
+            </li>
+            <li class="step-wizard-item" data-step="2">
+                <span class="progress-count">2</span>
+                <span class="progress-label">Work Experience</span>
+            </li>
+            <li class="step-wizard-item" data-step="3">
+                <span class="progress-count">3</span>
+                <span class="progress-label">Skills</span>
+            </li>
+            <li class="step-wizard-item" data-step="4">
+                <span class="progress-count">4</span>
+                <span class="progress-label">Upload Resume (Optional)</span>
+            </li>
+        </ul>
 
         <form action="" method="Post" class="ctn-form">
 
-            <div class="input-group">
-                <input type="text" id="fullName" name="fullName" required>
-                <label for="fullName">Full Name</label>
+            <!-- Step 1: Basic Information -->
+            <div class="form-step" data-step="1">
+                <div class="input-group">
+                    <input type="text" id="fullName" name="fullName" required>
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="dmBirth" name="dmBirth" required>
+                    <label for="dmBirth">Date / Month of Birth <span class="required">*</span></label>
+                </div>
+
+                <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
+
+                <div class="input-group">
+                    <input type="email" id="email2" name="email2" required>
+                    <label for="email2">Email<span class="required">*</span></label>
+                </div>
+
+                <h1 class="f-sanserif-bold mt-5">PAYNOW ACCOUNT</h1>
+
+                <p class="f-sanserif-regular mt-5">All payments will be made to this PayNow mobile no.</p>
+
+                <div class="input-group">
+                    <input type="text" id="paynowMobile" name="paynowMobile" required>
+                    <label for="paynowMobile">Mobile No. <span class="required">*</span></label>
+                </div>
+
+                <button type="button" class="button-next next-section">Next</button>
             </div>
 
-            <div class="input-group">
-                <input type="text" id="nric" name="nric" required>
-                <label for="nric">NRIC No.</label>
+            <!-- Step 2: Work Experience -->
+            <div class="form-step" data-step="2" style="display: none;">
+                <div id="work-experience-container">
+                    <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1> <!-- Initial header -->
+                    <div class="input-group">
+                        <input type="text" id="jobTitle1" name="jobTitle[]" placeholder="Job Title">
+                        <label for="jobTitle1">Job Title</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="companyName1" name="companyName[]" placeholder="Company Name">
+                        <label for="companyName1">Company Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="jobDuration1" name="jobDuration[]" placeholder="Duration">
+                        <label for="jobDuration1">Duration</label>
+                    </div>
+                </div>
+                <div class="btn-option">
+                    <button type="button" class="add-button" id="add-work-experience">+ Add Work Experience</button> <!-- Moved above -->
+                    <button type="button" class="cancel-section" style="display: none;">Remove Work Experience</button>
+                </div>
+                <button type="button" class="button-content prev-section">Previous</button>
+                <button type="button" class="button-next next-section">Next</button>
+                
             </div>
 
-            <div class="input-group">
-                <input type="text" id="yBirth" name="yBirth" required>
-                <label for="yBirth">Year of Birth</label>
+            <!-- Step 3: Skills -->
+            <div class="form-step" data-step="3" style="display: none;">
+                <div id="skills-container">
+                    <h1 class="f-sanserif-bold mt-5">Skills</h1>
+                    <div class="input-group">
+                        <input type="text" id="skill1" name="skills[]" placeholder="Skill">
+                        <label for="skill1">Skill</label>
+                    </div>
+                </div>
+                <div class="btn-option">
+                    <button type="button" id="add-skill" class="add-button">+ Add Skill</button>
+                    <button type="button" class="cancel-section" style="display: none;">Remove Skill</button>
+                </div>
+
+                <button type="button" class="button-content prev-section">Previous</button>
+                <button type="button" class="button-next next-section">Next</button>
             </div>
 
-            <div class="input-group">
-                <input type="text" id="dmBirth" name="dmBirth" required>
-                <label for="dmBirth">Date / Month of Birth</label>
+            <!-- Step 4: Upload Resume -->
+            <div class="form-step" data-step="4" style="display: none;">
+                <h1 class="f-sanserif-bold mt-5">Upload Resume (Optional)</h1>
+                <div class="input-group">
+                    <input type="file" id="resume" name="resume">
+                    <label for="resume">Upload Resume</label>
+                </div>
+                <button type="button" class="button-content prev-section">Previous</button>
+                <button type="submit" class="button-createProfile">Create Profile</button>
+    
             </div>
 
-            <div class="input-group">
-                <input type="text" id="postal" name="postal" required>
-                <label for="postal">Postal Code</label>
-            </div>
-
-            <div class="input-group">
-                <input type="text" id="floorNo" name="floorNo" required>
-                <label for="floorNo">Floor No</label>
-            </div>
-
-            <div class="input-group">
-                <input type="text" id="unitNo" name="unitNo" required>
-                <label for="unitNo">Unit No</label>
-            </div>
-
-            <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
-
-            <div class="input-group">
-                <input type="text" id="mobile2" name="mobile2" required>
-                <label for="mobile2">Mobile No.</label>
-            </div>
-
-            <div class="input-group">
-                <input type="email" id="email2" name="email2" required>
-                <label for="email2">Email</label>
-            </div>
-
-            <h1 class="f-sanserif-bold mt-5">PAYNOW ACCOUNT</h1>
-
-            <p class="f-sanserif-regular mt-5">All payment will be made to this PayNow mobile no.</p>
-
-            <div class="input-group">
-                <input type="text" id="paynowMobile" name="paynowMobile" required>
-                <label for="paynowMobile">Mobile No.</label>
-            </div>
-
-            <button type="button" class="button-content" id="generateContent">Generate Content</button>
-            <button type="submit" class="button-createProfile">Create Profile</button>
-
-            <p class="f-sanserif-regular mt-5">By updating your profile, you have ensured that all 
+            <p class="f-sanserif-regular mt-5">By updating your profile, you ensure that all 
                 information is accurate.
             </p>
 
@@ -87,19 +133,216 @@
 
     <%- include ("footer.ejs") %>
 
+    <style>
+        .button-content,
+        .add-button,
+        .cancel-section {
+            display: block;
+            margin-bottom: 10px; /* Adjust as needed */
+        }
+        .btn-option{
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+
     <script>
-        document.getElementById('generateContent').addEventListener('click', () => {
-            document.getElementById('fullName').value = 'Johnson Ang';
-            document.getElementById('nric').value = 'S9808934D';
-            document.getElementById('yBirth').value = '1990';
-            document.getElementById('dmBirth').value = '11/12';
-            document.getElementById('postal').value = '123456';
-            document.getElementById('floorNo').value = '12';
-            document.getElementById('unitNo').value = '34';
-            document.getElementById('mobile2').value = '98514554';
-            document.getElementById('email2').value = 'johnson8484@gmail.com';
-            document.getElementById('paynowMobile').value = '98514554';
+        const steps = document.querySelectorAll('.step-wizard-item');
+        const formSteps = document.querySelectorAll('.form-step');
+        const nextBtns = document.querySelectorAll('.next-section');
+        const prevBtns = document.querySelectorAll('.prev-section');
+        const cancelBtns = document.querySelectorAll('.cancel-section');
+        const workExperienceContainer = document.getElementById('work-experience-container');
+        const addWorkExperienceBtn = document.getElementById('add-work-experience');
+        const skillsContainer = document.getElementById('skills-container');
+        const addSkillBtn = document.getElementById('add-skill');
+
+        let currentStep = 1;
+        let workExperienceCount = 1; // Track the number of work experience sections
+
+        function updateStep(step) {
+            formSteps.forEach((formStep, index) => {
+                formStep.style.display = index === (step - 1) ? 'block' : 'none';
+            });
+            steps.forEach((stepItem, index) => {
+                stepItem.classList.toggle('current-item', index === (step - 1));
+            });
+        }
+
+// Update next button click event listeners to validate required fields
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Check if all required fields in the current step are filled
+        const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+        const inputs = currentFormStep.querySelectorAll('input[required]');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.classList.add('error'); 
+            } else {
+                input.classList.remove('error');
+            }
         });
+
+        if (isValid) {
+            currentStep++;
+            updateStep(currentStep);
+        } else {
+            // Optionally, you can display an error message or highlight the required fields
+            console.log('Please fill in all required fields.');
+            alert('Please fill in all required fields.');
+        }
+    });
+});
+
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentStep--;
+                updateStep(currentStep);
+            });
+        });
+
+// Cancel Button Click Event
+cancelBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentStep === 2) { // Work Experience
+            workExperienceContainer.lastElementChild.remove();
+            workExperienceCount--;
+            // Hide Remove Work Experience Button if no sections left
+            if (workExperienceCount <= 1) {
+                document.querySelector('.form-step[data-step="2"] .cancel-section').style.display = 'none';
+            }
+        } else if (currentStep === 3) { // Skills
+            skillsContainer.lastElementChild.remove();
+            // Hide Remove Skill Button if no sections left
+            if (skillsContainer.childElementCount === 1) {
+                document.querySelector('.form-step[data-step="3"] .cancel-section').style.display = 'none';
+            }
+        }
+        updateStep(currentStep);
+    });
+});
+
+// Add Work Experience Button Click Event
+addWorkExperienceBtn.addEventListener('click', () => {
+    workExperienceCount++;
+    const newWorkExperience = document.createElement('div');
+    newWorkExperience.innerHTML = `
+        <h1 class="f-sanserif-bold mt-5">Work Experience ${workExperienceCount}</h1>
+        <div class="input-group">
+            <input type="text" name="jobTitle[]" placeholder="Job Title">
+            <label for="jobTitle">Job Title</label>
+        </div>
+        <div class="input-group">
+            <input type="text" name="companyName[]" placeholder="Company Name">
+            <label for="companyName">Company Name</label>
+        </div>
+        <div class="input-group">
+            <input type="text" name="jobDuration[]" placeholder="Duration">
+            <label for="jobDuration">Duration</label>
+        </div>
+    `;
+    workExperienceContainer.appendChild(newWorkExperience);
+
+    // Show Remove Work Experience Button
+    if (workExperienceCount > 1) {
+        document.querySelector('.form-step[data-step="2"] .cancel-section').style.display = 'block';
+    }
+});
+
+// Add Skill Button Click Event
+addSkillBtn.addEventListener('click', () => {
+    const newSkill = document.createElement('div');
+    newSkill.classList.add('input-group');
+    newSkill.innerHTML = `
+        <input type="text" name="skills[]" placeholder="Skill">
+        <label for="skill">Skill</label>
+    `;
+    skillsContainer.appendChild(newSkill);
+
+    // Show Remove Skill Button
+    document.querySelector('.form-step[data-step="3"] .cancel-section').style.display = 'block';
+});
+
+    // Include the userId in the userData object
+    const userId = "<%= userId %>"; 
+
+    // Define an object to store user data
+    const userData = {
+        userId: userId,
+        fullName: '',
+        dmBirth: '',
+        email: '',
+        paynowMobile: '',
+        workExperience: [],
+        skills: [],
+        resume: ''
+    };
+
+    // Function to update userData object with form values
+    function updateUserData() {
+        userData.fullName = document.getElementById('fullName').value;
+        userData.dmBirth = document.getElementById('dmBirth').value;
+        userData.email = document.getElementById('email2').value;
+        userData.paynowMobile = document.getElementById('paynowMobile').value;
+
+        // Collect work experience data
+        const jobTitles = document.getElementsByName('jobTitle[]');
+        const companyNames = document.getElementsByName('companyName[]');
+        const jobDurations = document.getElementsByName('jobDuration[]');
+        userData.workExperience = [];
+        for (let i = 0; i < jobTitles.length; i++) {
+            userData.workExperience.push({
+                jobTitle: jobTitles[i].value,
+                companyName: companyNames[i].value,
+                jobDuration: jobDurations[i].value
+            });
+        }
+
+        // Collect skills data
+        const skills = document.getElementsByName('skills[]');
+        userData.skills = [];
+        skills.forEach(skill => {
+            userData.skills.push(skill.value);
+        });
+
+        // Get resume file if uploaded
+        const resume = document.getElementById('resume').files[0];
+        userData.resume = resume ? resume.name : 'Not uploaded';
+    }
+
+    // Submit form event listener
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        updateUserData();
+        console.log(userData);    
+        try {
+            const response = await fetch('/api/updateProfile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+            const result = await response.json();
+            console.log(result);
+            if (result.message) {
+                alert(result.message);
+            } else if (result.error) {
+                alert(result.error);
+            }
+        } catch (e) {
+            console.error("Error updating profile: ", e);
+            alert("Error updating profile");
+        }
+    });
+
+        updateStep(currentStep);
     </script>
 
 </body>
