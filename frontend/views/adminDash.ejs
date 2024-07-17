@@ -138,6 +138,11 @@
             cursor: pointer;
         }
 
+        .charts{
+            display: flex;
+            gap: 60px;
+        }
+
         .chart-container {
             display: flex;
             justify-content: center;
@@ -187,77 +192,193 @@
                         <div class="col">
                             <div class="dash-square">
                                 <p class="dash-title">Total Job Seekers</p>
-                                <p class="dash-figure">14,250</p>
+                                <p class="dash-figure" id="totalJobSeekersCount">14,250</p>
                                 <a href="/allJobseeker"><button type="submit" class="button-spend">Manage Job Seekers</button></a>
                             </div>
                         </div>
                     </div>
+                    <div class="charts">
+                        <div class="chart-container">
+                            <canvas id="usersChart" width="400" height="400"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="timeSpentChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="chart-container">
-                    <canvas id="usersChart" width="400" height="400"></canvas>
-                </div>
+
             </div>
         </div>
     </div>
     <script>
         // Fetch data from backend to populate the chart
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/usersCount');
-                const data = await response.json();
-
-                // Data received, create Chart.js instance
-                const ctx = document.getElementById('usersChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                        datasets: [{
-                            label: 'Users Count',
-                            data: [data.usersCount, 0, 0, 0, 0, 0], // Replace with actual data over time
-                            backgroundColor: 'rgba(245, 189, 168, 0.2)', // Light version of your button color
-                            borderColor: 'rgba(245, 189, 168, 1)', // Your button color
-                            borderWidth: 2,
-                            pointBackgroundColor: 'rgba(81, 85, 89, 1)', 
-                            pointBorderColor: 'rgba(81, 85, 89, 1)'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                grid: {
-                                    display: false // Remove grid lines
-                                }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    display: false // Remove grid lines
-                                },
-                                ticks: {
-                                    stepSize: 1
-                                }
-                            }
+        const fetchUsersCountData = async () => {
+    try {
+        const response = await fetch('/api/usersCount');
+        const data = await response.json();
+        document.getElementById('totalJobSeekersCount').innerText = data.usersCount;
+        // Data received, create Chart.js instance
+        const ctx = document.getElementById('usersChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Users Count',
+                    data: [data.usersCount, 0, 0, 0, 0, 0], // Replace with actual data over time
+                    backgroundColor: 'rgba(245, 189, 168, 0.2)', // Light version of your button color
+                    borderColor: 'rgba(245, 189, 168, 1)', // Your button color
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(81, 85, 89, 1)', 
+                    pointBorderColor: 'rgba(81, 85, 89, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false // Remove grid lines
                         },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                labels: {
-                                    color: 'rgba(81, 85, 89, 1)' // Sidebar text color
-                                }
+                        title: {
+                            display: true,
+                            text: 'Months',
+                            color: 'rgba(81, 85, 89, 1)', // Sidebar text color
+                            font: {
+                                size: 14 // Increase font size for the axis title
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false // Remove grid lines
+                        },
+                        ticks: {
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Users Count',
+                            color: 'rgba(81, 85, 89, 1)', // Sidebar text color
+                            font: {
+                                size: 14 // Increase font size for the axis title
                             }
                         }
                     }
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: 'rgba(81, 85, 89, 1)' // Sidebar text color
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Monthly Users Count',
+                        color: 'rgba(81, 85, 89, 1)', // Sidebar text color
+                        font: {
+                            size: 20 // Increase font size for the chart title
+                        }
+                    }
+                }
             }
-        };
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
 
-        fetchData();
+        const fetchTimeSpentData = async () => {
+    try {
+        const response = await fetch('/api/timeSpent');
+        const data = await response.json();
+
+        if (!data.loggedInDurations || !data.nonLoggedInDurations) {
+            throw new Error('Session durations data is missing');
+        }
+
+        // Convert durations from milliseconds to minutes
+        const averageLoggedInDurationMinutes = (data.averageLoggedInDuration / 60000).toFixed(2);
+        const averageNonLoggedInDurationMinutes = (data.averageNonLoggedInDuration / 60000).toFixed(2);
+
+        const ctx = document.getElementById('timeSpentChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Logged In', 'Not Logged In'],
+                datasets: [{
+                    label: 'Average Session Duration (mins)',
+                    data: [averageLoggedInDurationMinutes, averageNonLoggedInDurationMinutes],
+                    backgroundColor: [
+                        'rgba(245, 189, 168, 0.2)', // Light version of your button color
+                        'rgba(189, 168, 245, 0.2)' // Another color for non-logged-in users
+                    ],
+                    borderColor: [
+                        'rgba(245, 189, 168, 1)', // Your button color
+                        'rgba(189, 168, 245, 1)' // Border color for non-logged-in users
+                    ],
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(81, 85, 89, 1)', 
+                    pointBorderColor: 'rgba(81, 85, 89, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false // Remove grid lines
+                        },
+                        title: {
+                            display: true,
+                            text: 'User Type'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false // Remove grid lines
+                        },
+                        ticks: {
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Average Duration (mins)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: 'rgba(81, 85, 89, 1)' // Sidebar text color
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Average Session Duration for Logged In vs Non-Logged In Users',
+                        font: {
+                            size: 20 // Increase font size for the chart title
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching time spent data:', error);
+    }
+};
+
+        fetchUsersCountData();
+        fetchTimeSpentData();
+        
     </script>
 </body>
 </html>

@@ -14,5 +14,6 @@ router.get('/admin/allJobSeeker', adminController.showAdminUser);
 router.post('/admin/addUser', adminController.addUser); // Changed to addUser
 router.delete('/admin/deleteUser/:userId', adminController.deleteUser); // Use DELETE method for deleteUser
 router.put('/admin/editUser/:userId', adminController.editUser);
+router.get('/api/timeSpent', dashboardController.getAverageTimeSpent);
 
 module.exports = router;

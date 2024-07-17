@@ -100,9 +100,26 @@ const updateUserData = async (req, res) => {
     }
 };
 
+const populateUserData = async(req,res) => {
+    try{
+        const userId = req.body.userId; 
+        const userRef = ref(db, `users/${userId}`);
+        // Retrieve existing user data
+        const userSnapshot = await get(userRef);
+        if (!userSnapshot.exists()) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        const users = userSnapshot.val();
+        res.json({users});
+    }catch{
+        console.error('Error fetching users:', error);
+        res.status(500).json({ error: 'Error fetching users' });
+    }
+};
 
 module.exports = {
     setData,
     getJobs,
-    updateUserData
+    updateUserData,
+    populateUserData
 };
