@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+        }
+        .user-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .btn {
+            padding: 8px 12px;
+            margin: 2px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+        .btn-add {
+            background-color: #008CBA;
+            color: white;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: rgba(81, 85, 89, 1);
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar h2 {
+            font-family: "Crimson Text", serif;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+        .sidebar ul li a {
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar ul li a.active, .sidebar ul li a:hover {
+            background-color: #f4c2ab;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="/admin/dashboard" class="active">Overview</a></li>
+                <li><a href="/admin/allUEN">All UENs</a></li>
+                <li><a href="/admin/allEmployer">Manage Employers</a></li>
+                <li><a href="/admin/allJobseeker">Manage Job Seekers</a></li>
+                <li><a href="/admin/allJobPosted">Posted Jobs</a></li>
+                <li><a href="/admin/blacklistedJobs">Blacklisted Jobs</a></li>
+                <li><a href="/admin/paymentProcess">Process Payments</a></li>
+                <li><a href="/admin/createEMProfile">Create Employer Profile</a></li>
+                <li><a href="/admin/logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="user-container">
+            <h1>Manage Users</h1>
+            
+            <!-- Button to show add user form -->
+            <button class="btn btn-add" onclick="showAddUserForm()">Add User</button>
+    
+            <!-- Add User Form (Initially hidden) -->
+            <div id="addUserForm" class="hidden form-container">
+                <form id="addUserFormElement" onsubmit="addUser(event)">
+                    <input type="text" name="username" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="btn btn-add">Submit</button>
+                    <button type="button" class="btn" onclick="hideAddUserForm()">Cancel</button>
+                </form>
+            </div>
+    
+            <!-- Users Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <% if (users && users.length > 0) { %>
+                        <% users.forEach(function(user) { %>
+                            <tr id="userRow_<%= user.id %>">
+                                <td><%= user.id %></td>
+                                <td id="userName_<%= user.id %>"><%= user.username %></td>
+                                <td id="userEmail_<%= user.id %>"><%= user.email %></td>
+                                <td class="actions">
+                                    <button class="btn btn-edit" onclick="editUser('<%= user.id %>')">Edit</button>
+                                    <button class="btn btn-delete" onclick="deleteUser('<%= user.id %>')">Delete</button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="4">No users found.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+
+    <!-- JavaScript for frontend interactions -->
+    <script>
+        // Function to show add user form
+        function showAddUserForm() {
+            document.getElementById('addUserForm').classList.remove('hidden');
+        }
+
+        // Function to hide add user form
+        function hideAddUserForm() {
+            document.getElementById('addUserForm').classList.add('hidden');
+        }
+
+        // Function to add a user
+        async function addUser(event) {
+            event.preventDefault();
+            const form = document.getElementById('addUserFormElement');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/admin/addUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    const user = result.user;
+                    const userTableBody = document.getElementById('userTableBody');
+                    const newRow = document.createElement('tr');
+                    newRow.id = `userRow_${user.id}`;
+                    newRow.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td class="actions">
+                            <button class="btn btn-edit" onclick="showEditUserForm('${user.id}', '${user.username}', '${user.email}')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteUser('${user.id}')">Delete</button>
+                        </td>
+                    `;
+                    userTableBody.appendChild(newRow);
+                    hideAddUserForm();
+                    form.reset();
+                    alert('User added successfully');
+                } else {
+                    alert('Error adding user');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error adding user');
+            }
+        }
+
+     // Function to edit user inline
+        // Function to edit user inline
+async function editUser(userId) {
+    const userNameElement = document.getElementById(`userName_${userId}`);
+    const userEmailElement = document.getElementById(`userEmail_${userId}`);
+    const editButton = document.querySelector(`#userRow_${userId} .btn-edit`);
+
+    // Check if already in edit mode (input fields are visible)
+    if (userNameElement.querySelector('input')) {
+        const newName = userNameElement.querySelector('input').value;
+        const newEmail = userEmailElement.querySelector('input').value;
+
+        try {
+            const response = await fetch(`/admin/editUser/${userId}`, {
+                method: 'PUT', // Use PUT for update
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: newName, email: newEmail }),
+            });
+            const result = await response.json();
+            if (response.ok) {
+                // Update table cell with new values
+                userNameElement.innerHTML = newName;
+                userEmailElement.innerHTML = newEmail;
+                editButton.innerHTML = 'Edit';
+                alert('User updated successfully');
+            } else {
+                alert('Error updating user');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error updating user');
+        }
+    } else {
+        // Save current values
+        const currentName = userNameElement.innerText;
+        const currentEmail = userEmailElement.innerText;
+
+        // Transform into input fields
+        userNameElement.innerHTML = `<input type="text" id="editName_${userId}" value="${currentName}">`;
+        userEmailElement.innerHTML = `<input type="email" id="editEmail_${userId}" value="${currentEmail}">`;
+
+        // Change edit button to save button
+        editButton.innerHTML = 'Save';
+    }
+}
+
+        // Function to delete a user
+        async function deleteUser(userId) {
+    if (confirm('Are you sure you want to delete this user?')) {
+        try {
+            const response = await fetch(`/admin/deleteUser/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const result = await response.json();
+            if (response.ok) {
+                const userRow = document.getElementById(`userRow_${userId}`);
+                userRow.remove();
+                alert('User deleted successfully');
+            } else {
+                alert('Error deleting user');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error deleting user');
+        }
+    }
+}
+    </script>
+</body>
+</html>

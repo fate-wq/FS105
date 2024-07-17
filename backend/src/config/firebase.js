@@ -7,7 +7,7 @@ const {
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut, 
-    sendEmailVerification, 
+    sendEmailVerification,
     sendPasswordResetEmail,
     applyActionCode
   } = require("firebase/auth") ;

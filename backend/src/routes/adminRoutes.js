@@ -10,5 +10,9 @@ router.get('/api/usersCount', dashboardController.getUsersCount);
 
 router.post('/admin/login', adminController.loginAdmin);
 router.get('/admin/logout', adminController.adminLogout);
+router.get('/admin/allJobSeeker', adminController.showAdminUser);
+router.post('/admin/addUser', adminController.addUser); // Changed to addUser
+router.delete('/admin/deleteUser/:userId', adminController.deleteUser); // Use DELETE method for deleteUser
+router.put('/admin/editUser/:userId', adminController.editUser);
 
 module.exports = router;
