@@ -40,24 +40,19 @@
             <!-- Step 1: Basic Information -->
             <div class="form-step" data-step="1">
                 <div class="input-group">
-                    <input type="text" id="fullName" name="fullName" required value="<%= userData.fullName %>">
+                    <input type="text" id="fullName" name="fullName" required>
                     <label for="fullName">Full Name <span class="required">*</span></label>
                 </div>
 
-                <div class="input-group date-picker">
-                    <input type="date" id="dmBirth" name="dmBirth" required>
-                    <label for="dmBirth">Date Of Birth <span class="required">*</span></label>
-                </div>
-
                 <div class="input-group">
-                    <input type="text" id="about" name="About Me" required>
-                    <label for="about me">About Me<span class="required">*</span></label>
+                    <input type="text" id="dmBirth" name="dmBirth" required>
+                    <label for="dmBirth">Date / Month of Birth <span class="required">*</span></label>
                 </div>
 
                 <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
 
                 <div class="input-group">
-                    <input type="email" id="email2" name="email2" required value="<%= userData.email %>">
+                    <input type="email" id="email2" name="email2" required>
                     <label for="email2">Email<span class="required">*</span></label>
                 </div>
 
@@ -148,11 +143,6 @@
         .btn-option{
             display: flex;
             justify-content: space-around;
-        }
-        .input-group.date-picker input[type="date"] {
-            padding-left: 60px; 
-            font-size: 20px;
-
         }
     </style>
 
@@ -287,7 +277,6 @@ addSkillBtn.addEventListener('click', () => {
         dmBirth: '',
         email: '',
         paynowMobile: '',
-        about: '', // Add about field
         workExperience: [],
         skills: [],
         resume: ''
@@ -299,7 +288,6 @@ addSkillBtn.addEventListener('click', () => {
         userData.dmBirth = document.getElementById('dmBirth').value;
         userData.email = document.getElementById('email2').value;
         userData.paynowMobile = document.getElementById('paynowMobile').value;
-        userData.about = document.getElementById('about').value; // Add about field
 
         // Collect work experience data
         const jobTitles = document.getElementsByName('jobTitle[]');
