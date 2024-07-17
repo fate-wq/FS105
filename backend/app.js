@@ -11,6 +11,7 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -32,14 +33,6 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 // MySQL session store options
 const sessionStore = new MySQLStore({}, pool);
 
-// Import routes
-const dataRoutes = require('./src/routes/dataRoutes');
-const authRoutes = require('./src/routes/authRoutes');
-
-// Use routes
-app.use('/api', dataRoutes);
-app.use('/', authRoutes);
-
 // Configure session middleware
 app.use(session({
     key: 'session_cookie_name',
@@ -49,6 +42,20 @@ app.use(session({
     saveUninitialized: false,
     cookie: { secure: false } // Set to true if using HTTPS
 }));
+
+// Middleware to pass user info to all EJS templates
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
+
+// Import routes
+const dataRoutes = require('./src/routes/dataRoutes');
+const authRoutes = require('./src/routes/authRoutes');
+
+// Use routes
+app.use('/api', dataRoutes);
+app.use('/', authRoutes);
 
 // Generate random password
 
@@ -142,10 +149,6 @@ app.get('/eCurrency', (req, res) => {
     res.render('eCurrency', { title: 'eCurrency' });
 });
 
-app.get('/employerDash', (req, res) => {
-    res.render('employerDash', { title: 'Employer Dashboard' });
-});
-
 app.get('/jobCredit', (req, res) => {
     res.render('jobCredit', { title: 'Purchase Job Credit' });
 });
@@ -215,30 +218,72 @@ app.get('/stripe', (req, res) => {
     });
 });
 
-app.get('/cancel', (req, res) => {
-    res.render('cancel', {
-        title: 'Payment Cancelled',
-    });
+app.get('/cancel', async (req, res) => {
+    const { userId, credits } = req.query;
+
+    try {
+        // Roll back the credits update
+        await pool.query('UPDATE employerCredits SET credits = credits - ? WHERE uenNo = (SELECT uenNo FROM employerProfile WHERE id = ?)', [credits, userId]);
+        res.render('cancel', { title: 'Payment Cancelled' });
+    } catch (error) {
+        console.error('Error handling payment cancellation:', error);
+        res.status(500).send('An error occurred while processing your cancellation.');
+    }
 });
 
-app.get('/success', async (req, res) => {
-    const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-    res.render('success', {
-        title: 'Payment Successful',
-        amount: session.amount_total / 100,
-        currency: session.currency,
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.redirect('/');
+        }
+        res.clearCookie('session_cookie_name');
+        res.redirect('/');
     });
 });
 
 // all the post
 
-app.post('/jobPosting', (req, res) => {
+app.post('/jobPosting', async (req, res) => {
     const jobData = req.body;
-    // Handle the job data, save it to the database, etc.
-    console.log(jobData); // For debugging purposes
-    // Send a JSON response indicating success
-    res.json({ message: 'Job posting received' });
+    const user = req.session.user;
+
+    try {
+        console.log('Received job posting data:', jobData);
+
+        await pool.query('INSERT INTO jobPostings SET ?', {
+            userId: user.id,
+            jobTitle: jobData.jobTitle,
+            workingLocation: jobData.workingLocation,
+            workingHours: jobData.workingHours,
+            employmentType: jobData.employmentType,
+            workingDaysPerWeek: jobData.workingDaysPerWeek,
+            paidBreak: jobData.paidBreak,
+            breakDuration: jobData.breakDuration,
+            hourlyRate: jobData.hourlyRate,
+            flatRate: jobData.flatRate,
+            weekdayRate: jobData.weekdayRate,
+            weekendRate: jobData.weekendRate,
+            workingPeriodDays: jobData.workingPeriodDays,
+            dateOfCommencement: jobData.dateOfCommencement,
+            jobDescription1: jobData.jobDescription1,
+            jobDescription2: jobData.jobDescription2,
+            jobDescription3: jobData.jobDescription3,
+            jobDescription4: jobData.jobDescription4,
+            jobDescription5: jobData.jobDescription5,
+            jobRequirement1: jobData.jobRequirement1,
+            jobRequirement2: jobData.jobRequirement2,
+            jobRequirement3: jobData.jobRequirement3,
+        });
+
+        console.log('Job posting inserted into the database');
+        res.redirect('/employerDash');
+    } catch (error) {
+        console.error('Error posting job:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
 
 app.post('/resume', (req, res) => {
     const resumeData = req.body;
@@ -280,39 +325,39 @@ const products = [
     });
 });
 
-app.post('/create-checkout-session', async (req, res) => {
-    const { quantity, productId } = req.body;
+// app.post('/create-checkout-session', async (req, res) => {
+//     const { quantity, productId } = req.body;
 
-    // Retrieve the product details based on the productId
-    const product = {
-        id: 1,
-        title: "Yellow Safety Helmet",
-        price: 2300 // Price in cents
-    };
+//     // Retrieve the product details based on the productId
+//     const product = {
+//         id: 1,
+//         title: "Yellow Safety Helmet",
+//         price: 2300 // Price in cents
+//     };
 
-    try {
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: [{
-                price_data: {
-                    currency: 'sgd',
-                    product_data: {
-                        name: product.title,
-                    },
-                    unit_amount: product.price,
-                },
-                quantity: quantity,
-            }],
-            mode: 'payment',
-            success_url: 'https://yourdomain.com/success',
-            cancel_url: 'https://yourdomain.com/cancel',
-        });
+//     try {
+//         const session = await stripe.checkout.sessions.create({
+//             payment_method_types: ['card'],
+//             line_items: [{
+//                 price_data: {
+//                     currency: 'sgd',
+//                     product_data: {
+//                         name: product.title,
+//                     },
+//                     unit_amount: product.price,
+//                 },
+//                 quantity: quantity,
+//             }],
+//             mode: 'payment',
+//             success_url: 'https://yourdomain.com/success',
+//             cancel_url: 'https://yourdomain.com/cancel',
+//         });
 
-        res.json({ id: session.id });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+//         res.json({ id: session.id });
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
 
 app.get('/createEMProfile', (req, res) => {
     res.render('createEMProfile', { title: 'Create Employer Profile' });
@@ -375,43 +420,271 @@ async function authenticateUser(email, password) {
 app.post('/loginUser', async (req, res, next) => {
     const { email, password } = req.body;
     try {
+        // Check employerProfile
         const [employerRows] = await pool.query('SELECT * FROM employerProfile WHERE repEmail = ?', [email]);
-        const [jobseekerRows] = await pool.query('SELECT * FROM jobseekerProfile WHERE jobseekerEmail = ?', [email]);
-
-        let user = null;
-        let userRole = null;
-
         if (employerRows.length > 0) {
-            user = employerRows[0];
-            userRole = user.repRole;
-        } else if (jobseekerRows.length > 0) {
-            user = jobseekerRows[0];
-            userRole = user.jobseekerUserRole;
+            const user = employerRows[0];
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (isMatch) {
+                // Fetch job credits for employer
+                const [creditRows] = await pool.query('SELECT credits FROM employerCredits WHERE uenNo = ?', [user.uenNo]);
+                const credits = creditRows.length > 0 ? creditRows[0].credits : 0;
+                req.session.user = { ...user, credits };
+                return res.json({ message: 'Login successful', redirectUrl: '/employerDash' });
+            }
         }
 
-        if (!user) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+        // Check jobseekerProfile
+        const [jobseekerRows] = await pool.query('SELECT * FROM jobseekerProfile WHERE jobseekerEmail = ?', [email]);
+        if (jobseekerRows.length > 0) {
+            const user = jobseekerRows[0];
+            const isMatch = await bcrypt.compare(password, user.jobseekerPassword);
+            if (isMatch) {
+                req.session.user = user;
+                return res.json({ message: 'Login successful', redirectUrl: '/jobListing' });
+            }
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
-
-        req.session.user = user;
-        let redirectUrl = '/jobListing';
-
-        if (userRole === 'Admin') {
-            redirectUrl = '/adminDash';
-        } else if (userRole === 'Employer') {
-            redirectUrl = '/employerDash';
-        }
-
-        return res.json({ message: 'Login successful', redirectUrl }); // Send JSON response
+        // If no match found in both tables
+        res.status(401).json({ message: 'Invalid email or password' });
     } catch (error) {
+        console.error('Error fetching job credits:', error);
         next(error);
     }
 });
+
+app.get('/success', async (req, res) => {
+    const { session_id, userId, credits } = req.query;
+
+    try {
+        const session = await stripe.checkout.sessions.retrieve(session_id);
+
+        if (session.payment_status === 'paid') {
+            console.log('Payment successful, retrieving company name for userId:', userId);
+
+            const [companyRows] = await pool.query('SELECT repComName FROM employerProfile WHERE uenNo = ?', [userId]);
+            const companyName = companyRows.length > 0 ? companyRows[0].repComName : null;
+
+            console.log('Retrieved company name:', companyName);
+
+            if (companyName) {
+                const timestamp = new Date();
+                console.log('Inserting into employerCredits:', { userId, credits, companyName, timestamp });
+                await pool.query('INSERT INTO employerCredits (uenNo, credits, companyName, timestamp) VALUES (?, ?, ?, ?)', [userId, credits, companyName, timestamp]);
+            } else {
+                console.error('Company name not found for userId:', userId);
+            }
+
+            // Fetch updated user information
+            const [userRows] = await pool.query('SELECT * FROM employerProfile WHERE uenNo = ?', [userId]);
+            if (userRows.length > 0) {
+                const user = userRows[0];
+                // Update session user with new credits
+                const [creditRows] = await pool.query('SELECT SUM(credits) AS totalCredits FROM employerCredits WHERE uenNo = ?', [user.uenNo]);
+                const newCredits = creditRows.length > 0 ? creditRows[0].totalCredits || 0 : 0;
+                req.session.user = { ...user, credits: newCredits };
+                console.log('Updated session user:', req.session.user);
+            }
+        }
+
+        res.redirect('/employerDash');
+    } catch (error) {
+        console.error('Error handling success:', error);
+        res.status(500).send('An error occurred while processing your payment.');
+    }
+});
+
+app.get('/employerDash', async (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+
+    const uenNo = req.session.user.uenNo;
+    
+    try {
+        const [creditRows] = await pool.query('SELECT SUM(credits) AS totalCredits FROM employerCredits WHERE uenNo = ?', [uenNo]);
+        const credits = creditRows.length > 0 ? creditRows[0].totalCredits || 0 : 0;
+
+        const [jobCountRows] = await pool.query('SELECT COUNT(*) AS totalJobs FROM jobPostings WHERE userId = ?', [req.session.user.id]);
+        const totalJobs = jobCountRows.length > 0 ? jobCountRows[0].totalJobs : 0;
+
+        res.render('employerDash', { 
+            user: { ...req.session.user, credits },
+            title: 'Employer Dashboard'
+        });
+    } catch (error) {
+        console.error('Error fetching job credits:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+app.post('/create-checkout-session', async (req, res) => {
+    const { userId, credits } = req.body;
+    console.log('Received request to create checkout session for userId:', userId, 'with credits:', credits);
+
+    try {
+        // Fetch the company name from the database
+        const [companyRows] = await pool.query('SELECT repComName FROM employerProfile WHERE uenNo = ?', [userId]);
+        const companyName = companyRows.length > 0 ? companyRows[0].repComName : null;
+
+        console.log('Fetched company name:', companyName);
+
+        if (!companyName) {
+            return res.status(400).json({ error: 'Company name not found' });
+        }
+
+        // Store the credits in the database with the company name
+        const timestamp = new Date();
+        const [result] = await pool.query('INSERT INTO employerCredits (uenNo, credits, companyName, timestamp) VALUES (?, ?, ?, ?)', [userId, credits, companyName, timestamp]);
+
+        console.log('Credits inserted into the database:', result);
+
+        // Create the Stripe session
+        const amount = credits * 50 * 100; // Amount in cents
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [{
+                price_data: {
+                    currency: 'sgd',
+                    product_data: {
+                        name: `${credits} Job Credits`,
+                    },
+                    unit_amount: amount,
+                },
+                quantity: 1,
+            }],
+            mode: 'payment',
+            success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}&userId=${userId}&credits=${credits}`,
+            cancel_url: 'http://localhost:3000/cancel',
+        });
+
+        console.log('Stripe Session ID:', session.id);
+        res.json({ id: session.id });
+    } catch (error) {
+        console.error('Error creating checkout session:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/success', async (req, res) => {
+    const { session_id, userId, credits } = req.query;
+
+    try {
+        const session = await stripe.checkout.sessions.retrieve(session_id);
+
+        if (session.payment_status === 'paid') {
+            console.log('Payment successful, retrieving company name for userId:', userId);
+
+            const [companyRows] = await pool.query('SELECT repComName FROM employerProfile WHERE uenNo = ?', [userId]);
+            const companyName = companyRows.length > 0 ? companyRows[0].repComName : null;
+
+            console.log('Retrieved company name:', companyName);
+
+            if (companyName) {
+                const timestamp = new Date();
+                console.log('Inserting into employerCredits:', { userId, credits, companyName, timestamp });
+                await pool.query('INSERT INTO employerCredits (uenNo, credits, companyName, timestamp) VALUES (?, ?, ?, ?)', [userId, credits, companyName, timestamp]);
+            } else {
+                console.error('Company name not found for userId:', userId);
+            }
+
+            // Fetch updated user information
+            const [userRows] = await pool.query('SELECT * FROM employerProfile WHERE uenNo = ?', [userId]);
+            if (userRows.length > 0) {
+                const user = userRows[0];
+                // Update session user with new credits
+                const [creditRows] = await pool.query('SELECT SUM(credits) AS totalCredits FROM employerCredits WHERE uenNo = ?', [user.uenNo]);
+                const newCredits = creditRows.length > 0 ? creditRows[0].totalCredits || 0 : 0;
+                req.session.user = { ...user, credits: newCredits };
+                console.log('Updated session user:', req.session.user);
+            }
+        }
+
+        res.redirect('/employerDash');
+    } catch (error) {
+        console.error('Error handling success:', error);
+        res.status(500).send('An error occurred while processing your payment.');
+    }
+});
+
+app.post('/store-credits', async (req, res) => {
+    const { userId, credits } = req.body;
+    console.log('Received request to store credits for userId:', userId, 'with credits:', credits);
+
+    try {
+        // Fetch the company name from the database
+        const [companyRows] = await pool.query('SELECT repComName FROM employerProfile WHERE uenNo = ?', [userId]);
+        const companyName = companyRows.length > 0 ? companyRows[0].repComName : null;
+
+        console.log('Fetched company name:', companyName);
+
+        if (!companyName) {
+            return res.status(400).json({ success: false, error: 'Company name not found' });
+        }
+
+        // Store the credits in the database with the company name
+        const timestamp = new Date();
+        const [result] = await pool.query('INSERT INTO employerCredits (uenNo, credits, companyName, timestamp) VALUES (?, ?, ?, ?)', [userId, credits, companyName, timestamp]);
+
+        console.log('Credits inserted into the database:', result);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error storing credits:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
+    const sig = req.headers['stripe-signature'];
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+    } catch (err) {
+        console.log(`⚠️  Webhook signature verification failed.`, err.message);
+        return res.sendStatus(400);
+    }
+
+    // Handle the event
+    switch (event.type) {
+        case 'checkout.session.completed':
+            const session = event.data.object;
+            console.log('Checkout session completed:', session);
+            // Fulfill the purchase... (e.g., update credits in the database)
+            updateCredits(session);
+            break;
+        // ... handle other event types
+        default:
+            console.log(`Unhandled event type ${event.type}`);
+    }
+
+    res.send();
+});
+
+async function updateCredits(session) {
+    const { client_reference_id, amount_total } = session;
+    let creditsToAdd = 0;
+
+    if (amount_total === 25000) {
+        creditsToAdd = 5;
+    } else if (amount_total === 50000) {
+        creditsToAdd = 10;
+    } else if (amount_total === 75000) {
+        creditsToAdd = 15;
+    }
+
+    if (creditsToAdd > 0) {
+        try {
+            console.log(`Adding ${creditsToAdd} credits to ${client_reference_id}`);
+            await pool.query('UPDATE employerCredits SET status = ?, credits = credits + ? WHERE uenNo = ? AND status = ?', ['completed', creditsToAdd, client_reference_id, 'pending']);
+        } catch (error) {
+            console.error('Error updating credits:', error);
+        }
+    }
+}
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

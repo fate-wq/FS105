@@ -6,7 +6,9 @@
             </div>
             <div class="col">
                 <p class="p-navbar">
-                    <a href="/" class="custom-link">Werk<span class="f-sanserif-light">Pay</span> 💰</a>
+                    <a href="<%= user ? (user.userRole === 'Employer' ? '/employerDash' : user.userRole === 'Admin' ? '/adminDash' : '/jobListing') : '/' %>" class="custom-link">
+                        Werk<span class="f-sanserif-light">Pay</span> 💰
+                    </a>
                 </p>
             </div>
             <div class="col">
@@ -18,8 +20,11 @@
                         <!-- <a href="/Attendance">Attendance</a> -->
                         <a href="/eWallet">E-Wallet</a>
                         <a href="/">Help</a>
-                        <a href="/login">Log In</a>
-
+                        <% if (user) { %>
+                            <a href="/logout">Log Out</a>
+                        <% } else { %>
+                            <a href="/login">Log In</a>
+                        <% } %>
                     </div>
                 </div>
             </div>

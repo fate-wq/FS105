@@ -196,7 +196,7 @@ col {
 .ctn-form2 {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 85%;
     align-items: center;
     justify-content: center;
     text-align: center;

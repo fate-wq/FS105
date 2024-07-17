@@ -1,4 +1,3 @@
-
 <%- include ("meta.ejs") %>
 <body>
     <%- include ("navbar.ejs") %>
@@ -6,151 +5,57 @@
 
     <div class="ctn-login">
         <h1 class="f-sanserif-bold mt-5">CREATE JOB POSTING</h1>
+        <ul class="step-wizard-list mt-5">
+            <li class="step-wizard-item">
+                <span class="progress-count">1</span>
+                <span class="progress-label">Job Details</span>
+            </li>
+            <li class="step-wizard-item current-item">
+                <span class="progress-count">2</span>
+                <span class="progress-label">Salary Details</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">3</span>
+                <span class="progress-label">Working Period</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">4</span>
+                <span class="progress-label">Job Descriptions</span>
+            </li>
+        </ul>
 
-            <ul class="step-wizard-list mt-5">
-                <li class="step-wizard-item">
-                    <span class="progress-count">1</span>
-                    <span class="progress-label">Job Details</span>
-                </li>
-                <li class="step-wizard-item current-item">
-                    <span class="progress-count">2</span>
-                    <span class="progress-label">Salary Details</span>
-                </li>
-                <li class="step-wizard-item">
-                    <span class="progress-count">3</span>
-                    <span class="progress-label">Working Period</span>
-                </li>
-                <li class="step-wizard-item">
-                    <span class="progress-count">4</span>
-                    <span class="progress-label">Job Descriptions</span>
-                </li>
-
-            </ul>
-
-        <form id="jobForm" action="" method="post" class="ctn-form">
+        <form id="jobForm" action="/jobPosting" method="post" class="ctn-form">
             <!-- Step 1: Job Details -->
-            <section id="job-details">
+            <section id="job-details" class="ctn-form2">
                 <h2>Job Details</h2>
                 <div class="input-group" data-tooltip="Enter the title of the job position">
                     <input type="text" id="jobTitle" name="jobTitle" required>
                     <label for="jobTitle">Job Title <span class="required">*</span></label>
                 </div>
-
                 <div class="input-group" data-tooltip="Specify the location where the job is based">
                     <input type="text" id="workingLocation" name="workingLocation" list="locations" required>
                     <label for="workingLocation">Working Location <span class="required">*</span></label>
                     <datalist id="locations">
-                        <option value="Ang Mo Kio">
-                        <option value="Bedok">
-                        <option value="Bishan">
-                        <option value="Bukit Batok">
-                        <option value="Bukit Merah">
-                        <option value="Bukit Panjang">
-                        <option value="Bukit Timah">
-                        <option value="Central Area">
-                        <option value="Changi">
-                        <option value="Choa Chu Kang">
-                        <option value="Clementi">
-                        <option value="Geylang">
-                        <option value="Hougang">
-                        <option value="Jurong East">
-                        <option value="Jurong West">
-                        <option value="Kallang">
-                        <option value="Lim Chu Kang">
-                        <option value="Mandai">
-                        <option value="Marine Parade">
-                        <option value="Novena">
-                        <option value="Orchard">
-                        <option value="Pasir Ris">
-                        <option value="Punggol">
-                        <option value="Queenstown">
-                        <option value="Seletar">
-                        <option value="Sembawang">
-                        <option value="Sengkang">
-                        <option value="Serangoon">
-                        <option value="Simei">
-                        <option value="Tampines">
-                        <option value="Tanjong Pagar">
-                        <option value="Toa Payoh">
-                        <option value="Woodlands">
-                        <option value="Yishun">
+                        <!-- Location options -->
                     </datalist>
                 </div>
-
-                <div class="input-group" data-tooltip="Enter the working hours per day or week">
-                    <input type="text" id="workingHours" name="workingHours" required>
-                    <label for="workingHours">Working Hours <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group" data-tooltip="Enter the type of employment (e.g., Full-time, Part-time)">
-                    <input type="text" id="employmentType" name="employmentType" list="employmentTypes" required>
-                    <label for="employmentType">Employment Type <span class="required">*</span></label>
-                    <datalist id="employmentTypes">
-                        <option value="Part-time">
-                        <option value="Contract">
-                        <option value="Temporary">
-                    </datalist>
-                </div>
-                
-
-                <div class="input-group" data-tooltip="Enter the number of working days per week">
-                    <input type="text" id="workingDaysPerWeek" name="workingDaysPerWeek" required>
-                    <label for="workingDaysPerWeek">Working Days per Week <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group" data-tooltip="Specify if paid breaks are provided (Yes/No)">
-                    <input type="text" id="paidBreak" name="paidBreak">
-                    <label for="paidBreak">Paid Break (Yes/No)</label>
-                </div>
-
-                <div class="input-group" data-tooltip="Enter the duration of breaks in minutes">
-                    <input type="text" id="breakDuration" name="breakDuration">
-                    <label for="breakDuration">Break Duration (minutes)</label>
-                </div>
+                <!-- Other input fields for job details -->
+                <button type="button" class="button-content" id="generateContent">Generate Content</button>
                 <button type="button" class="button-next next-section">Next</button>
-
             </section>
 
             <!-- Step 2: Salary Details -->
-            <section id="salary-details" style="display: none;">
+            <section id="salary-details" class="ctn-form2" style="display: none;">
                 <h2>Salary Details</h2>
-                <div class="input-group" data-tooltip="Enter the hourly rate for the job" >
-                    <input type="text" id="hourlyRate" name="hourlyRate" required>
-                    <label for="hourlyRate">Hourly Rate ($) <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group" data-tooltip="Enter the flat rate for the job, if applicable">
-                    <input type="text" id="flatRate" name="flatRate">
-                    <label for="flatRate">Flat Rate ($)</label>
-                </div>
-
-                <div class="input-group" data-tooltip="Specify the weekday rate, if different from hourly rate">
-                    <input type="text" id="weekdayRate" name="weekdayRate">
-                    <label for="weekdayRate">Weekday Rate ($)</label>
-                </div>
-
-                <div class="input-group" data-tooltip="Specify the weekend rate, if different from hourly rate">
-                    <input type="text" id="weekendRate" name="weekendRate">
-                    <label for="weekendRate">Weekend Rate ($)</label>
-                </div>
-
+                <!-- Input fields for salary details -->
                 <button type="button" class="button-content prev-section">Previous</button>
                 <button type="button" class="button-next next-section">Next</button>
             </section>
 
             <!-- Step 3: Working Period -->
-            <section id="working-period" style="display: none;">
+            <section id="working-period" class="ctn-form2" style="display: none;">
                 <h2>Working Period</h2>
-                <div class="input-group" data-tooltip="Specify the working period (days/week/month)">
-                    <input type="text" id="workingPeriodDays" name="workingPeriodDays">
-                    <label for="workingPeriodDays">Working Period (days/week/month)</label>
-                </div>
-
-                <div class="input-group" data-tooltip="Enter the date of commencement (dd/mm/yyyy)">
-                    <input type="text" id="dateOfCommencement" name="dateOfCommencement">
-                    <label for="dateOfCommencement">Date of Commencement (dd/mm/yyyy)</label>
-                </div>
-
+                <!-- Input fields for working period -->
                 <button type="button" class="button-content prev-section">Previous</button>
                 <button type="button" class="button-next next-section">Next</button>
             </section>
@@ -160,56 +65,84 @@
                 <h2 class="f-sanserif-bold mt-5">Job Descriptions</h2>
 
                 <div class="input-group mt-5">
-                    <input id="jobDescription1" name="jobDescription1" rows="4" required></input>
-                    <label for="jobDescription">Job Description 1<span class="required">*</span></label>
+                    <textarea id="jobDescription1" name="jobDescription1" rows="4" required></textarea>
+                    <label for="jobDescription1">Job Description 1<span class="required">*</span></label>
                 </div>
 
                 <div class="input-group">
-                    <input id="jobDescription2" name="jobDescription2" rows="4"></input>
-                    <label for="jobDescription">Job Description 2<span class="required"></span></label>
+                    <textarea id="jobDescription2" name="jobDescription2" rows="4"></textarea>
+                    <label for="jobDescription2">Job Description 2<span class="required"></span></label>
                 </div>
 
                 <div class="input-group">
-                    <input id="jobDescription3" name="jobDescription3" rows="4"></input>
-                    <label for="jobDescription">Job Description 3<span class=""></span></label>
+                    <textarea id="jobDescription3" name="jobDescription3" rows="4"></textarea>
+                    <label for="jobDescription3">Job Description 3<span class=""></span></label>
                 </div>
 
                 <div class="input-group">
-                    <input id="jobDescription4" name="jobDescription4" rows="4"></input>
-                    <label for="jobDescription">Job Description 4<span class=""></span></label>
+                    <textarea id="jobDescription4" name="jobDescription4" rows="4"></textarea>
+                    <label for="jobDescription4">Job Description 4<span class=""></span></label>
                 </div>
 
                 <div class="input-group">
-                    <input id="jobDescription5" name="jobDescription4" rows="4"></input>
-                    <label for="jobDescription">Job Description 5<span class=""></span></label>
+                    <textarea id="jobDescription5" name="jobDescription5" rows="4"></textarea>
+                    <label for="jobDescription5">Job Description 5<span class=""></span></label>
                 </div>
 
                 <h2 class="f-sanserif-bold mt-5">Job Requirements</h2>
 
                 <div class="input-group mt-5">
-                    <input id="jobRequirement1" name="jobRequirement1" rows="4"></input>
-                    <label for="jobRequirement">Job Requirement 1<span class="required">*</span></label>
+                    <textarea id="jobRequirement1" name="jobRequirement1" rows="4" required></textarea>
+                    <label for="jobRequirement1">Job Requirement 1<span class="required">*</span></label>
                 </div>
 
                 <div class="input-group">
-                    <input id="jobRequirement2" name="jobRequirement2" rows="4"></input>
-                    <label for="jobRequirement">Job Requirement 2<span class=""></span></label>
+                    <textarea id="jobRequirement2" name="jobRequirement2" rows="4"></textarea>
+                    <label for="jobRequirement2">Job Requirement 2<span class=""></span></label>
                 </div>
 
                 <div class="input-group">
-                    <input id="jobRequirement3" name="jobRequirement3" rows="4"></input>
-                    <label for="jobRequirement">Job Requirement 3<span class=""></span></label>
+                    <textarea id="jobRequirement3" name="jobRequirement3" rows="4"></textarea>
+                    <label for="jobRequirement3">Job Requirement 3<span class=""></span></label>
                 </div>
                 <button type="button" class="button-content prev-section">Previous</button>
                 <button type="submit" class="button-createProfile">Create Job Posting</button>
-
             </section>
         </form>
+    </div>
 
     <%- include ("footer.ejs") %>
 
     <script src="/firebaseJobs.js"></script>
+    <script>
+        document.getElementById('generateContent').addEventListener('click', () => {
+            document.getElementById('jobTitle').value = 'Changi Flight Food Packer x 120';
+            document.getElementById('workingLocation').value = 'Changi';
+            document.getElementById('workingHours').value = '9:00 AM - 6:00 PM';
+            document.getElementById('employmentType').value = 'Part-time';
+            document.getElementById('workingDaysPerWeek').value = '3';
+            document.getElementById('paidBreak').value = 'No';
+            document.getElementById('breakDuration').value = '60';
 
+            document.getElementById('hourlyRate').value = '0.00';
+            document.getElementById('flatRate').value = '15.80';
+            document.getElementById('weekdayRate').value = '0.00';
+            document.getElementById('weekendRate').value = '0.00';
 
+            document.getElementById('workingPeriodDays').value = 'Monday, Friday and Sunday';
+            document.getElementById('dateOfCommencement').value = '01/08/2024';
+
+            document.getElementById('jobDescription1').value = 'Provide information and assistance to visitors';
+            document.getElementById('jobDescription2').value = 'Assist to enforce safe distancing and safe management measures';
+            document.getElementById('jobDescription3').value = 'Ensure ticket and attraction admission checks';
+            document.getElementById('jobDescription4').value = 'Responding to accidents and emergencies';
+            document.getElementById('jobDescription5').value = 'Assist to facilitate events and programmes held';
+
+            document.getElementById('jobRequirement1').value = 'Crew must wear safety boot at all times';
+            document.getElementById('jobRequirement2').value = '';
+            document.getElementById('jobRequirement3').value = '';
+            document.getElementById('additionalInfo').value = 'Fast and Daily Cash';
+        });
+    </script>
 </body>
 </html>
