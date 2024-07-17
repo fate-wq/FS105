@@ -13,7 +13,7 @@ const secretKey = process.env.SECRET_KEY;
 let userPassword = null;
 
 function generateJWTToken(userId) {
-    return jwt.sign({ userId }, secretKey, { expiresIn: '3h' });
+    return jwt.sign({ userId }, secretKey);
 }
 
 class FirebaseAuthController {
@@ -71,19 +71,22 @@ class FirebaseAuthController {
                     res.cookie('access_token', token, {
                         httpOnly: true
                     });
-                    res.redirect('/');
+                    // Set the userId in the session
+                    req.userId = userId;
+                    return res.redirect('/');
                 } else {
-                    res.status(403).json({ error: 'Email not verified' });
+                    return res.status(403).json({ error: 'Email not verified' });
                 }
             } catch (error) {
                 console.error('Error verifying email:', error);
-                res.status(500).json({ error: 'Error verifying email' });
+                return res.status(500).json({ error: 'Error verifying email' });
             }
         } else {
             console.error('Invalid verification mode');
-            res.status(400).json({ error: 'Invalid verification request' });
+            return res.status(400).json({ error: 'Invalid verification request' });
         }
     }
+
     async loginUser(req, res) {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -101,14 +104,16 @@ class FirebaseAuthController {
                 res.cookie('access_token', token, {
                     httpOnly: true
                 });
-                res.redirect('/');
+                // Set the userId in the session
+                req.userId = userId;
+                return res.redirect('/');
             } else {
-                res.status(500).json({ error: "Internal Server Error" });
+                return res.status(500).json({ error: "Internal Server Error" });
             }
         } catch (error) {
             console.error(error);
             const errorMessage = error.message || "An error occurred while logging in";
-            res.status(500).json({ error: errorMessage });
+            return res.status(500).json({ error: errorMessage });
         }
     }
 }

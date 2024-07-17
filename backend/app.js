@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eDQETeNSd4CfKqMqRKexlulHnUfxdA45DjxzADftnEWweR2Zu6haR00KlqEzdwP');
 const { getJobs } = require('./src/controllers/dataController');
 const verifyJWTToken = require('./src/middleware/auth'); // Import the middleware
+const { realtimedb } = require('./src/config/firebaseAdmin'); // Import Firebase Admin configuration
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -49,16 +50,62 @@ app.use((req, res, next) => {
     next();
 });
 
+// Dummy function to store session data in Firebase
+async function storeSessionData(userId, startTime, endTime, duration, isLoggedIn) {
+    try {
+        const sessionsRef = realtimedb.ref('sessions');
+        const userSessionsRef = sessionsRef.child(userId);
+
+        // Push session data based on login status
+        if (isLoggedIn) {
+            await userSessionsRef.child('logged-in').push({
+                startTime: startTime,
+                endTime: endTime,
+                duration: duration
+            });
+        } else {
+            await userSessionsRef.child('non-logged-in').push({
+                startTime: startTime,
+                endTime: endTime,
+                duration: duration
+            });
+        }
+        console.log(`Session data stored for ${isLoggedIn ? 'logged-in' : 'non-logged-in'} user:`, { userId, startTime, endTime, duration });
+    } catch (error) {
+        console.error('Error storing session data:', error);
+    }
+}
+
+// Middleware to track session start time for all users
+app.use((req, res, next) => {
+    if (!req.session.startTime) {
+        req.session.startTime = new Date(); // Set session start time
+        console.log("Session started on " + req.session.startTime);
+    }
+    next();
+});
+
 
 // Fetch jobs data and render the index template
-app.get('/',verifyJWTToken, async (req, res) => {
+app.get('/', verifyJWTToken, async (req, res) => {
     try {
         const isLoggedIn = req.userId ? true : false;
-        const jobs = await getJobs(req.query || {}); 
+        const jobs = await getJobs(req.query || {});
         if (!jobs) {
-            throw new Error("No jobs found"); // Handle empty jobs array
+            throw new Error("No jobs found");
         }
 
+        // Calculate session duration for non-logged-in users
+        if (!isLoggedIn && req.session.startTime) {
+            const currentTime = new Date();
+            const sessionDuration = currentTime - new Date(req.session.startTime);
+            const userId = req.sessionID; // Use session ID as user ID for non-logged-in users
+            await storeSessionData(userId, req.session.startTime, currentTime, sessionDuration, false);
+            console.log(`Session duration for non-logged-in user stored: ${sessionDuration}ms`);
+            req.session.startTime = null; // Reset session start time
+        }
+
+        console.log(`Rendering index page: ${isLoggedIn ? 'Logged in' : 'Not logged in'}`);
         res.render('index', { title: 'WerkPay', jobs, isLoggedIn });
     } catch (error) {
         console.error("Error rendering index:", error);
@@ -72,20 +119,30 @@ app.get('/login', (req, res) => {
 
 // Logout route
 app.get('/logout', (req, res) => {
-    // Clear the session or token
+    // Store session end time and duration for logged-in users
+    if (req.userId) {
+        const currentTime = new Date();
+        const sessionDuration = currentTime - new Date(req.session.startTime);
+        const userId = req.userId; // Use actual user ID for logged-in users
+        storeSessionData(userId, req.session.startTime, currentTime, sessionDuration, true);
+        console.log(`Session duration for logged-in user stored: ${sessionDuration}ms`);
+    }
+
+    // Clear session data and cookies upon logout
     req.session.destroy((err) => {
         if (err) {
-            return res.status(500).json({ error: 'Failed to logout' });
+            console.error('Error destroying session:', err);
+            return res.status(500).send('Error logging out.');
         }
-        // Clear userId from locals
         res.locals.userId = null;
         res.locals.isLoggedIn = false;
-        // Clear any token (if using token-based authentication)
-        res.clearCookie('access_token'); // Use appropriate cookie name
-        // Redirect to the login page or any other page after logout
+        res.clearCookie('access_token'); // Clear any token-related cookies
+        console.log("User logged out and session destroyed");
         res.redirect('/');
     });
 });
+
+
 
 
 
