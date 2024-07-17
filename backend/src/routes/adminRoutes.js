@@ -7,6 +7,7 @@ const dashboardController = require('../controllers/dashboardController');
 router.get('/admin/login', adminController.showAdminLogin);
 router.get('/admin/dashboard', adminController.showAdminDashboard);
 router.get('/api/usersCount', dashboardController.getUsersCount);
+router.get('/api/timeSpent', dashboardController.getAverageTimeSpent);
 
 router.post('/admin/login', adminController.loginAdmin);
 router.get('/admin/logout', adminController.adminLogout);
