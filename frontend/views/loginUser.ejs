@@ -11,7 +11,7 @@
             <p style="color: red;"><%= error %></p>
         <% } %>
 
-        <form action="/login" method="post" class="ctn-form">
+        <form id="loginForm" action="/login" method="post" class="ctn-form">
 
             <div class="input-group">
                 <input type="email" id="email" name="email" required>
@@ -23,7 +23,9 @@
                 <label for="password">Password</label>
             </div>
 
-            <button type="submit" class="button-red">Login</button>
+            <button type="button" class="button-content" id="generateContentUser">Generate Content - User</button>
+            <button type="button" class="button-content2" id="generateContentEmployer">Generate Content - Employer</button>
+            <button type="submit" class="button-red2">Login</button>
         </form>
 
         <p class="f-sanserif-regular mt-5">Forgot Password? Click <span>here</span> to reset your password</p>
@@ -32,9 +34,45 @@
     <%- include ("footer.ejs")%>
 
     <script>
+
         function usernameLogin() {
             window.location.href = '/loginUser'; 
         }
+
+        document.getElementById('generateContentUser').addEventListener('click', () => {
+            document.getElementById('email').value = 'johnson8484@gmail.com';
+            document.getElementById('password').value = 'Password@123';
+        });
+
+        document.getElementById('generateContentEmployer').addEventListener('click', () => {
+            document.getElementById('email').value = 'oyfmaster1@gmail.com';
+            document.getElementById('password').value = '8957d9877189f5f0';
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            try {
+                const response = await fetch('/loginUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    window.location.href = result.redirectUrl;  // Redirect to the appropriate dashboard
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while logging in.');
+            }
+        });
 
     </script>
 
