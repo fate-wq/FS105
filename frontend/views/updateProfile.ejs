@@ -183,7 +183,7 @@
 nextBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         // Check if all required fields in the current step are filled
-        const currentFormStep = document.querySelector(.form-step[data-step="${currentStep}"]);
+        const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`);
         const inputs = currentFormStep.querySelectorAll('input[required]');
         let isValid = true;
 

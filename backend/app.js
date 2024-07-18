@@ -9,13 +9,6 @@ const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eD
 const { getJobs } = require('./src/controllers/dataController');
 const verifyJWTToken = require('./src/middleware/auth'); // Import the middleware
 const { realtimedb } = require('./src/config/firebaseAdmin'); // Import Firebase Admin configuration
-const pool = require('./src/config/sql');
-const nodemailer = require('nodemailer');
-const bcrypt = require('bcrypt');
-const crypto = require('crypto');
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -34,18 +27,13 @@ app.set('views', path.join(__dirname, '../frontend/views'));
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
-// MySQL session store options
-const sessionStore = new MySQLStore({}, pool);
 
-// Configure session middleware
 app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
-    store: sessionStore,
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false } // Set to true if using HTTPS
-}));
+    saveUninitialized: true,
+    cookie: { secure: false } // Use secure: true in production
+  }));
 
 // Middleware to pass user info to all EJS templates
 app.use((req, res, next) => {
@@ -57,13 +45,6 @@ app.use((req, res, next) => {
 const dataRoutes = require('./src/routes/dataRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
-
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Use secure: true in production
-  }));
 
 app.use(adminRoutes);
 
@@ -113,21 +94,6 @@ app.use((req, res, next) => {
         console.log("Session started on " + req.session.startTime);
     }
     next();
-});
-
-// Generate random password
-
-function generateRandomPassword() {
-    return crypto.randomBytes(8).toString('hex'); // 16 characters long
-}
-
-// Configure nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
 });
 
 // Fetch jobs data and render the index template
