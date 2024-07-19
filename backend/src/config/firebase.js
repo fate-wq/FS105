@@ -10,7 +10,7 @@ const {
     sendEmailVerification,
     sendPasswordResetEmail,
     applyActionCode
-  } = require("firebase/auth") ;
+} = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -24,13 +24,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app); // Initialize Realtime Database
+const db = getFirestore(app);
+const realtimeDb = getDatabase(app);
 const auth = getAuth(app);
-
-
 
 module.exports = {
     db,
+    realtimeDb,
     auth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,

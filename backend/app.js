@@ -8,7 +8,10 @@ const bodyParser = require('body-parser'); //test
 const stripe = require('stripe')('sk_test_51PTh7q2MEKdQenEdI00THxdyf7gUJqggpG9eDQETeNSd4CfKqMqRKexlulHnUfxdA45DjxzADftnEWweR2Zu6haR00KlqEzdwP');
 const { getJobs } = require('./src/controllers/dataController');
 const verifyJWTToken = require('./src/middleware/auth'); // Import the middleware
-const { realtimedb } = require('./src/config/firebaseAdmin'); // Import Firebase Admin configuration
+const { firestore, realtimedb } = require('./src/config/firebaseAdmin');
+const { db } = require("./firebaseAdmin");
+
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -61,6 +64,25 @@ app.use((req, res, next) => {
     res.locals.isLoggedIn = !!req.userId; // Set isLoggedIn based on req.userId
     next();
 });
+
+const addPaymentData = async (paymentData) => {
+    try {
+      const docRef = await db.collection('stripePayments').add(paymentData);
+      console.log('Payment data added with ID:', docRef.id);
+    } catch (error) {
+      console.error('Error adding payment data:', error);
+    }
+  };
+  
+  const paymentData = {
+    amount: 5000,
+    currency: 'usd',
+    paymentStatus: 'succeeded',
+    userId: 'userId123',
+    timestamp: admin.firestore.FieldValue.serverTimestamp()
+  };
+  
+  addPaymentData(paymentData);
 
 // Dummy function to store session data in Firebase
 async function storeSessionData(userId, startTime, endTime, duration, isLoggedIn) {
@@ -155,10 +177,6 @@ app.get('/logout', (req, res) => {
         res.redirect('/');
     });
 });
-
-
-
-
 
 app.get('/loginUser', (req, res) => {
     res.render('loginUser', { title: 'Login User' });
@@ -596,51 +614,33 @@ app.get('/employerDash', async (req, res) => {
 
 app.post('/create-checkout-session', async (req, res) => {
     const { userId, credits } = req.body;
-    console.log('Received request to create checkout session for userId:', userId, 'with credits:', credits);
-
+  
     try {
-        // Fetch the company name from the database
-        const [companyRows] = await pool.query('SELECT repComName FROM employerProfile WHERE uenNo = ?', [userId]);
-        const companyName = companyRows.length > 0 ? companyRows[0].repComName : null;
-
-        console.log('Fetched company name:', companyName);
-
-        if (!companyName) {
-            return res.status(400).json({ error: 'Company name not found' });
-        }
-
-        // Store the credits in the database with the company name
-        const timestamp = new Date();
-        const [result] = await pool.query('INSERT INTO employerCredits (uenNo, credits, companyName, timestamp) VALUES (?, ?, ?, ?)', [userId, credits, companyName, timestamp]);
-
-        console.log('Credits inserted into the database:', result);
-
-        // Create the Stripe session
-        const amount = credits * 50 * 100; // Amount in cents
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: [{
-                price_data: {
-                    currency: 'sgd',
-                    product_data: {
-                        name: `${credits} Job Credits`,
-                    },
-                    unit_amount: amount,
-                },
-                quantity: 1,
-            }],
-            mode: 'payment',
-            success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}&userId=${userId}&credits=${credits}`,
-            cancel_url: 'http://localhost:3000/cancel',
-        });
-
-        console.log('Stripe Session ID:', session.id);
-        res.json({ id: session.id });
+      const amount = credits * 50 * 100; // Amount in cents
+  
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: `${credits} Job Credits`,
+            },
+            unit_amount: amount,
+          },
+          quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}&userId=${userId}&credits=${credits}`,
+        cancel_url: 'http://localhost:3000/cancel',
+        metadata: { userId }
+      });
+  
+      res.json({ id: session.id });
     } catch (error) {
-        console.error('Error creating checkout session:', error);
-        res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
-});
+  });
 
 app.get('/success', async (req, res) => {
     const { session_id, userId, credits } = req.query;
@@ -710,31 +710,26 @@ app.post('/store-credits', async (req, res) => {
     }
 });
 
-app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
+app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
     const sig = req.headers['stripe-signature'];
-
     let event;
-
+  
     try {
-        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+      event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
     } catch (err) {
-        console.log(`⚠️  Webhook signature verification failed.`, err.message);
-        return res.sendStatus(400);
+      console.log(`⚠️  Webhook signature verification failed.`, err.message);
+      return res.sendStatus(400);
     }
-
-    // Handle the event
+  
     switch (event.type) {
-        case 'checkout.session.completed':
-            const session = event.data.object;
-            console.log('Checkout session completed:', session);
-            // Fulfill the purchase... (e.g., update credits in the database)
-            updateCredits(session);
-            break;
-        // ... handle other event types
-        default:
-            console.log(`Unhandled event type ${event.type}`);
+      case 'checkout.session.completed':
+        const session = event.data.object;
+        await handleCheckoutSession(session);
+        break;
+      default:
+        console.log(`Unhandled event type ${event.type}`);
     }
-
+  
     res.send();
 });
 
@@ -759,6 +754,25 @@ async function updateCredits(session) {
         }
     }
 }
+
+async function handleCheckoutSession(session) {
+    const { id, amount_total, currency, payment_status, customer, metadata } = session;
+  
+    const paymentData = {
+      amount: amount_total,
+      currency: currency,
+      paymentStatus: payment_status,
+      userId: metadata.userId,
+      timestamp: admin.firestore.FieldValue.serverTimestamp()
+    };
+  
+    try {
+      await db.collection('stripePayments').doc(id).set(paymentData);
+      console.log('Payment data stored in Firestore:', paymentData);
+    } catch (error) {
+      console.error('Error storing payment data in Firestore:', error);
+    }
+  }
 
 
 const PORT = process.env.PORT || 3000;

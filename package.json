@@ -28,7 +28,7 @@
     "express": "^4.19.2",
     "express-mysql-session": "^3.0.3",
     "express-session": "^1.18.0",
-    "firebase": "^10.12.3",
+    "firebase": "^10.12.4",
     "firebase-admin": "^12.2.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.10.3",
