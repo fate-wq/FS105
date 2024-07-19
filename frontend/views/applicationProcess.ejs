@@ -1,0 +1,222 @@
+
+    <%- include("meta.ejs") %>
+<body>
+    <%- include("navbar.ejs") %>
+    <%- include("navUser.ejs") %>
+
+    <div class="ctn-login">
+        <p class="f-sanserif-regular mt-5">Please complete your application below.</p>
+        <h1 class="f-sanserif-bold mt-5">APPLICATION PROCESS</h1>
+
+        <ul class="step-wizard-list mt-5">
+            <li class="step-wizard-item current-item" data-step="1">
+                <span class="progress-count">1</span>
+                <span class="progress-label">Basic Information</span>
+            </li>
+            <li class="step-wizard-item" data-step="2">
+                <span class="progress-count">2</span>
+                <span class="progress-label">Work Experience</span>
+            </li>
+            <li class="step-wizard-item" data-step="3">
+                <span class="progress-count">3</span>
+                <span class="progress-label">Availability</span>
+            </li>
+            <li class="step-wizard-item" data-step="4">
+                <span class="progress-count">4</span>
+                <span class="progress-label">Upload Resume (Optional)</span>
+            </li>
+        </ul>
+
+        <form id="applicationForm" action="/applicationProcess" method="POST" class="ctn-form">
+            <!-- Step 1: Basic Information -->
+            <div class="form-step" data-step="1">
+                <div class="input-group">
+                    <input type="text" id="fullName" name="fullName" required value="<%= userData.fullName || '' %>">
+                    <label for="fullName">Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="tel" name="phone" id="phone" placeholder="Phone Number" required value="<%= userData.phone || '' %>">
+                    <label for="phone">Phone Number</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email2" name="email2" required value="<%= userData.email || '' %>">
+                    <label for="email2">Email</label>
+                </div>
+                <button type="button" class="button-next next-section">Next</button>
+            </div>
+
+            <!-- Step 2: Work Experience -->
+            <div class="form-step" data-step="2">
+                <div id="work-experience-container">
+                    <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1>
+                    <div class="input-group">
+                        <input type="text" name="jobTitle[]" placeholder="Job Title">
+                        <label for="jobTitle">Job Title</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="companyName[]" placeholder="Company Name">
+                        <label for="companyName">Company Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="jobDuration[]" placeholder="Duration">
+                        <label for="jobDuration">Duration</label>
+                    </div>
+                </div>
+                <button type="button" id="add-work-experience" class="add-button">Add Work Experience</button>
+                <button type="button" class="button-next next-section">Next</button>
+                <button type="button" class="button-next prev-section">Previous</button>
+            </div>
+
+            <!-- Step 3: Availability -->
+            <div class="form-step" data-step="3">
+                <div class="input-group">
+                    <label for="availabilityDays">How many days are you available a week? <span class="required">*</span></label>
+                    <select id="availabilityDays" name="availabilityDays" required>
+                        <option value="">Select</option>
+                        <option value="1">1 day</option>
+                        <option value="2">2 days</option>
+                        <option value="3">3 days</option>
+                        <option value="4">4 days</option>
+                        <option value="5">5 days</option>
+                        <option value="6">6 days</option>
+                        <option value="7">7 days</option>
+                    </select>
+                </div>
+                <button type="button" class="button-next next-section">Next</button>
+                <button type="button" class="button-next prev-section">Previous</button>
+            </div>
+
+            <!-- Step 4: Upload Resume -->
+            <div class="form-step" data-step="4">
+                <div class="input-group">
+                    <input type="file" name="resume" id="resume">
+                    <label for="resume">Upload Resume (Optional)</label>
+                </div>
+                <button type="submit" class="button-next next-section">Submit</button>
+                <button type="button" class="button-next prev-section">Previous</button>
+            </div>
+
+            <p class="f-sanserif-regular mt-5">By completing this application, you agree to the terms and conditions.</p>
+        </form>
+    </div>
+
+    <%- include("footer.ejs") %>
+
+    <style>
+        .form-step {
+            display: none;
+        }
+        .form-step.active {
+            display: block;
+        }
+        .button-content,
+        .add-button,
+        .cancel-section {
+            display: block;
+            margin-bottom: 10px; /* Adjust as needed */
+        }
+        .btn-option {
+            display: flex;
+            justify-content: space-around;
+        }
+        .input-group.date-picker input[type="date"] {
+            padding-left: 60px;
+            font-size: 20px;
+        }
+    </style>
+
+    <script>
+        const steps = document.querySelectorAll('.step-wizard-item');
+        const formSteps = document.querySelectorAll('.form-step');
+        const nextBtns = document.querySelectorAll('.next-section');
+        const prevBtns = document.querySelectorAll('.prev-section');
+        const workExperienceContainer = document.getElementById('work-experience-container');
+        const addWorkExperienceBtn = document.getElementById('add-work-experience');
+        const form = document.getElementById('applicationForm');
+
+        let currentStep = 1;
+        let workExperienceCount = 1;
+
+        function updateStep(step) {
+            formSteps.forEach((formStep, index) => {
+                formStep.classList.toggle('active', index === (step - 1));
+            });
+            steps.forEach((stepItem, index) => {
+                stepItem.classList.toggle('current-item', index === (step - 1));
+            });
+        }
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+                const inputs = currentFormStep.querySelectorAll('input[required], select[required]');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.setCustomValidity("Please fill out this field.");
+                        input.reportValidity();
+                    } else {
+                        input.setCustomValidity("");
+                    }
+                });
+
+                if (isValid) {
+                    currentStep++;
+                    updateStep(currentStep);
+                }
+            });
+        });
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentStep--;
+                updateStep(currentStep);
+            });
+        });
+
+        updateStep(currentStep);
+
+        addWorkExperienceBtn.addEventListener('click', () => {
+            workExperienceCount++;
+
+            const newWorkExperience = document.createElement('div');
+            newWorkExperience.innerHTML = `
+                <h1 class="f-sanserif-bold mt-5">Work Experience ${workExperienceCount}</h1>
+                <div class="input-group">
+                    <input type="text" name="jobTitle[]" placeholder="Job Title">
+                    <label for="jobTitle">Job Title</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="companyName[]" placeholder="Company Name">
+                    <label for="companyName">Company Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="jobDuration[]" placeholder="Duration">
+                    <label for="jobDuration">Duration</label>
+                </div>
+            `;
+
+            workExperienceContainer.appendChild(newWorkExperience);
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/getUserData');
+                if (response.ok) {
+                    const userData = await response.json();
+
+                    document.getElementById('fullName').value = userData.fullName || '';
+                    document.getElementById('phone').value = userData.phone || '';
+                    document.getElementById('email2').value = userData.email || '';
+                } else {
+                    console.error('Failed to fetch user data');
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        });
+    </script>
+</body>
+</html>
