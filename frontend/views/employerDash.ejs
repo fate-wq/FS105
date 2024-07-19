@@ -7,7 +7,6 @@
     <div class="ctn-login">
 
         <h1 class="f-sanserif-bold mt-5">OVERVIEW</h1>
-        <h3 class="f-sanserif-medium">Welcome, <%= user.uenNo %>!</h3>
         <%- include ("timer.ejs") %>
 
         <div class="ctn-attendance">
@@ -17,7 +16,7 @@
                 <div class="col">
                     <div class="dash-square">
                         <p class="dash-title">Total Job Ads Posted</p>
-                        <p class="dash-figure"><%= user.totalJobs || 0 %></p>
+                        <p class="dash-figure">3</p>
                         <a href="/jobPosted"><button type="submit" class="button-spend">View All Job Ads</button></a>
                     </div>
                 </div>
@@ -48,7 +47,7 @@
                 <div class="col">
                     <div class="dash-square">
                         <p class="dash-title">Available Job Credits</p>
-                        <p class="dash-figure"><%= user.credits %></p>
+                        <p class="dash-figure">3</p>
                         <a href="/jobCredit"><button type="submit" class="button-spend">Purchase Credits</button></a>
                     </div>
                 </div>

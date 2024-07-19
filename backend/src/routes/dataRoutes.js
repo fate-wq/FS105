@@ -7,7 +7,7 @@ router.post('/data',setData);
 
 router.post('/updateProfile', updateUserData);
 
-router.post('/populateData',populateUserData)
+router.post('/populateData',populateUserData);
 
 
 module.exports = router;

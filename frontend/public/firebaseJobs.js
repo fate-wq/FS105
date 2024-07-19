@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!confirm('Are you sure you want to submit the form?')) {
             return;
         }
-
+        const userId = document.getElementById('userid').value;
         const jobData = {
             jobTitle: form.jobTitle.value,
             workingLocation: form.workingLocation.value,
@@ -174,7 +174,8 @@ document.addEventListener('DOMContentLoaded', function () {
             jobRequirement1: form.jobRequirement1.value,
             jobRequirement2: form.jobRequirement2.value,
             jobRequirement3: form.jobRequirement3.value,
-            companyName: document.getElementById('companyName').value
+            companyName: document.getElementById('companyName').value,
+            userId: userId // Include the userId
         };
 
         try {

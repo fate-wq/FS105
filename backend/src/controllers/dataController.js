@@ -5,7 +5,7 @@ const{db} = require('../config/firebase');
 const setData = async (req, res) => {
     try {
         console.log(req.body);
-        const jobDetails = req.body;
+        const { userId, ...jobDetails } = req.body;
 
         // Check if required fields are present
         if (!jobDetails.jobTitle || !jobDetails.workingLocation || !jobDetails.employmentType) {
@@ -14,6 +14,28 @@ const setData = async (req, res) => {
 
         // Store data in the "JobPostings" collection
         const docRef = await admindb.collection("JobPostings").add(jobDetails);
+
+        // Retrieve user record from database
+        const userRef = ref(db, `users/${userId}`);
+        const snapshot = await get(userRef);
+        const userData = snapshot.val();
+
+        // Check if the user record exists
+        if (!userData) {
+            throw new Error("User not found");
+        }
+
+        // Increment the job count
+        const newJobCount = (userData.jobCount || 0) + 1;
+
+        // Update user data with the new job count
+        await update(userRef, {
+            jobCount: newJobCount,
+            jobPostings: (userData.jobPostings || []).concat({
+                id: docRef.id,
+                jobTitle: jobDetails.jobTitle
+            })
+        });
 
         res.status(200).json({ message: "Data Stored Successfully", id: docRef.id });
     } catch (error) {
