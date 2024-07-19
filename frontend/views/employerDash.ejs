@@ -1,7 +1,7 @@
 <%- include ("meta.ejs") %>
 <body>
 
-    <%- include ("navbar.ejs") %>
+    <%- include ("navbar.ejs", { isLoggedIn: isLoggedIn, userRole: userRole }) %>
     <%- include ("navEmployer.ejs") %>
 
     <div class="ctn-login">

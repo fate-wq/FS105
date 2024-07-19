@@ -1,0 +1,29 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">EMPLOYER LOGIN</h1>
+        <button class="button-lightgreen" onclick="employerLogin()">Employer Login</button>
+
+        <p class="f-sanserif-regular mt-5">Alternatively, you may create an employer profile via:</p>
+        <button class="button-lightpink" onclick="createEmployerProfile()">Create Employer Account</button>
+
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+    <script>
+        function employerLogin() {
+            window.location.href = '/loginEmployer'; // Example URL for employer login
+        }
+
+        function createEmployerProfile() {
+            window.location.href = '/employerSignUp'; // Example URL for creating employer profile
+        }
+    </script>
+
+</body>
+</html>

@@ -46,6 +46,7 @@ app.use(verifyJWTToken); // Use the JWT verification middleware
 
 app.use((req, res, next) => {
     res.locals.userId = req.userId; // Pass user ID to EJS templates
+    res.locals.userRole = req.role; // Pass user role to EJS templates
     res.locals.isLoggedIn = !!req.userId; // Set isLoggedIn based on req.userId
     next();
 });
@@ -86,27 +87,30 @@ app.use((req, res, next) => {
 });
 
 
-// Fetch jobs data and render the index template
 app.get('/', verifyJWTToken, async (req, res) => {
     try {
-        const isLoggedIn = req.userId ? true : false;
+        const isLoggedIn = !!req.userId;
         const jobs = await getJobs(req.query || {});
         if (!jobs) {
             throw new Error("No jobs found");
         }
 
-        // Calculate session duration for non-logged-in users
         if (!isLoggedIn && req.session.startTime) {
             const currentTime = new Date();
             const sessionDuration = currentTime - new Date(req.session.startTime);
-            const userId = req.sessionID; // Use session ID as user ID for non-logged-in users
+            const userId = req.sessionID;
             await storeSessionData(userId, req.session.startTime, currentTime, sessionDuration, false);
-            console.log(`Session duration for non-logged-in user stored: ${sessionDuration}ms`);
-            req.session.startTime = null; // Reset session start time
+            req.session.startTime = null;
         }
 
-        console.log(`Rendering index page: ${isLoggedIn ? 'Logged in' : 'Not logged in'}`);
-        res.render('index', { title: 'WerkPay', jobs, isLoggedIn });
+        const userRole = req.role; // Get the user role from the request
+        console.log(`Rendering index page: ${isLoggedIn ? 'Logged in' : 'Not logged in'} as ${userRole}`);
+
+        if (userRole === 'employer') {
+            res.render('employerDash', { title: 'WerkPay - Employer', jobs, isLoggedIn, userRole });
+        } else {
+            res.render('index', { title: 'WerkPay', jobs, isLoggedIn, userRole });
+        }
     } catch (error) {
         console.error("Error rendering index:", error);
         res.status(500).send("Error rendering index page");
@@ -154,6 +158,9 @@ app.get('/createUserProfile', (req, res) => {
     res.render('createUserProfile', { title: 'Create Profile' });
 });
 
+app.get('/welcomeEmployer', (req, res) => {
+    res.render('welcomeEmployer', { title: 'Employer Login' });
+});
 app.get('/createEMProfile', (req, res) => {
     res.render('createEMProfile', { title: 'Create Employer Profile' });
 });
@@ -268,6 +275,18 @@ app.get('/stripe', (req, res) => {
         totalAmount: totalAmount,
         quantity: quantity,
         productId: productId
+    });
+});
+
+app.get('/loginEmployer', (req, res) => {
+    res.render('loginEmployer', {
+        title: 'Employer Login',
+    });
+});
+
+app.get('/employerSignUp', (req, res) => {
+    res.render('employerSignUp', {
+        title: 'Employer SignUp',
     });
 });
 

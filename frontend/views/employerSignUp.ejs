@@ -1,0 +1,98 @@
+<%- include ("meta.ejs") %>
+<body>
+    <%- include ("navbar.ejs") %>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">CREATE EMPLOYER ACCOUNT</h1>
+
+        <form id="profileForm" method="POST" action="/employerRegister" class="ctn-form">
+
+            <div class="input-group">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="createPassword" name="password" required>
+                <label for="createPassword">Create Password</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <p class="f-sanserif-regular mt-5">Your password should be a combination of at least 
+                8 characters, including lowercase letters, uppercase letters, 
+                numbers and special symbols.
+            </p>
+            
+
+            <button type="button" class="button-content" id="generateContent">Generate Content</button>
+            <button type="submit" class="button-createProfile">Sign Up</button>
+
+        </form>
+    </div>
+
+    <%- include ("footer.ejs") %>
+
+    <script>
+        // Function to validate password strength
+        function validatePassword(password) {
+            const minLength = 8;
+            const regex = {
+                lower: /[a-z]/,
+                upper: /[A-Z]/,
+                digit: /\d/,
+            };
+
+            if (password.length < minLength) {
+                return "Password is too short. It should be at least 8 characters long.";
+            }
+            if (!regex.lower.test(password)) {
+                return "Password should contain at least one lowercase letter.";
+            }
+            if (!regex.upper.test(password)) {
+                return "Password should contain at least one uppercase letter.";
+            }
+            if (!regex.digit.test(password)) {
+                return "Password should contain at least one digit.";
+            }
+            return null;
+        }
+
+        document.getElementById('generateContent').addEventListener('click', () => {
+            document.getElementById('username').value = 'Johnson Ang';
+            document.getElementById('email').value = 'johnson8484@gmail.com';
+            document.getElementById('createPassword').value = 'Password@123';
+            document.getElementById('confirmPassword').value = 'Password@123';
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', function (event) {
+            const createPassword = document.getElementById('createPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (createPassword !== confirmPassword) {
+                event.preventDefault();
+                alert('Passwords do not match');
+                return;
+            }
+
+            const passwordError = validatePassword(createPassword);
+            if (passwordError) {
+                event.preventDefault();
+                alert(passwordError);
+                return;
+            }
+
+
+        });
+    </script>
+
+</body>
+</html>

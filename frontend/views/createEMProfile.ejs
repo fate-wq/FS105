@@ -5,18 +5,28 @@
 
     <div class="ctn-login">
         <img src="/images/logo.jpg" alt="logo" class="img-logo">
-        <h1 class="f-sanserif-bold mt-5">CREATE</h1>
+        <h1 class="f-sanserif-bold mt-5">CREATE EMPLOYER PROFILE</h1>
 
-        <form action="" method="Post" class="ctn-form">
+        <form id="employerForm" class="ctn-form">
 
             <div class="input-group">
                 <input type="text" id="uen" name="uen" required>
-                <label for="uen">Company UEN no.</label>
+                <label for="uen">Company UEN No.</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="companyName" name="companyName" required>
+                <label for="companyName">Company Name</label>
             </div>
 
             <div class="input-group">
                 <input type="text" id="nameRep" name="nameRep" required>
                 <label for="nameRep">Name of Representative</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="positionRep" name="positionRep" required>
+                <label for="positionRep">Position of Representative</label>
             </div>
 
             <div class="input-group">
@@ -29,56 +39,74 @@
                 <label for="email">Email</label>
             </div>
 
-            <div class="input-group">
-                <input type="text" id="userRole" name="userRole" required>
-                <label for="userRole">User Role</label>
-            </div>
+            <!-- Hidden User ID Field -->
+            <% console.log("UserID:", userId); %>
+            <input type="hidden" id="userId" name="userId" value="<%= userId %>">
+            
+            <button type="button" class="button-createProfile" id="createProfileBtn">Create Profile</button>
 
-            <h1 class="f-sanserif-bold mt-5">PASSWORD</h1>
-            <p class="f-sanserif-regular mt-5">A one-time password will be generated to the Employer’s email.
-                The Employer’s user is encouraged to change the password.
-            </p>
-
-            <button type="submit" class="button-content">Generate Content</button>
-            <button type="submit" class="button-createProfile">Create Profile</button>
-
-            <p class="f-sanserif-regular mt-5">By creating a profile, you allow WerkPay to use 
-                your personal details for employment purposes.
-            </p>
-
+            <p class="f-sanserif-regular mt-5">By creating a profile, you allow WerkPay to use your personal details for employment purposes.</p>
         </form>
     </div>
 
     <%- include ("footer.ejs") %>
 
     <script>
-            document.addEventListener('DOMContentLoaded', function () {
-        const inputs = document.querySelectorAll('.input-group input, .input-group select');
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input-group input, .input-group select');
 
-        inputs.forEach(input => {
-            input.addEventListener('focus', function () {
-                this.parentElement.classList.add('focused');
-            });
+            inputs.forEach(input => {
+                input.addEventListener('focus', function () {
+                    this.parentElement.classList.add('focused');
+                });
 
-            input.addEventListener('blur', function () {
-                if (this.value === '') {
-                    this.parentElement.classList.remove('focused');
+                input.addEventListener('blur', function () {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+
+                input.addEventListener('change', function () {
+                    if (this.value !== '') {
+                        this.parentElement.classList.add('select-filled');
+                    } else {
+                        this.parentElement.classList.remove('select-filled');
+                    }
+                });
+
+                if (input.value !== '') {
+                    input.parentElement.classList.add('select-filled');
                 }
             });
 
-            input.addEventListener('change', function () {
-                if (this.value !== '') {
-                    this.parentElement.classList.add('select-filled');
-                } else {
-                    this.parentElement.classList.remove('select-filled');
+            document.getElementById('createProfileBtn').addEventListener('click', async function () {
+                const form = document.getElementById('employerForm');
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch('/storeEmployerUEN', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert(result.message);
+                        window.location.href = '/employerDash';
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while creating the profile. Please try again.');
                 }
             });
-
-            if (input.value !== '') {
-                input.parentElement.classList.add('select-filled');
-            }
         });
-    });
     </script>
 </body>
 </html>

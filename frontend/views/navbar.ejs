@@ -14,13 +14,18 @@
                 <div class="dropdown-content">
                     <% console.log("isLoggedIn:", isLoggedIn); %>
                     <% if (isLoggedIn) { %>
-                        <a href="/updateProfile">Profile</a>
-                        <a href="/jobApplication">Jobs</a>
-                        <a href="/eWallet">E-Wallet</a>
-                        <a href="/">Help</a>
-                        <a href="/logout">Log Out</a>
+                        <% if (userRole === 'employer') { %>
+                            <a href="/logout">Log Out</a>
+                        <% } else { %>
+                            <a href="/updateProfile">Profile</a>
+                            <a href="/jobApplication">Jobs</a>
+                            <a href="/eWallet">E-Wallet</a>
+                            <a href="/">Help</a>
+                            <a href="/logout">Log Out</a>
+                        <% } %>
                     <% } else { %>
-                        <a href="/login">Log In</a>
+                        <a href="/login">Log In For Users</a>
+                        <a href="/welcomeEmployer">Log In For Employers</a>
                     <% } %>
                 </div>
             </div>

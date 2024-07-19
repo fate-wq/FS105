@@ -1,0 +1,40 @@
+<%- include ("meta.ejs")%>
+<body>
+
+    <%- include ("navbar.ejs")%>
+
+    <div class="ctn-login">
+        <img src="/images/logo.jpg" alt="logo" class="img-logo">
+        <h1 class="f-sanserif-bold mt-5">EMPLOYER LOGIN</h1>
+
+        <% if (typeof error !== 'undefined') { %>
+            <p style="color: red;"><%= error %></p>
+        <% } %>
+
+        <form action="/employerLogin" method="post" class="ctn-form">
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <button type="submit" class="button-red">Login</button>
+        </form>
+
+        <p class="f-sanserif-regular mt-5">Forgot Password? Click <span>here</span> to reset your password</p>
+    </div>
+
+    <%- include ("footer.ejs")%>
+
+    <script>
+
+
+    </script>
+
+</body>
+</html>
