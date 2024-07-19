@@ -7,6 +7,7 @@ function verifyJWTToken(req, res, next) {
     // Allow requests without a token to pass through
     if (!token) {
         req.userId = null;
+        req.role = null;
         return next(); // Move to the next middleware
     }
 
@@ -15,6 +16,7 @@ function verifyJWTToken(req, res, next) {
             return res.status(500).json({ error: 'Failed to authenticate token' });
         }
         req.userId = decoded.userId; // Store the user ID in the request object
+        req.role = decoded.role; // Store the role in the request object
         next();
     });
 }
