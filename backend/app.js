@@ -271,6 +271,10 @@ app.get('/shop', (req, res) => {
     res.render('shop', { title: 'Shop' });
 });
 
+app.get('/userProfile', (req, res) => {
+    res.render('userProfile', { title: 'User Profile' });
+});
+
 app.get('/stripe', (req, res) => {
     const quantity = parseInt(req.query.quantity);
     const productId = req.query.product;

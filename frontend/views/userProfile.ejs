@@ -6,154 +6,55 @@
 
     <div class="ctn-login">
 
-        <div class="">
-            
-        </div>
-
-        <p class="f-sanserif-regular mt-5">All job seekers need to update their profile 
-            before applying for jobs. Otherwise, job applications 
-            will not be available for the user.
+        <p class="f-sanserif-regular mt-5">
+            Click on the update to edit your profile.
         </p>
-        <h1 class="f-sanserif-bold mt-5">UPDATE PROFILE</h1>
 
-        <ul class="step-wizard-list mt-5">
-            <li class="step-wizard-item current-item" data-step="1">
-                <span class="progress-count">1</span>
-                <span class="progress-label">Basic Information</span>
-            </li>
-            <li class="step-wizard-item" data-step="2">
-                <span class="progress-count">2</span>
-                <span class="progress-label">Work Experience</span>
-            </li>
-            <li class="step-wizard-item" data-step="3">
-                <span class="progress-count">3</span>
-                <span class="progress-label">Skills</span>
-            </li>
-            <li class="step-wizard-item" data-step="4">
-                <span class="progress-count">4</span>
-                <span class="progress-label">Upload Resume (Optional)</span>
-            </li>
-        </ul>
+        <h1 class="f-sanserif-bold mt-5">USER PROFILE</h1>
 
-        <form action="" method="Post" class="ctn-form">
+        <div class="ctn-job3">
+            <div class="row">
+                <div class="ctn-job2-col1">
+                    <img src="/images/avatar.png" class="img-avatar">
 
-            <!-- Step 1: Basic Information -->
-            <div class="form-step" data-step="1">
-                <div class="input-group">
-                    <input type="text" id="fullName" name="fullName" required>
-                    <label for="fullName">Full Name <span class="required">*</span></label>
-                </div>
+                    <ul class="job-Body ul-joblist mt-5">
+                            <li class="mt-3">Full Name: <br> <span class="f-sanserif-bold">Full Name</span></li>
+                            <li class="mt-3">Date Of Birth:<br> <span class="f-sanserif-bold">Date Of Birth</span></li>
+                            <li class="mt-3">About Me:<br> <span class="f-sanserif-bold">About Me</span></li>
+                    </ul>
 
-                <div class="input-group date-picker">
-                    <input type="date" id="dmBirth" name="dmBirth" required>
-                    <label for="dmBirth">Date Of Birth <span class="required">*</span></label>
-                </div>
+                    <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
+                    <ul class="job-Body ul-joblist mt-5">
+                        <li class="mt-3">Email:<br> <span class="f-sanserif-bold">Email</span></li>
+                    </ul>
 
-                <div class="input-group">
-                    <input type="text" id="about" name="About Me" required>
-                    <label for="about me">About Me<span class="required">*</span></label>
-                </div>
 
-                <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
+                    <h1 class="f-sanserif-bold mt-5">PAYNOW ACCOUNT</h1>
+                    <ul class="job-Body ul-joblist mt-5">
+                        <li class="mt-3">Mobile No.:<br> <span class="f-sanserif-bold">Mobile No.</span></li>
+                    </ul>
 
-                <div class="input-group">
-                    <input type="email" id="email2" name="email2" required>
-                    <label for="email2">Email<span class="required">*</span></label>
-                </div>
+                    <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1>
+                    <ul class="job-Body ul-joblist mt-5">
+                        <li class="mt-3">Job Title:<br> <span class="f-sanserif-bold">Job Title</span></li>
+                        <li class="mt-3">Company Name:<br> <span class="f-sanserif-bold">Company Name</span></li>
+                        <li class="mt-3">Duration:<br> <span class="f-sanserif-bold">Duration</span></li>
+                    </ul>
 
-                <h1 class="f-sanserif-bold mt-5">PAYNOW ACCOUNT</h1>
-
-                <p class="f-sanserif-regular mt-5">All payments will be made to this PayNow mobile no.</p>
-
-                <div class="input-group">
-                    <input type="text" id="paynowMobile" name="paynowMobile" required>
-                    <label for="paynowMobile">Mobile No. <span class="required">*</span></label>
-                </div>
-
-                <button type="button" class="button-next next-section">Next</button>
-            </div>
-
-            <!-- Step 2: Work Experience -->
-            <div class="form-step" data-step="2" style="display: none;">
-                <div id="work-experience-container">
-                    <h1 class="f-sanserif-bold mt-5">Work Experience 1</h1> <!-- Initial header -->
-                    <div class="input-group">
-                        <input type="text" id="jobTitle1" name="jobTitle[]" placeholder="Job Title">
-                        <label for="jobTitle1">Job Title</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="companyName1" name="companyName[]" placeholder="Company Name">
-                        <label for="companyName1">Company Name</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="jobDuration1" name="jobDuration[]" placeholder="Duration">
-                        <label for="jobDuration1">Duration</label>
-                    </div>
-                </div>
-                <div class="btn-option">
-                    <button type="button" class="add-button" id="add-work-experience">+ Add Work Experience</button> <!-- Moved above -->
-                    <button type="button" class="cancel-section" style="display: none;">Remove Work Experience</button>
-                </div>
-                <button type="button" class="button-content prev-section">Previous</button>
-                <button type="button" class="button-next next-section">Next</button>
-                
-            </div>
-
-            <!-- Step 3: Skills -->
-            <div class="form-step" data-step="3" style="display: none;">
-                <div id="skills-container">
                     <h1 class="f-sanserif-bold mt-5">Skills</h1>
-                    <div class="input-group">
-                        <input type="text" id="skill1" name="skills[]" placeholder="Skill">
-                        <label for="skill1">Skill</label>
-                    </div>
-                </div>
-                <div class="btn-option">
-                    <button type="button" id="add-skill" class="add-button">+ Add Skill</button>
-                    <button type="button" class="cancel-section" style="display: none;">Remove Skill</button>
-                </div>
+                    <ul class="job-Body ul-joblist mt-5">
+                        <li class="mt-3">Type of Skills:<br> <span class="f-sanserif-bold">Skills</span></li>
+                        <li class="mt-3">Type of Skills:<br> <span class="f-sanserif-bold">Skills</span></li>
+                    </ul>
 
-                <button type="button" class="button-content prev-section">Previous</button>
-                <button type="button" class="button-next next-section">Next</button>
+                    <button type="submit" class="button-createProfile">Update Profile</button>
+
+                </div>
             </div>
-
-            <!-- Step 4: Upload Resume -->
-            <div class="form-step" data-step="4" style="display: none;">
-                <h1 class="f-sanserif-bold mt-5">Upload Resume (Optional)</h1>
-                <div class="input-group">
-                    <input type="file" id="resume" name="resume">
-                    <label for="resume">Upload Resume</label>
-                </div>
-                <button type="button" class="button-content prev-section">Previous</button>
-                <button type="submit" class="button-createProfile">Create Profile</button>
-            </div>
-
-            <p class="f-sanserif-regular mt-5">By updating your profile, you ensure that all 
-                information is accurate.
-            </p>
-
-        </form>
+        </div>  
     </div>
 
     <%- include ("footer.ejs") %>
-
-    <style>
-        .button-content,
-        .add-button,
-        .cancel-section {
-            display: block;
-            margin-bottom: 10px; /* Adjust as needed */
-        }
-        .btn-option{
-            display: flex;
-            justify-content: space-around;
-        }
-        .input-group.date-picker input[type="date"] {
-            padding-left: 60px; 
-            font-size: 20px;
-
-        }
-    </style>
 
     <script>
         const steps = document.querySelectorAll('.step-wizard-item');

@@ -240,6 +240,23 @@ col {
     flex: 2;
 }
 
+.ctn-job3 {
+    display: flex;
+    flex-direction: column;
+    min-width: 50%;
+    max-width: 60%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 60px;
+    background-color: rgba(240, 187, 180, 0.2);
+    padding: 40px 80px;
+}
+
 .ctn-job2-col2 {
     display: flex;
     flex-direction: column;
@@ -1546,6 +1563,11 @@ label.focused {
     width: 150px;
     margin-top: 50px;
     margin-bottom: 30px;
+}
+
+.img-avatar {
+    min-height: 150px;
+    max-width: 150px;
 }
 
 .img-selfie {
