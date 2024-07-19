@@ -68,14 +68,13 @@
                 <div class="row">
                     <div class="ctn-job2-col1">
                         <h3 class="job-Title"><%= job.jobTitle %></h3>
-                        <p class="mt-3">Job by: <span class="f-sanserif-bold"><%= job.employer %></span>
-                            <% if (job.rateType) { %>
-                                <button class="button-jobtag"><%= job.rateType %></button>
-                            <% } %>
-                            <% if (job.employmentType) { %>
-                                <button class="button-jobtag"><%= job.employmentType %></button>
-                            <% } %>
-                        </p>
+                        <p class="mt-3">Company: <span class="f-sanserif-bold"><%= job.companyName %></span></p>
+                        <% if (job.rateType) { %>
+                            <button class="button-jobtag"><%= job.rateType %></button>
+                        <% } %>
+                        <% if (job.employmentType) { %>
+                            <button class="button-jobtag"><%= job.employmentType %></button>
+                        <% } %>
                         <ul class="job-Body ul-joblist mt-5">
                             <% if (job.workingLocation) { %>
                                 <li class="mt-3">Working Location:<br> <span class="f-sanserif-bold"><%= job.workingLocation %></span></li>

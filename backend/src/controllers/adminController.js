@@ -37,6 +37,29 @@ class AdminController {
     res.render('adminDash');
   }
 
+  async showAdminVerification(req, res) {
+    try {
+        const usersRef = ref(db, 'users');
+        const snapshot = await get(usersRef);
+        const employers = [];
+
+        snapshot.forEach((childSnapshot) => {
+            const user = childSnapshot.val();
+            if (user.role === 'employer' && !user.verified) {
+                employers.push({
+                    id: childSnapshot.key,
+                    ...user
+                });
+            }
+        });
+
+        res.render('adminDashVeri', { employers });
+    } catch (error) {
+        console.error('Error fetching employers:', error);
+        res.status(500).send("An error occurred while fetching employers.");
+    }
+  }
+
   async showAdminUser(req, res) {
     try {
       const usersRef = ref(db, 'users');
@@ -105,6 +128,28 @@ async editUser(req, res) {
       res.redirect('/admin/login');
     });
   }
+
+  async verifyEmployer(req, res) {
+    try {
+        const employerId = req.params.id;
+        await update(ref(db, `users/${employerId}`), { verified: true });
+        res.redirect('/admin/showUEN');
+    } catch (error) {
+        console.error('Error verifying employer:', error);
+        res.status(500).send("An error occurred while verifying the employer.");
+    }
+}
+
+async rejectEmployer(req, res) {
+    try {
+        const employerId = req.params.id;
+        await remove(ref(db, `users/${employerId}`));
+        res.redirect('/admin/showUEN');
+    } catch (error) {
+        console.error('Error rejecting employer:', error);
+        res.status(500).send("An error occurred while rejecting the employer.");
+    }
+}
 }
 
 module.exports = new AdminController();

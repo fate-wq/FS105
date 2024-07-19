@@ -5,26 +5,28 @@
 
     <div class="ctn-login">
         <h1 class="f-sanserif-bold mt-5">CREATE JOB POSTING</h1>
-        <ul class="step-wizard-list mt-5">
-            <li class="step-wizard-item">
-                <span class="progress-count">1</span>
-                <span class="progress-label">Job Details</span>
-            </li>
-            <li class="step-wizard-item current-item">
-                <span class="progress-count">2</span>
-                <span class="progress-label">Salary Details</span>
-            </li>
-            <li class="step-wizard-item">
-                <span class="progress-count">3</span>
-                <span class="progress-label">Working Period</span>
-            </li>
-            <li class="step-wizard-item">
-                <span class="progress-count">4</span>
-                <span class="progress-label">Job Descriptions</span>
-            </li>
-        </ul>
+        <% if (isVerified) { %>
+            <ul class="step-wizard-list mt-5">
+                <li class="step-wizard-item">
+                    <span class="progress-count">1</span>
+                    <span class="progress-label">Job Details</span>
+                </li>
+                <li class="step-wizard-item current-item">
+                    <span class="progress-count">2</span>
+                    <span class="progress-label">Salary Details</span>
+                </li>
+                <li class="step-wizard-item">
+                    <span class="progress-count">3</span>
+                    <span class="progress-label">Working Period</span>
+                </li>
+                <li class="step-wizard-item">
+                    <span class="progress-count">4</span>
+                    <span class="progress-label">Job Descriptions</span>
+                </li>
 
-        <form id="jobForm" action="/jobPosting" method="post" class="ctn-form">
+            </ul>
+
+        <form id="jobForm" action="" method="post" class="ctn-form">
             <!-- Step 1: Job Details -->
             <section id="job-details" class="ctn-form2">
                 <h2>Job Details</h2>
@@ -63,6 +65,8 @@
             <!-- Step 4: Job Descriptions -->
             <section id="job-descriptions" class="ctn-form2" style="display: none;">
                 <h2 class="f-sanserif-bold mt-5">Job Descriptions</h2>
+
+                <input type="hidden" id="companyName" name="companyName" value="<%= companyName %>">
 
                 <div class="input-group mt-5">
                     <textarea id="jobDescription1" name="jobDescription1" rows="4" required></textarea>
@@ -109,8 +113,10 @@
                 <button type="submit" class="button-createProfile">Create Job Posting</button>
             </section>
         </form>
+        <% } else { %>
+            <p style="font-size: 1.5em; font-weight: bold; color: red;">Your account needs to be verified first before you can start posting jobs.</p>
+        <% } %>
     </div>
-
     <%- include ("footer.ejs") %>
 
     <script src="/firebaseJobs.js"></script>

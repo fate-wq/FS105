@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Overview</title>
+    <title>Admin Dashboard - Verify Employers</title>
     <!-- fonts, Crimson -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <!-- fonts, Fira Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: "Fira Sans", sans-serif;
@@ -52,105 +51,64 @@
         .main-content {
             flex: 1;
             padding: 20px;
+            background-color: #f9f9f9;
         }
-        .f-sanserif-bold {
-            font-family: "Fira Sans", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-            color: rgba(81, 85, 89, 1);
-        }
-        .ctn-login {
+        .employer-list {
             display: flex;
             flex-direction: column;
-            width: 90%;
+            gap: 20px;
+        }
+        .employer-item {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 50px auto 150px;
-            background-color: white;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        .ctn-attendance {
-            display: flex;
-            flex-direction: column;
-            min-width: 70%;
-            align-items: left;
-            justify-content: center;
-            text-align: center;
-            margin: 30px auto 0;
-            border-radius: 60px;
-            background-color: rgba(240, 187, 180, 0.2);
-            padding: 40px 80px;
+        .employer-item:hover {
+            transform: translateY(-5px);
         }
-        .row {
-            display: flex;
-            justify-content: space-around;
-        }
-        .col {
-            display: flex;
-            padding: 50px;
-        }
-        .dash-square {
-            display: inline-block;
-            width: 250px;
-            height: 250px;
-            background-color: white;
-            padding: 40px 30px;
-            margin-top: 10px;
-            border-radius: 40px;
-            border: 0;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow for a lifted effect */
-            transition: transform 0.3s ease; /* Added a hover effect */
-        }
-
-        .dash-square:hover {
-            transform: translateY(-5px); /* Lift the box on hover */
-        }
-
-        .dash-title {
-            font-size: 1.2rem;
+        .employer-info {
             font-family: "Fira Sans", sans-serif;
-            font-weight: 500;
-            font-style: normal;
             color: rgba(81, 85, 89, 1);
         }
-        .dash-figure {
-            font-size: 2.5rem;
-            font-family: "Fira Sans", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-            color: rgba(81, 85, 89, 1);
+        .employer-info p {
+            margin: 5px 0;
         }
-        .button-spend {
-            width: 100%;
-            height: 30px;
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .button-verify, .button-reject {
             border: none;
-            border-radius: 60px;
-            color: rgba(81, 85, 89, 1);
-            background-color: rgba(245, 189, 168, 1);
-            font-size: 1rem;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 14px;
             font-family: "Fira Sans", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-            margin: 2px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-
-        .charts{
-            display: flex;
-            gap: 60px;
+        .button-verify {
+            background-color: #4CAF50; /* Green */
         }
-
-        .chart-container {
-            display: flex;
-            justify-content: center;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: white;
-            border-radius: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a lifted effect */
+        .button-verify:hover {
+            background-color: #45a049;
+        }
+        .button-reject {
+            background-color: #f44336; /* Red */
+        }
+        .button-reject:hover {
+            background-color: #e53935;
+        }
+        .employer-list h2 {
+            font-family: "Crimson Text", serif;
+            color: rgba(81, 85, 89, 1);
+            margin-bottom: 20px;
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -159,27 +117,39 @@
         <div class="sidebar">
             <h2>Admin Dashboard</h2>
             <ul>
-                <li><a href="/admin/dashboard" class="active">Overview</a></li>
+                <li><a href="/admin/dashboard">Overview</a></li>
                 <li><a href="/admin/allUEN">All UENs</a></li>
                 <li><a href="/admin/allEmployer">Manage Employers</a></li>
                 <li><a href="/admin/allJobseeker">Manage Job Seekers</a></li>
                 <li><a href="/admin/allJobPosted">Posted Jobs</a></li>
                 <li><a href="/admin/blacklistedJobs">Blacklisted Jobs</a></li>
                 <li><a href="/admin/paymentProcess">Process Payments</a></li>
-                <li><a href="/admin/verifyUEN">Verify UEN</a></li>
+                <li><a href="/admin/showUEN" class="active">Verify Employer UEN</a></li>
                 <li><a href="/admin/logout">Logout</a></li>
             </ul>
         </div>
         <div class="main-content">
-
+            <div class="employer-list">
+                <h2>Not Verified Employers</h2>
+                <% employers.forEach(employer => { %>
+                    <div class="employer-item">
+                        <div class="employer-info">
+                            <p><strong>Company:</strong> <%= employer.companyName %></p>
+                            <p><strong>UEN:</strong> <%= employer.uen %></p>
+                            <p><strong>Representative:</strong> <%= employer.nameRep %></p>
+                        </div>
+                        <div class="action-buttons">
+                            <form action="/admin/verifyEmployer/<%= employer.id %>" method="POST">
+                                <button type="submit" class="button-verify">Verify</button>
+                            </form>
+                            <form action="/admin/rejectEmployer/<%= employer.id %>" method="POST">
+                                <button type="submit" class="button-reject">Reject</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
         </div>
     </div>
-    <script>
-
-    </script>
-       
-</body>
-</html>
-
 </body>
 </html>

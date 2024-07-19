@@ -173,7 +173,8 @@ document.addEventListener('DOMContentLoaded', function () {
             jobDescription5: form.jobDescription5.value,
             jobRequirement1: form.jobRequirement1.value,
             jobRequirement2: form.jobRequirement2.value,
-            jobRequirement3: form.jobRequirement3.value
+            jobRequirement3: form.jobRequirement3.value,
+            companyName: document.getElementById('companyName').value
         };
 
         try {
