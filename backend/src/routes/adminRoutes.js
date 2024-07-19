@@ -6,7 +6,11 @@ const dashboardController = require('../controllers/dashboardController');
 // GET route for admin login page
 router.get('/admin/login', adminController.showAdminLogin);
 router.get('/admin/dashboard', adminController.showAdminDashboard);
+router.get('/admin/showUEN',adminController.showAdminVerification);
 router.get('/api/usersCount', dashboardController.getUsersCount);
+router.post('/admin/verifyEmployer/:id', adminController.verifyEmployer);
+router.post('/admin/rejectEmployer/:id', adminController.rejectEmployer);
+
 
 router.post('/admin/login', adminController.loginAdmin);
 router.get('/admin/logout', adminController.adminLogout);

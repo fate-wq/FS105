@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const firebaseAuthController = require('../controllers/authController');
+const verifyJWTToken = require('../middleware/auth'); // Import the middleware
 
 // Route for user registration
 router.post('/register', firebaseAuthController.registerUser);
@@ -24,6 +25,8 @@ router.post('/login', firebaseAuthController.loginUser);
 router.post('/employerLogin', firebaseAuthController.loginEmployer);
 
 router.post('/storeEmployerUEN',firebaseAuthController.storeEmployerUEN);
+
+router.get('/jobPosting',verifyJWTToken, firebaseAuthController.showJobPostingPage);
 
 module.exports = router;
 

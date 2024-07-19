@@ -255,6 +255,29 @@ class FirebaseAuthController {
             res.status(500).json({ success: false, message: "Error storing employer UEN" });
         }
     }
+
+    async showJobPostingPage(req, res) {
+        try {
+            const userId = req.userId; 
+            const isLoggedIn = !!req.userId;
+            const userRole = req.role; // Get the user role from the request
+            console.log(`Rendering job posting page: ${isLoggedIn ? 'Logged in' : 'Not logged in'} as ${userRole}`);
+            const userRef = ref(db, `users/${userId}`);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val();
+            
+            if (!userData) {
+                return res.status(404).send('User not found');
+            }
+    
+            const isVerified = userData.verified;
+    
+            res.render('jobPosting', { isVerified: isVerified,title: 'WerkPay - Employer', isLoggedIn, userRole,companyName: userData.companyName });
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            res.status(500).send('An error occurred');
+        }
+    }
 }
 
 
