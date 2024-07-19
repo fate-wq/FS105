@@ -8,6 +8,7 @@ const { getJobs } = require('./src/controllers/dataController');
 const verifyJWTToken = require('./src/middleware/auth'); // Import the middleware
 const { realtimedb } = require('./src/config/firebaseAdmin'); // Import Firebase Admin configuration
 
+
 const app = express();
 const cookieParser = require('cookie-parser');
 require("dotenv").config();
@@ -368,6 +369,27 @@ app.post('/create-checkout-session', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+app.get('/applicationProcess', (req, res) => {
+    // Example: Fetch user data from your database
+    const userData = {
+        username: "fullname",
+        email2: "email",
+        // Other fields as needed
+    };
+
+    res.render('applicationProcess', { 
+        title: 'Application Process',
+        userData: userData 
+    });
+});
+
+app.post('/applicationProcess', (req, res) => {
+    const { availabilityDays } = req.body;
+    // Handle the data received from the form
+    // Save the data to your database or perform necessary actions
+    res.send('Application submitted successfully!');
 });
 
 const PORT = process.env.PORT || 3000;

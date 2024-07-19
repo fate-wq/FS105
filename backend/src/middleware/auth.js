@@ -12,7 +12,10 @@ function verifyJWTToken(req, res, next) {
 
     jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
-            return res.status(500).json({ error: 'Failed to authenticate token' });
+
+            console.error('Failed to authenticate token', err); // Log the error
+            req.userId = null; // Clear the userId if there's an error
+            return next(); // Continue processing the request);
         }
         req.userId = decoded.userId; // Store the user ID in the request object
         next();

@@ -40,7 +40,7 @@
             <!-- Step 1: Basic Information -->
             <div class="form-step" data-step="1">
                 <div class="input-group">
-                    <input type="text" id="fullName" name="fullName" required value="<%= userData.fullName %>">
+                    <input type="text" id="fullName" name="fullName" required>
                     <label for="fullName">Full Name <span class="required">*</span></label>
                 </div>
 
@@ -57,7 +57,7 @@
                 <h1 class="f-sanserif-bold mt-5">CONTACT DETAILS</h1>
 
                 <div class="input-group">
-                    <input type="email" id="email2" name="email2" required value="<%= userData.email %>">
+                    <input type="email" id="email2" name="email2" required>
                     <label for="email2">Email<span class="required">*</span></label>
                 </div>
 
@@ -183,7 +183,7 @@
 nextBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         // Check if all required fields in the current step are filled
-        const currentFormStep = document.querySelector(.form-step[data-step="${currentStep}"]);
+        const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`);
         const inputs = currentFormStep.querySelectorAll('input[required]');
         let isValid = true;
 
@@ -279,6 +279,42 @@ addSkillBtn.addEventListener('click', () => {
 
     // Include the userId in the userData object
     const userId = "<%= userId %>"; 
+    console.log(userId);
+    async function populateData() {
+    try {
+        const response = await fetch('/api/populateData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId: userId }) // Send only userId
+        });
+        const result = await response.json();
+        console.log("Result", result);
+
+        // Directly access properties from the result object
+        if (result.users) {
+            console.log("Username:", result.users.username);
+            console.log("Email:", result.users.email);
+            document.getElementById('fullName').value = result.users.username || '';
+            document.getElementById('email2').value = result.users.email || '';
+        } else {
+            console.log('User data not available.');
+        }
+
+        if (result.message) {
+            alert(result.message);
+        } else if (result.error) {
+            alert(result.error);
+        }
+    } catch (e) {
+        console.error("Error fetching profile data: ", e);
+        alert("Error fetching profile data");
+    }
+}
+
+populateData();
+
 
     // Define an object to store user data
     const userData = {
@@ -353,6 +389,7 @@ addSkillBtn.addEventListener('click', () => {
             alert("Error updating profile");
         }
     });
+    
 
         updateStep(currentStep);
     </script>

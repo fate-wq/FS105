@@ -143,7 +143,11 @@
                         <% if (job.hourlyRate) { %>
                             <h3 class="f-sanserif-bold">$<%= job.hourlyRate %> /hr</h3>
                         <% } %>
-                        <button class="button-apply">Apply Now</button>
+                        <% if (isLoggedIn) { %>
+                            <a href="/applicationProcess" class="button-apply">Apply Now</a>
+                        <% } else { %>
+                            <p>Please <a href="/login">log in</a> to apply for jobs.</p>
+                        <% } %>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ const secretKey = process.env.SECRET_KEY;
 let userPassword = null;
 
 function generateJWTToken(userId) {
-    return jwt.sign({ userId }, secretKey, { expiresIn: '3h' });
+    return jwt.sign({ userId }, secretKey);
 }
 
 class FirebaseAuthController {
