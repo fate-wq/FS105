@@ -279,6 +279,7 @@ addSkillBtn.addEventListener('click', () => {
 
     // Include the userId in the userData object
     const userId = "<%= userId %>"; 
+    console.log(userId);
     async function populateData() {
     try {
         const response = await fetch('/api/populateData', {

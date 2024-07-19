@@ -139,9 +139,30 @@ const populateUserData = async(req,res) => {
     }
 };
 
+const getUserData = async (req, res) => {
+    try {
+        const userId = req.session.userId; // Ensure you have userId in session
+        const userRef = ref(db, `users/${userId}`);
+        const userSnapshot = await get(userRef);
+
+        if (!userSnapshot.exists()) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const userData = userSnapshot.val();
+        res.json(userData);
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).json({ error: 'Error fetching user data' });
+    }
+};
+
+
+
 module.exports = {
     setData,
     getJobs,
     updateUserData,
-    populateUserData
+    populateUserData,
+    getUserData
 };
